@@ -1,0 +1,5 @@
+freertos.c:97:6:vApplicationIdleHook	4	static
+freertos.c:116:6:MX_FREERTOS_Init	8	static
+freertos.c:167:6:StartDefaultTask	16	static
+freertos.c:191:13:StartLCDSleepTask	16	static
+freertos.c:209:13:StartPwmTask	16	static

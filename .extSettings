@@ -1,0 +1,9 @@
+[ProjectFiles]
+HeaderPath=../Drivers/Vendor/Board/SE21159/Config;../Drivers/Vendor/Device;../Drivers/Vendor/Driver;../LWIP/App;../LWIP/Target;../ETHERNET_IF/App/tcpecho;../ETHERNET_IF/Target;
+
+[Groups]
+Drivers/Vendor=../Drivers/Vendor/Board/SE21159/Config/edt_board_config.c;../Drivers/Vendor/Board/SE21159/Config/se21159_sys_conf.h;../Drivers/Vendor/Driver/edt_bsp_backlight.c;../Drivers/Vendor/Driver/edt_bsp_can.c;../Drivers/Vendor/Driver/edt_bsp_ctp.c;../Drivers/Vendor/Driver/edt_bsp_i2c.c;../Drivers/Vendor/Driver/edt_bsp_io.c;../Drivers/Vendor/Driver/edt_bsp_lcd.c;../Drivers/Vendor/Driver/edt_bsp_sdram.c;../Drivers/Vendor/Driver/edt_bsp_spi.c;../Drivers/Vendor/Driver/edt_bsp_uart.c;../Drivers/Vendor/Device/AppJumpToBoot/app_jumpto_boot.c;
+Drivers/Vendor/Components=../Drivers/Vendor/Device/ctp/ILI2511v6.c;../Drivers/Vendor/Device/dp83848/dp83848.c;
+Drivers/Vendor/ETHERNET_IF=../ETHERNET_IF/App/tcpecho/tcp_client.c;../ETHERNET_IF/App/tcpecho/tcp_server.c;../ETHERNET_IF/App/tcpecho/tcp_client.c;../ETHERNET_IF/Target/app_ethernet.c;
+[Others]
+

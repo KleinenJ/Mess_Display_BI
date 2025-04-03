@@ -1,0 +1,6 @@
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/EEPROM/src/edt_h7xx_eeprom_i2c.c:82:6:EDT_EEROM_I2Cx_Init	16	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/EEPROM/src/edt_h7xx_eeprom_i2c.c:104:9:EE_Read_PWM	16	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/EEPROM/src/edt_h7xx_eeprom_i2c.c:113:10:EE_returnCount	16	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/EEPROM/src/edt_h7xx_eeprom_i2c.c:123:6:EE_Write_PWM	32	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/EEPROM/src/edt_h7xx_eeprom_i2c.c:186:16:EE_Read	40	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/EEPROM/src/edt_h7xx_eeprom_i2c.c:204:16:EE_Write	40	static

@@ -1,0 +1,15 @@
+edt_bsp_backlight.c:54:6:EDT_BL_Set_Handle	8	static
+edt_bsp_backlight.c:68:13:setPWM	8	static
+edt_bsp_backlight.c:82:6:EDT_BL_Update	112	static
+edt_bsp_backlight.c:139:13:TS_CAL	4	static
+edt_bsp_backlight.c:158:14:TEMP_SENSOR_GetValue	16	static
+edt_bsp_backlight.c:180:6:EDT_LCD_BL_ON	8	static
+edt_bsp_backlight.c:191:6:EDT_LCD_BL_OFF	8	static
+edt_bsp_backlight.c:203:6:EDT_TEMPSENSOR_Init	40	static
+edt_bsp_backlight.c:260:7:EDT_LCD_BL_PWM_Init	48	static
+edt_bsp_backlight.c:293:6:EDT_LCD_BL_SetPwm	104	static
+edt_bsp_backlight.c:319:9:EDT_LCD_BL_GetPwm	4	static
+edt_bsp_backlight.c:330:6:StartPwmTask	16	static
+edt_bsp_backlight.c:352:6:EDT_SuspendPwmTask	8	static
+edt_bsp_backlight.c:365:6:EDT_ResumePwmTask	8	static
+edt_bsp_backlight.c:378:6:Get_EDT_BacklightStatus	4	static

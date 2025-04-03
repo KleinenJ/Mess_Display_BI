@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.23.2">
+  <Languages>
+    <Language Id="GB" />
+  </Languages>
+  <Texts>
+    <TextGroup Id="Group1" />
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_3G10" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">Einregeln</Translation>
+      </Text>
+      <Text Id="__SingleUse_MKYI" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">&lt;hv_status&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_IK9T" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_VEI4" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">&lt;hv_sw&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_2OX2" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">00</Translation>
+      </Text>
+      <Text Id="__SingleUse_WWMI" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">&lt;hv_hw&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_2DLE" Alignment="Left" TypographyId="SB">
+        <Translation Language="GB">SW:</Translation>
+      </Text>
+      <Text Id="__SingleUse_4ECG" Alignment="Left" TypographyId="SB">
+        <Translation Language="GB">HW:</Translation>
+      </Text>
+      <Text Id="__SingleUse_C5JB" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_8O6C" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;hvi_soll_value&gt; µA</Translation>
+      </Text>
+      <Text Id="__SingleUse_0NZU" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Ist:</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZKG2" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Soll:</Translation>
+      </Text>
+      <Text Id="__SingleUse_8DCU" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">00000</Translation>
+      </Text>
+      <Text Id="__SingleUse_Z1Q3" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;hvu_value&gt; V</Translation>
+      </Text>
+      <Text Id="__SingleUse_7XI6" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_WFTL" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;hvi_value&gt; µA</Translation>
+      </Text>
+      <Text Id="__SingleUse_QGJ2" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_JO6M" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;ipol_value&gt; µA</Translation>
+      </Text>
+      <Text Id="__SingleUse_HM1P" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">00000</Translation>
+      </Text>
+      <Text Id="__SingleUse_FFJK" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;upol_value&gt; V</Translation>
+      </Text>
+      <Text Id="__SingleUse_02X1" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">00000</Translation>
+      </Text>
+      <Text Id="__SingleUse_T8NI" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;uion_value&gt; V</Translation>
+      </Text>
+      <Text Id="__SingleUse_C6RK" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_Z69U" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;lvf_value&gt; %</Translation>
+      </Text>
+      <Text Id="__SingleUse_4D2O" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_CO0E" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;lnf_value&gt; %</Translation>
+      </Text>
+      <Text Id="__SingleUse_FQMG" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_OCTG" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;tvf_value&gt; °C</Translation>
+      </Text>
+      <Text Id="__SingleUse_JPSY" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">000</Translation>
+      </Text>
+      <Text Id="__SingleUse_56M2" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;tnf_value&gt; °C</Translation>
+      </Text>
+      <Text Id="__SingleUse_G8UL" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">0000</Translation>
+      </Text>
+      <Text Id="__SingleUse_KBF6" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;pi_value&gt; µg/m³</Translation>
+      </Text>
+      <Text Id="__SingleUse_N72R" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">0000</Translation>
+      </Text>
+      <Text Id="__SingleUse_85MM" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;pnf_value&gt; µg/m³</Translation>
+      </Text>
+      <Text Id="__SingleUse_VZ39" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">0000</Translation>
+      </Text>
+      <Text Id="__SingleUse_JW9D" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">&lt;pvf_value&gt; µg/m³</Translation>
+      </Text>
+      <Text Id="__SingleUse_QWQM" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">HV Spannung:</Translation>
+      </Text>
+      <Text Id="__SingleUse_1UIH" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">HV Strom:</Translation>
+      </Text>
+      <Text Id="__SingleUse_RSUZ" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Ionisator:</Translation>
+      </Text>
+      <Text Id="__SingleUse_A1I5" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Polarisation:</Translation>
+      </Text>
+      <Text Id="__SingleUse_31PF" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Vor Filter:</Translation>
+      </Text>
+      <Text Id="__SingleUse_SS63" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Nach Filter:</Translation>
+      </Text>
+      <Text Id="__SingleUse_YBT1" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Vor Filter:</Translation>
+      </Text>
+      <Text Id="__SingleUse_0WX6" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Nach Filter:</Translation>
+      </Text>
+      <Text Id="__SingleUse_SBFF" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Innenraum:</Translation>
+      </Text>
+      <Text Id="__SingleUse_WI2N" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Nach Filter:</Translation>
+      </Text>
+      <Text Id="__SingleUse_BF32" Alignment="Left" TypographyId="LM">
+        <Translation Language="GB">Vor Filter:</Translation>
+      </Text>
+      <Text Id="__SingleUse_WZXH" Alignment="Left" TypographyId="L">
+        <Translation Language="GB">HV Quelle</Translation>
+      </Text>
+      <Text Id="__SingleUse_YC53" Alignment="Left" TypographyId="L">
+        <Translation Language="GB">Filter</Translation>
+      </Text>
+      <Text Id="__SingleUse_XCOA" Alignment="Left" TypographyId="L">
+        <Translation Language="GB">Luftfeuchte</Translation>
+      </Text>
+      <Text Id="__SingleUse_PLTJ" Alignment="Left" TypographyId="L">
+        <Translation Language="GB">Temperatur</Translation>
+      </Text>
+      <Text Id="__SingleUse_BI20" Alignment="Left" TypographyId="L">
+        <Translation Language="GB">Partikel (PM 1)</Translation>
+      </Text>
+      <Text Id="__SingleUse_SMJL" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">Hintergrundbeleuchtung</Translation>
+      </Text>
+      <Text Id="__SingleUse_5DG6" Alignment="Left" TypographyId="SB">
+        <Translation Language="GB">Hengst SE &amp; Co. KG</Translation>
+      </Text>
+      <Text Id="__SingleUse_KARE" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">Nienkamp 55-85&#10;48147 Münster&#10;Germany</Translation>
+      </Text>
+      <Text Id="__SingleUse_50T4" Alignment="Left" TypographyId="XS">
+        <Translation Language="GB">Version 0.8</Translation>
+      </Text>
+      <Text Id="__SingleUse_8I6J" Alignment="Left" TypographyId="S">
+        <Translation Language="GB">Nienkamp 55-85&#10;48147 Münster&#10;Germany</Translation>
+      </Text>
+      <Text Id="__SingleUse_A36K" Alignment="Left" TypographyId="SB">
+        <Translation Language="GB">Hengst SE &amp; Co. KG</Translation>
+      </Text>
+      <Text Id="__SingleUse_5DPG" Alignment="Left" TypographyId="L">
+        <Translation Language="GB">für Blue·ion Messaufbau</Translation>
+      </Text>
+      <Text Id="__SingleUse_RSV3" Alignment="Left" TypographyId="XLB">
+        <Translation Language="GB">Prüfeinheit</Translation>
+      </Text>
+    </TextGroup>
+  </Texts>
+  <Typographies>
+    <Typography Id="XLB" Font="calibrib.ttf" Size="100" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="LB" Font="calibrib.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".0123456789+-" />
+    <Typography Id="L" Font="calibri.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".,+-" WildcardCharacterRanges="A-z,0,9" />
+    <Typography Id="LM" Font="calibri.ttf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".0123456789+-" />
+    <Typography Id="M" Font="calibri.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".,+-" WildcardCharacterRanges="0-9,A-Z,a-z" />
+    <Typography Id="SB" Font="calibrib.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".0123456789+-" />
+    <Typography Id="S" Font="calibri.ttf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="!-~" />
+    <Typography Id="XS" Font="calibri.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".0123456789+-" />
+  </Typographies>
+</TextDatabase>

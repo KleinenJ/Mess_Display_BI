@@ -1,0 +1,2 @@
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/generated/images/src/BitmapDatabase.cpp:39:37:const touchgfx::Bitmap::BitmapData* BitmapDatabase::getInstance()	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/generated/images/src/BitmapDatabase.cpp:44:10:uint16_t BitmapDatabase::getInstanceSize()	1

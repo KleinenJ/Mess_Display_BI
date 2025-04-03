@@ -1,0 +1,5 @@
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/fmc.c:38:6:MX_FMC_Init	2
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/fmc.c:85:13:HAL_FMC_MspInit	3
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/fmc.c:237:6:HAL_SDRAM_MspInit	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/fmc.c:249:13:HAL_FMC_MspDeInit	2
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/fmc.c:346:6:HAL_SDRAM_MspDeInit	1

@@ -1,0 +1,2 @@
+udpecho.c:50:1:udpecho_thread	32	static
+udpecho.c:84:1:udpecho_init	16	static

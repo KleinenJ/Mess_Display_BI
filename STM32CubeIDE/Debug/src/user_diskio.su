@@ -1,0 +1,5 @@
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/FATFS/src/user_diskio.c:80:9:USER_initialize	16	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/FATFS/src/user_diskio.c:96:9:USER_status	16	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/FATFS/src/user_diskio.c:115:9:USER_read	24	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/FATFS/src/user_diskio.c:136:9:USER_write	24	static
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/FATFS/src/user_diskio.c:158:9:USER_ioctl	24	static

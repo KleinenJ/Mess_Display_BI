@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<flash_device>
+  <exe>$PROJ_DIR$\FlashSTM32H750xB_QSPI512_20211594.out</exe>
+  <page>256</page>
+  <block>1024 0x10000</block>
+  <flash_base>0x00000000</flash_base>
+  <macro>$PROJ_DIR$\FlashSTM32H750xB_QSPI512_20211594.mac</macro>
+  <aggregate>1</aggregate>
+</flash_device>

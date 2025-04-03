@@ -1,0 +1,14 @@
+ILI2511v6.c:104:6:ili2511_Init	24	static
+ILI2511v6.c:125:6:ili2511_Reset	16	static
+ILI2511v6.c:136:10:ili2511_ReadID	24	static
+ILI2511v6.c:168:16:ili2511_firmware_version	32	static
+ILI2511v6.c:180:6:ili2511_TS_Start	16	static
+ILI2511v6.c:201:9:ili2511_TS_DetectTouch	16	static
+ILI2511v6.c:270:6:ili2511_TS_GetXY	24	static
+ILI2511v6.c:337:6:ili2511_TS_EnableIT	16	static
+ILI2511v6.c:352:6:ili2511_TS_DisableIT	16	static
+ILI2511v6.c:369:9:ili2511_TS_ITStatus	16	static
+ILI2511v6.c:382:6:ili2511_TS_ClearIT	16	static
+ILI2511v6.c:393:16:ili2511_Get_I2C_InitializedStatus	4	static
+ILI2511v6.c:403:13:ili2511_I2C_InitializeIfRequired	8	static
+ILI2511v6.c:419:17:ili2511_TS_Configure	24	static

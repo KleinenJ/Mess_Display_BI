@@ -1,0 +1,14 @@
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:48:6:EDT_SPIx_Init	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:78:6:EDT_SPIx_DeInit	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:94:19:EDT_SPI_TransmitReceive	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:108:19:EDT_SPI_Transmit	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:122:19:EDT_SPI_Receive	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:137:19:EDT_SPI_TransmitReceive_IT	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:153:26:EDT_SPI_Transmit_IT	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:169:26:EDT_SPI_Receive_IT	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:179:6:SPIx_IRQHandler	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:187:13:EDT_SPI_IRQHandler	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:197:6:HAL_SPI_TxCpltCallback	2
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:207:13:EDT_SPI_TxCpltCallback	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:216:6:HAL_SPI_RxCpltCallback	2
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_spi.c:226:13:EDT_SPI_RxCpltCallback	1

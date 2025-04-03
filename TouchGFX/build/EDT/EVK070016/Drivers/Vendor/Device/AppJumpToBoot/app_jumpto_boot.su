@@ -1,0 +1,4 @@
+core_cm7.h:2156:34:__NVIC_SystemReset	4	static
+app_jumpto_boot.c:56:6:OpenBootloader_JumpToBootloader	8	static
+app_jumpto_boot.c:74:17:OpenBootloader_Read_BootOBFlash	80	static
+app_jumpto_boot.c:108:13:OpenBootloader_Write_BootOBFlash	88	static

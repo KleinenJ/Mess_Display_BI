@@ -1,0 +1,17 @@
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:64:6:EDT_USART_Init	3
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:112:6:EDT_USART_DeInit	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:128:26:EDT_UART_Transmit_IT	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:143:26:EDT_UART_Receive_IT	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:158:19:EDT_UART_Transmit	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:172:19:EDT_UART_Receive	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:179:6:USART2_IRQHandler	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:186:7:UART7_IRQHandler	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:193:6:HAL_UART_TxCpltCallback	3
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:243:13:EDT_RS232_IRQHandler	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:253:13:EDT_RS485_IRQHandler	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:263:13:EDT_RS232_TxCpltCallback	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:272:13:EDT_RS485_TxCpltCallback	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:281:13:EDT_RS232_RxCpltCallback	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:291:13:EDT_RS485_RxCpltCallback	1
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:300:13:EDT_RS232_ErrorCallback	2
+C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_uart.c:317:13:EDT_RS485_ErrorCallback	2
