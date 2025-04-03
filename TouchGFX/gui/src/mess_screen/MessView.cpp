@@ -156,7 +156,7 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 	    {
 			/// JKL, 2025/04/03: changed static temperature calculation to "LookUpTable"
 			float fTempVF = 0.0;
-			int16_t iTempVFmV = value1;	// Extract raw value
+			int16_t iTempVFmV = value1*10;	// Extract raw value
 
 			if(iTempVFmV < 715) fTempVF = 81.0f;
 			else if (iTempVFmV <= 911) fTempVF= ((iTempVFmV - 715) * (-0.0510204081632653)) + 80.0f;
@@ -176,7 +176,7 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 
 			/// JKL, 2025/04/03: changed static temperature calculation to "LookUpTable"
 			float fTempNF = 0.0;
-			int16_t iTempNFmV = value3;	// Extract raw value
+			int16_t iTempNFmV = value3*10;	// Extract raw value
 
 			if(iTempNFmV < 715) fTempNF = 81.0f;
 			else if (iTempNFmV <= 911) fTempNF= ((iTempNFmV - 715) * (-0.0510204081632653)) + 80.0f;
@@ -196,14 +196,14 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 
 			/// JK, 2025/04/03: Umrechnen der Feuchtigkeitswerte
 			float fHumidVF = 0.0f;
-			int16_t iHumidVFmV = value2;	// Extract raw value
+			int16_t iHumidVFmV = value2*10;	// Extract raw value
 
 			if(iHumidVFmV < 1235) fHumidVF = 9.0f;
 			else if (iHumidVFmV <= 3555) fHumidVF = (iHumidVFmV * 0.0366379310344828f) - 35.2478448f;
 			else fHumidVF = 96.0f;
 
 			float fHumidNF = 0.0f;
-			int16_t iHumidNFmV = value4;	// Extract raw value
+			int16_t iHumidNFmV = value4*10;	// Extract raw value
 
 			if(iHumidNFmV < 1235) fHumidNF = 9.0f;
 			else if (iHumidNFmV <= 3555) fHumidNF = (iHumidNFmV * 0.0366379310344828f) - 35.2478448f;
