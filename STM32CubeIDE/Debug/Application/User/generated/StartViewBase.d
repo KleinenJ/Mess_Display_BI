@@ -1,5 +1,5 @@
 Application/User/generated/StartViewBase.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/generated/gui_generated/src/start_screen/StartViewBase.cpp \
+ C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/generated/gui_generated/src/start_screen/StartViewBase.cpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/start_screen/StartViewBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp \

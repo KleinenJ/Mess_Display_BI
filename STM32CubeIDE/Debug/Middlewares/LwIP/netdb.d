@@ -1,5 +1,5 @@
 Middlewares/LwIP/netdb.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Middlewares/Third_Party/LwIP/src/api/netdb.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Middlewares/Third_Party/LwIP/src/api/netdb.c \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/netdb.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h ../../Core/Inc/main.h \

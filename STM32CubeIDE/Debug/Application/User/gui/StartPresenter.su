@@ -11,6 +11,6 @@
 ../../TouchGFX/gui/include/gui/model/ModelListener.hpp:18:18:virtual void ModelListener::setStateSDCS(bool)	16	static
 ../../TouchGFX/gui/include/gui/start_screen/StartPresenter.hpp:28:13:StartPresenter::~StartPresenter()	16	static
 ../../TouchGFX/gui/include/gui/start_screen/StartPresenter.hpp:28:13:virtual StartPresenter::~StartPresenter()	16	static
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/gui/src/start_screen/StartPresenter.cpp:4:1:StartPresenter::StartPresenter(StartView&)	16	static
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/gui/src/start_screen/StartPresenter.cpp:10:6:virtual void StartPresenter::activate()	16	static
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/gui/src/start_screen/StartPresenter.cpp:15:6:virtual void StartPresenter::deactivate()	16	static
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/start_screen/StartPresenter.cpp:4:1:StartPresenter::StartPresenter(StartView&)	16	static
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/start_screen/StartPresenter.cpp:10:6:virtual void StartPresenter::activate()	16	static
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/start_screen/StartPresenter.cpp:15:6:virtual void StartPresenter::deactivate()	16	static

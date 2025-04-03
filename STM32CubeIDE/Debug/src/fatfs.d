@@ -1,5 +1,4 @@
-src/fatfs.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/FATFS/src/fatfs.c \
+src/fatfs.o: C:/TouchGFXProjects/Mess_Display_BI/FATFS/src/fatfs.c \
  ../../FATFS/include/fatfs.h ../../FATFS/include/ff.h \
  ../../FATFS/include/integer.h ../../FATFS/include/ffconf.h \
  ../../Core/Inc/main.h \

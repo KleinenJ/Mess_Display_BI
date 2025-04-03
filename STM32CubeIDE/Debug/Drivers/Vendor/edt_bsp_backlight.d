@@ -1,5 +1,5 @@
 Drivers/Vendor/edt_bsp_backlight.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_backlight.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Driver/edt_bsp_backlight.c \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \

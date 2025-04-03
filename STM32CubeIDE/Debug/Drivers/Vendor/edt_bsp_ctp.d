@@ -1,6 +1,6 @@
 Drivers/Vendor/edt_bsp_ctp.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_ctp.c \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_ctp.h \
+ C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Driver/edt_bsp_ctp.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Driver/edt_bsp_ctp.h \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \
@@ -79,7 +79,7 @@ Drivers/Vendor/edt_bsp_ctp.o: \
  ../../Drivers/Vendor/Device/Common/ts.h \
  ../../Drivers/Vendor/Device/ctp/ili2511v6.h \
  ../../Drivers/Vendor/Device/ctp/../Common/ts.h
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Driver/edt_bsp_ctp.h:
+C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Driver/edt_bsp_ctp.h:
 ../../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../../Core/Inc/stm32h7xx_hal_conf.h:

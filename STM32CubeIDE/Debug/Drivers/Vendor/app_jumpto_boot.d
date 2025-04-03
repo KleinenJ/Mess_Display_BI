@@ -1,5 +1,5 @@
 Drivers/Vendor/app_jumpto_boot.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Device/AppJumpToBoot/app_jumpto_boot.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Device/AppJumpToBoot/app_jumpto_boot.c \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \
@@ -78,7 +78,7 @@ Drivers/Vendor/app_jumpto_boot.o: \
  ../../Drivers/Vendor/Driver/edt_bsp_i2c.h \
  ../../Drivers/Vendor/Driver/edt_bsp_io.h \
  ../../Drivers/Vendor/Driver/edt_h7xx_eeprom_i2c.h \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Device/AppJumpToBoot/app_jumpto_boot.h
+ C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Device/AppJumpToBoot/app_jumpto_boot.h
 ../../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../../Core/Inc/stm32h7xx_hal_conf.h:
@@ -157,4 +157,4 @@ Drivers/Vendor/app_jumpto_boot.o: \
 ../../Drivers/Vendor/Driver/edt_bsp_i2c.h:
 ../../Drivers/Vendor/Driver/edt_bsp_io.h:
 ../../Drivers/Vendor/Driver/edt_h7xx_eeprom_i2c.h:
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Device/AppJumpToBoot/app_jumpto_boot.h:
+C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Device/AppJumpToBoot/app_jumpto_boot.h:

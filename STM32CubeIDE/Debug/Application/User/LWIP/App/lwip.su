@@ -1,2 +1,2 @@
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/LWIP/App/lwip.c:63:6:MX_LWIP_Init	24	static
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/LWIP/App/lwip.c:128:13:ethernet_link_status_updated	16	static
+C:/TouchGFXProjects/Mess_Display_BI/LWIP/App/lwip.c:63:6:MX_LWIP_Init	24	static
+C:/TouchGFXProjects/Mess_Display_BI/LWIP/App/lwip.c:128:13:ethernet_link_status_updated	16	static

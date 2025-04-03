@@ -1,5 +1,5 @@
 Drivers/Vendor/edt_board_config.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Drivers/Vendor/Board/SE21159/Config/edt_board_config.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Drivers/Vendor/Board/SE21159/Config/edt_board_config.c \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \

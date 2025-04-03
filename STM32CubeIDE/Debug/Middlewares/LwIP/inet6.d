@@ -1,5 +1,5 @@
 Middlewares/LwIP/inet6.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Middlewares/Third_Party/LwIP/src/core/ipv6/inet6.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Middlewares/Third_Party/LwIP/src/core/ipv6/inet6.c \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \

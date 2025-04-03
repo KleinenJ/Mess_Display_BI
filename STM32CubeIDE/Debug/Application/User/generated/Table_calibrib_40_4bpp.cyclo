@@ -4,5 +4,5 @@
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/ConstFont.hpp:35:7:virtual touchgfx::ConstFont::~ConstFont()	1
 ../../TouchGFX/generated/fonts/include/fonts/GeneratedFont.hpp:11:7:touchgfx::GeneratedFont::~GeneratedFont()	1
 ../../TouchGFX/generated/fonts/include/fonts/GeneratedFont.hpp:11:7:virtual touchgfx::GeneratedFont::~GeneratedFont()	1
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/generated/fonts/src/Table_calibrib_40_4bpp.cpp:39:201:void __tcf_0()	1
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/generated/fonts/src/Table_calibrib_40_4bpp.cpp:37:26:touchgfx::GeneratedFont& getFont_calibrib_40_4bpp()	3
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/generated/fonts/src/Table_calibrib_40_4bpp.cpp:39:201:void __tcf_0()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/generated/fonts/src/Table_calibrib_40_4bpp.cpp:37:26:touchgfx::GeneratedFont& getFont_calibrib_40_4bpp()	3

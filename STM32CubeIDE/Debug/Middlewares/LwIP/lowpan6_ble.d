@@ -1,5 +1,5 @@
 Middlewares/LwIP/lowpan6_ble.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Middlewares/Third_Party/LwIP/src/netif/lowpan6_ble.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Middlewares/Third_Party/LwIP/src/netif/lowpan6_ble.c \
  ../../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6_ble.h \
  ../../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6_opts.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \

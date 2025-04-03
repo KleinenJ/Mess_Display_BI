@@ -1,5 +1,4 @@
-src/diskio.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/FATFS/src/diskio.c \
+src/diskio.o: C:/TouchGFXProjects/Mess_Display_BI/FATFS/src/diskio.c \
  ../../FATFS/include/diskio.h ../../FATFS/include/integer.h \
  ../../FATFS/include/ff_gen_drv.h ../../FATFS/include/diskio.h \
  ../../FATFS/include/ff.h ../../FATFS/include/ffconf.h \

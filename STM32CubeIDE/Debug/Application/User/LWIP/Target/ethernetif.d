@@ -1,5 +1,5 @@
 Application/User/LWIP/Target/ethernetif.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/LWIP/Target/ethernetif.c \
+ C:/TouchGFXProjects/Mess_Display_BI/LWIP/Target/ethernetif.c \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \
@@ -110,7 +110,7 @@ Application/User/LWIP/Target/ethernetif.o: \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip4.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etharp.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/ethip6.h \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/LWIP/Target/ethernetif.h \
+ C:/TouchGFXProjects/Mess_Display_BI/LWIP/Target/ethernetif.h \
  ../../Drivers/BSP/Components/lan8742/lan8742.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/tcpip.h \
  ../../Drivers/Vendor/Device/dp83848/dp83848.h
@@ -224,7 +224,7 @@ Application/User/LWIP/Target/ethernetif.o: \
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip4.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etharp.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/ethip6.h:
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/LWIP/Target/ethernetif.h:
+C:/TouchGFXProjects/Mess_Display_BI/LWIP/Target/ethernetif.h:
 ../../Drivers/BSP/Components/lan8742/lan8742.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/tcpip.h:
 ../../Drivers/Vendor/Device/dp83848/dp83848.h:

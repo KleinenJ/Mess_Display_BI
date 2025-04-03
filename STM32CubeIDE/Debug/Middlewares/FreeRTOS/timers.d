@@ -1,5 +1,5 @@
 Middlewares/FreeRTOS/timers.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Middlewares/Third_Party/FreeRTOS/Source/timers.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Middlewares/Third_Party/FreeRTOS/Source/timers.c \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../Core/Inc/FreeRTOSConfig.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \

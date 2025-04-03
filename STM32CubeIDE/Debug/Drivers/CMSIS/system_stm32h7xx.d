@@ -1,5 +1,5 @@
 Drivers/CMSIS/system_stm32h7xx.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/system_stm32h7xx.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Core/Src/system_stm32h7xx.c \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h \
  ../../Drivers/CMSIS/Include/core_cm7.h \

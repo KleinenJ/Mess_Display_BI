@@ -1,2 +1,2 @@
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Middlewares/Third_Party/LwIP/src/netif/ethernet.c:81:1:ethernet_input	32	static
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Middlewares/Third_Party/LwIP/src/netif/ethernet.c:270:1:ethernet_output	32	static
+C:/TouchGFXProjects/Mess_Display_BI/Middlewares/Third_Party/LwIP/src/netif/ethernet.c:81:1:ethernet_input	32	static
+C:/TouchGFXProjects/Mess_Display_BI/Middlewares/Third_Party/LwIP/src/netif/ethernet.c:270:1:ethernet_output	32	static

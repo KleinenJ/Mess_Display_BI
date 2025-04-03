@@ -1,5 +1,5 @@
 Application/User/generated/Kerning_calibri_40_4bpp.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/TouchGFX/generated/fonts/src/Kerning_calibri_40_4bpp.cpp \
+ C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/generated/fonts/src/Kerning_calibri_40_4bpp.cpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Font.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Unicode.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Types.hpp \

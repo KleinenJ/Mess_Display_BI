@@ -1,5 +1,5 @@
 Middlewares/USB_Device_Library/usbd_cdc.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
  ../../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \

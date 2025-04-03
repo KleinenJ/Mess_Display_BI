@@ -1,6 +1,6 @@
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/main.c:77:5:main	5
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/main.c:186:6:SystemClock_Config	4
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/main.c:245:6:PeriphCommonClock_Config	2
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/main.c:272:6:MPU_Config	1
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/main.c:307:6:HAL_TIM_PeriodElapsedCallback	2
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/main.c:324:6:Error_Handler	1
+C:/TouchGFXProjects/Mess_Display_BI/Core/Src/main.c:77:5:main	5
+C:/TouchGFXProjects/Mess_Display_BI/Core/Src/main.c:186:6:SystemClock_Config	4
+C:/TouchGFXProjects/Mess_Display_BI/Core/Src/main.c:245:6:PeriphCommonClock_Config	2
+C:/TouchGFXProjects/Mess_Display_BI/Core/Src/main.c:272:6:MPU_Config	1
+C:/TouchGFXProjects/Mess_Display_BI/Core/Src/main.c:307:6:HAL_TIM_PeriodElapsedCallback	2
+C:/TouchGFXProjects/Mess_Display_BI/Core/Src/main.c:324:6:Error_Handler	1

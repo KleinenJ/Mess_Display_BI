@@ -154,29 +154,71 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 
 	if (ID == 0x46)
 	    {
-				float temperature1 = static_cast<float>(value1) / 10.0f - 20.0f;  // Temp skalieren, mit Nachkommastelle und -20 Offset (DBC Formatierung)
-				float temperature2 = static_cast<float>(value3) / 10.0f - 20.0f;
+			/// JKL, 2025/04/03: changed static temperature calculation to "LookUpTable"
+			float fTempVF = 0.0;
+			int16_t iTempVFmV = value1;	// Extract raw value
 
-				if(temperature1 > 80) temperature1 = 80;		// Für Grenzen
-				if(temperature2 > 80) temperature2 = 80;
-				if(temperature1 < -20) temperature1 = -20;
-				if(temperature2 < -20) temperature2 = -20;
+			if(iTempVFmV < 715) fTempVF = 81.0f;
+			else if (iTempVFmV <= 911) fTempVF= ((iTempVFmV - 715) * (-0.0510204081632653)) + 80.0f;
+			else if (iTempVFmV <= 1158) fTempVF= ((iTempVFmV - 911) * (-0.0404858299595142)) + 70.0f;
+			else if (iTempVFmV <= 1469) fTempVF= ((iTempVFmV - 1158) * (-0.0321543408360129)) + 60.0f;
+			else if (iTempVFmV <= 1842) fTempVF= ((iTempVFmV - 1469) * (-0.0268096514745308)) + 50.0f;
+			else if (iTempVFmV <= 2270) fTempVF= ((iTempVFmV - 1842) * (-0.0233644859813084)) + 40.0f;
+			else if (iTempVFmV <= 2500) fTempVF= ((iTempVFmV - 2270) * (-0.0217391304347826)) + 30.0f;
+			else if (iTempVFmV <= 2736) fTempVF= ((iTempVFmV - 2500) * (-0.0211864406779661)) + 25.0f;
+			else if (iTempVFmV <= 3210) fTempVF= ((iTempVFmV - 2736) * (-0.0210970464135021)) + 20.0f;
+			else if (iTempVFmV <= 3657) fTempVF= ((iTempVFmV - 3210) * (-0.0223713646532438)) + 10.0f;
+			else if (iTempVFmV <= 4048) fTempVF= ((iTempVFmV - 3657) * (-0.0255754475703325)) + 0.0f;
+			else if (iTempVFmV <= 4361) fTempVF= ((iTempVFmV - 4048) * (-0.0319488817891374)) - 10.0f;
+			else if (iTempVFmV <= 4595) fTempVF= ((iTempVFmV - 4361) * (-0.0427350427350427)) - 20.0f;
+			else if (iTempVFmV <= 4757) fTempVF= ((iTempVFmV - 4595) * (-0.0617283950617284)) - 30.0f;
+			else if (iTempVFmV > 4757) fTempVF= -41.0f;
 
-				if(value2 > 1000) value2 = 1000;				// Für Grenzen
-				if(value4 > 1000) value4 = 1000;
-				if(value2 < 0) value2 = 0;
-				if(value4 < 0) value4 = 0;
+			/// JKL, 2025/04/03: changed static temperature calculation to "LookUpTable"
+			float fTempNF = 0.0;
+			int16_t iTempNFmV = value3;	// Extract raw value
 
-				//Unicode::snprintf(TvFBuffer, TVF_SIZE, "%d", (value1/10)-20);	// -20 bis + 80°C
-				Unicode::snprintfFloat(TvFBuffer, TVF_SIZE, "%2.1f", temperature1);  // -20 bis + 80°C
-				Unicode::snprintf(LvFBuffer, LVF_SIZE, "%d", value2/10);		// 0 bis 100%
-				//Unicode::snprintf(TnFBuffer, TNF_SIZE, "%d", (value3/10)-20);	// -20 bis + 80°C
-			    Unicode::snprintfFloat(TnFBuffer, TNF_SIZE, "%2.1f", temperature2);  // -20 bis + 80°C
-				Unicode::snprintf(LnFBuffer, LNF_SIZE, "%d", value4/10);		// 0 bis 100%
-				TvF.invalidate();
-				LvF.invalidate();
-				TnF.invalidate();
-				LnF.invalidate();
+			if(iTempNFmV < 715) fTempNF = 81.0f;
+			else if (iTempNFmV <= 911) fTempNF= ((iTempNFmV - 715) * (-0.0510204081632653)) + 80.0f;
+			else if (iTempNFmV <= 1158) fTempNF= ((iTempNFmV - 911) * (-0.0404858299595142)) + 70.0f;
+			else if (iTempNFmV <= 1469) fTempNF= ((iTempNFmV - 1158) * (-0.0321543408360129)) + 60.0f;
+			else if (iTempNFmV <= 1842) fTempNF= ((iTempNFmV - 1469) * (-0.0268096514745308)) + 50.0f;
+			else if (iTempNFmV <= 2270) fTempNF= ((iTempNFmV - 1842) * (-0.0233644859813084)) + 40.0f;
+			else if (iTempNFmV <= 2500) fTempNF= ((iTempNFmV - 2270) * (-0.0217391304347826)) + 30.0f;
+			else if (iTempNFmV <= 2736) fTempNF= ((iTempNFmV - 2500) * (-0.0211864406779661)) + 25.0f;
+			else if (iTempNFmV <= 3210) fTempNF= ((iTempNFmV - 2736) * (-0.0210970464135021)) + 20.0f;
+			else if (iTempNFmV <= 3657) fTempNF= ((iTempNFmV - 3210) * (-0.0223713646532438)) + 10.0f;
+			else if (iTempNFmV <= 4048) fTempNF= ((iTempNFmV - 3657) * (-0.0255754475703325)) + 0.0f;
+			else if (iTempNFmV <= 4361) fTempNF= ((iTempNFmV - 4048) * (-0.0319488817891374)) - 10.0f;
+			else if (iTempNFmV <= 4595) fTempNF= ((iTempNFmV - 4361) * (-0.0427350427350427)) - 20.0f;
+			else if (iTempNFmV <= 4757) fTempNF= ((iTempNFmV - 4595) * (-0.0617283950617284)) - 30.0f;
+			else if (iTempNFmV > 4757) fTempNF= -41.0f;
+
+			/// JK, 2025/04/03: Umrechnen der Feuchtigkeitswerte
+			float fHumidVF = 0.0f;
+			int16_t iHumidVFmV = value2;	// Extract raw value
+
+			if(iHumidVFmV < 1235) fHumidVF = 9.0f;
+			else if (iHumidVFmV <= 3555) fHumidVF = (iHumidVFmV * 0.0366379310344828f) - 35.2478448f;
+			else fHumidVF = 96.0f;
+
+			float fHumidNF = 0.0f;
+			int16_t iHumidNFmV = value4;	// Extract raw value
+
+			if(iHumidNFmV < 1235) fHumidNF = 9.0f;
+			else if (iHumidNFmV <= 3555) fHumidNF = (iHumidNFmV * 0.0366379310344828f) - 35.2478448f;
+			else fHumidNF = 96.0f;
+
+
+			Unicode::snprintfFloat(TvFBuffer, TVF_SIZE, "%2.1f", fTempVF);
+			Unicode::snprintfFloat(LvFBuffer, LVF_SIZE, "%2.0f", fHumidVF);
+			Unicode::snprintfFloat(TnFBuffer, TNF_SIZE, "%2.1f", fTempNF);
+			Unicode::snprintfFloat(LnFBuffer, LNF_SIZE, "%2.0f", fHumidNF);
+
+			TvF.invalidate();
+			LvF.invalidate();
+			TnF.invalidate();
+			LnF.invalidate();
 	    }
 
 	if (ID == 0x47)

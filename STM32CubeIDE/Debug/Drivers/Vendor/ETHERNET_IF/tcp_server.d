@@ -1,6 +1,6 @@
 Drivers/Vendor/ETHERNET_IF/tcp_server.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/ETHERNET_IF/App/tcpecho/tcp_server.c \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/ETHERNET_IF/App/tcpecho/tcp_server.h \
+ C:/TouchGFXProjects/Mess_Display_BI/ETHERNET_IF/App/tcpecho/tcp_server.c \
+ C:/TouchGFXProjects/Mess_Display_BI/ETHERNET_IF/App/tcpecho/tcp_server.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -112,7 +112,7 @@ Drivers/Vendor/ETHERNET_IF/tcp_server.o: \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/icmp.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/ETHERNET_IF/App/tcpecho/tcp_server.h:
+C:/TouchGFXProjects/Mess_Display_BI/ETHERNET_IF/App/tcpecho/tcp_server.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../../Core/Inc/stm32h7xx_hal_conf.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:

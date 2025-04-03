@@ -1,5 +1,5 @@
 Application/User/Core/ltdc.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/Core/Src/ltdc.c \
+ C:/TouchGFXProjects/Mess_Display_BI/Core/Src/ltdc.c \
  ../../Core/Inc/ltdc.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \

@@ -1,6 +1,6 @@
 Application/User/USB_DEVICE/App/usbd_cdc_if.o: \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/USB_DEVICE/App/usbd_cdc_if.c \
- C:/TouchGFXProjects/Mess_Display_BI_08-291024/USB_DEVICE/App/usbd_cdc_if.h \
+ C:/TouchGFXProjects/Mess_Display_BI/USB_DEVICE/App/usbd_cdc_if.c \
+ C:/TouchGFXProjects/Mess_Display_BI/USB_DEVICE/App/usbd_cdc_if.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
@@ -85,7 +85,7 @@ Application/User/USB_DEVICE/App/usbd_cdc_if.o: \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
-C:/TouchGFXProjects/Mess_Display_BI_08-291024/USB_DEVICE/App/usbd_cdc_if.h:
+C:/TouchGFXProjects/Mess_Display_BI/USB_DEVICE/App/usbd_cdc_if.h:
 ../../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
 ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
 ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
