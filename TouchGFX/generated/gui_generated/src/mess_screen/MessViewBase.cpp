@@ -27,7 +27,7 @@ MessViewBase::MessViewBase() :
     Box_HV_BG.setBorderSize(1);
     add(Box_HV_BG);
 
-    Box_Gelb.setPosition(146, 486, 878, 21);
+    Box_Gelb.setPosition(0, 486, 1024, 19);
     Box_Gelb.setColor(touchgfx::Color::getColorFromRGB(248, 196, 0));
     add(Box_Gelb);
 
@@ -281,6 +281,12 @@ MessViewBase::MessViewBase() :
     Text_PI.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SBFF));
     add(Text_PI);
 
+    Version.setXY(963, 575);
+    Version.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Version.setLinespacing(0);
+    Version.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ATVF));
+    add(Version);
+
     Adresse.setXY(16, 531);
     Adresse.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Adresse.setLinespacing(0);
@@ -317,18 +323,18 @@ MessViewBase::MessViewBase() :
     Text_HV.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WZXH));
     add(Text_HV);
 
-    BG_Hell.setXY(861, 531);
+    BG_Hell.setXY(861, 513);
     BG_Hell.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     BG_Hell.setLinespacing(0);
     BG_Hell.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SMJL));
     add(BG_Hell);
 
     Logo_Hengst_Mess.setBitmap(touchgfx::Bitmap(BITMAP_HENG_ID));
-    Logo_Hengst_Mess.setPosition(836, 0, 147, 81);
+    Logo_Hengst_Mess.setPosition(877, 0, 147, 81);
     Logo_Hengst_Mess.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     add(Logo_Hengst_Mess);
 
-    slider_helligkeit.setXY(854, 559);
+    slider_helligkeit.setXY(854, 536);
     slider_helligkeit.setBitmaps(touchgfx::Bitmap(BITMAP_W_LIN_GR_ID), touchgfx::Bitmap(BITMAP_W_LIN_ID), touchgfx::Bitmap(BITMAP_ECKIG_ID));
     slider_helligkeit.setupHorizontalSlider(17, 10, 0, 0, 137);
     slider_helligkeit.setValueRange(4, 96);

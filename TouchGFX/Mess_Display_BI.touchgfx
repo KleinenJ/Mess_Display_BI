@@ -18,10 +18,9 @@
           {
             "Type": "Box",
             "Name": "Box_Gelb",
-            "X": 146,
             "Y": 486,
-            "Width": 878,
-            "Height": 21,
+            "Width": 1024,
+            "Height": 19,
             "Color": {
               "Red": 248,
               "Green": 196
@@ -78,8 +77,8 @@
           {
             "Type": "TextArea",
             "Name": "Untertitel_Start",
-            "X": 283,
-            "Y": 149,
+            "X": 302,
+            "Y": 150,
             "Width": 397,
             "Height": 49,
             "TextId": "__SingleUse_5DPG",
@@ -96,7 +95,7 @@
             "Name": "Name",
             "X": 16,
             "Y": 513,
-            "Width": 118,
+            "Width": 60,
             "Height": 18,
             "TextId": "__SingleUse_A36K",
             "TextRotation": "0",
@@ -223,10 +222,9 @@
           {
             "Type": "Box",
             "Name": "Box_Gelb",
-            "X": 146,
             "Y": 486,
-            "Width": 878,
-            "Height": 21,
+            "Width": 1024,
+            "Height": 19,
             "Color": {
               "Red": 248,
               "Green": 196
@@ -739,6 +737,22 @@
           },
           {
             "Type": "TextArea",
+            "Name": "Version",
+            "X": 963,
+            "Y": 575,
+            "Width": 45,
+            "Height": 10,
+            "TextId": "__SingleUse_ATVF",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
             "Name": "Adresse",
             "X": 16,
             "Y": 531,
@@ -837,7 +851,7 @@
             "Type": "TextArea",
             "Name": "BG_Hell",
             "X": 861,
-            "Y": 531,
+            "Y": 513,
             "Width": 148,
             "Height": 18,
             "TextId": "__SingleUse_SMJL",
@@ -852,7 +866,7 @@
           {
             "Type": "ScalableImage",
             "Name": "Logo_Hengst_Mess",
-            "X": 836,
+            "X": 877,
             "Width": 147,
             "Height": 81,
             "Filename": "Heng.png",
@@ -862,7 +876,7 @@
             "Type": "Slider",
             "Name": "slider_helligkeit",
             "X": 854,
-            "Y": 559,
+            "Y": 536,
             "Width": 163,
             "Height": 26,
             "IsHorizontalSlider": true,

@@ -17,7 +17,7 @@ StartViewBase::StartViewBase() :
     BG.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     add(BG);
 
-    Box_Gelb.setPosition(146, 486, 878, 21);
+    Box_Gelb.setPosition(0, 486, 1024, 19);
     Box_Gelb.setColor(touchgfx::Color::getColorFromRGB(248, 196, 0));
     add(Box_Gelb);
 
@@ -41,7 +41,7 @@ StartViewBase::StartViewBase() :
     Titel_Start.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RSV3));
     add(Titel_Start);
 
-    Untertitel_Start.setXY(283, 149);
+    Untertitel_Start.setXY(302, 150);
     Untertitel_Start.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     Untertitel_Start.setLinespacing(0);
     Untertitel_Start.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5DPG));
