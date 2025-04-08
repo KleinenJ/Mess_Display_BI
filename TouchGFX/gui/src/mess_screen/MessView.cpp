@@ -222,59 +222,61 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 	    }
 
 	if (ID == 0x47)
-	    {
-				float pm1 = static_cast<float>(value1) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
-				float pm2 = static_cast<float>(value2) * 1.003f;
-				float pm3 = static_cast<float>(value3) * 1.003f;
+    {
+		float pm1 = static_cast<float>(value1) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
+		float pm2 = static_cast<float>(value2) * 1.003f;
+		float pm3 = static_cast<float>(value3) * 1.003f;
 
-				if(pm1 > 1000) pm1 = 1000;
-				if(pm2 > 1000) pm2 = 1000;
-				if(pm3 > 1000) pm3 = 1000;
-				if(pm1 < 0) pm1 = 0;
-				if(pm2 < 0) pm2 = 0;
-				if(pm3 < 0) pm3 = 0;
+		if(pm1 > 1000) pm1 = 1000;
+		if(pm2 > 1000) pm2 = 1000;
+		if(pm3 > 1000) pm3 = 1000;
+		if(pm1 < 0) pm1 = 0;
+		if(pm2 < 0) pm2 = 0;
+		if(pm3 < 0) pm3 = 0;
 
-				Unicode::snprintfFloat(PvFBuffer, PVF_SIZE, "%1.0f", pm1);
-				//Unicode::snprintf(PvFBuffer, PVF_SIZE, "%d", value1);
-	            //Unicode::snprintf(PnFBuffer, PNF_SIZE, "%d", pm2);
-	            //Unicode::snprintf(PIBuffer, PI_SIZE, "%d", pm3);
-				Unicode::snprintfFloat(PnFBuffer, PNF_SIZE, "%1.0f", pm2);
-				Unicode::snprintfFloat(PIBuffer, PI_SIZE, "%1.0f", pm3);
-	            //Unicode::snprintf(xRESERVEBuffer, XRESERVE_SIZE, "%d", value4);
-	            PvF.invalidate();
-	            PnF.invalidate();
-	            PI.invalidate();
-	            //xRESERVE.invalidate();
-	    }
+		Unicode::snprintfFloat(PvFBuffer, PVF_SIZE, "%1.0f", pm1);
+		//Unicode::snprintf(PvFBuffer, PVF_SIZE, "%d", value1);
+		//Unicode::snprintf(PnFBuffer, PNF_SIZE, "%d", pm2);
+		//Unicode::snprintf(PIBuffer, PI_SIZE, "%d", pm3);
+		Unicode::snprintfFloat(PnFBuffer, PNF_SIZE, "%1.0f", pm2);
+		Unicode::snprintfFloat(PIBuffer, PI_SIZE, "%1.0f", pm3);
+		//Unicode::snprintf(xRESERVEBuffer, XRESERVE_SIZE, "%d", value4);
+		PvF.invalidate();
+		PnF.invalidate();
+		PI.invalidate();
+		//xRESERVE.invalidate();
+    }
 
 	if (ID == 0x50)
-	    {
-				float currentValue = (static_cast<float>(value3) / 10.0f) * 1.25f;		// Formatierung
+	{
+		int16_t iCurrentValue = value3 * 10;	// Extract raw value and bring it to mV
+		float fCurrentValue = iCurrentValue * 0.009f;		// Sense range HV-Card of 90µA equals to a correction factor of 0.009 (36µA would be 0.0036)
+		//float currentValue = (static_cast<float>(value3) / 10.0f) * 1.25f;		// Formatierung
 
-				if(currentValue < 0) currentValue = 0;
+		if(fCurrentValue < 0) fCurrentValue = 0; // Limit signal range to only positive values
 
-	            Unicode::snprintf(MIoUBuffer, MIOU_SIZE, "%d", (value1 +3)*(-8));
-	            Unicode::snprintf(MPoUBuffer, MPOU_SIZE, "%d", (value2 +4)*(-3));
-	            Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", currentValue);	// Anzeige mit 1 Nachkommastelle
-	            //Unicode::snprintf(MPoABuffer, MPOA_SIZE, "%d", (value3*8);
-	            //Unicode::snprintf(yRESERVEBuffer, YRESERVE_SIZE, "%d", value4);
-	            MIoU.invalidate();
-	            MPoU.invalidate();
-	            MPoA.invalidate();
-	            //yRESERVE.invalidate();
-	    }
+		Unicode::snprintf(MIoUBuffer, MIOU_SIZE, "%d", (value1 +3)*(-8));
+		Unicode::snprintf(MPoUBuffer, MPOU_SIZE, "%d", (value2 +4)*(-3));
+		Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", fCurrentValue);	// Anzeige mit 1 Nachkommastelle
+		//Unicode::snprintf(MPoABuffer, MPOA_SIZE, "%d", (value3*8);
+		//Unicode::snprintf(yRESERVEBuffer, YRESERVE_SIZE, "%d", value4);
+		MIoU.invalidate();
+		MPoU.invalidate();
+		MPoA.invalidate();
+		//yRESERVE.invalidate();
+	}
 
 	if (ID == 0x51)	// Muss nicht auf dem Display ausgegeben werden / Reserve
-	    {
-	            //Unicode::snprintf(Mess_HV_I_VBuffer, MESS_HV_I_V_SIZE, "%d", value1);
-	            //Unicode::snprintf(Mess_HV_I_ABuffer, MESS_HV_I_A_SIZE, "%d", value2);
-	            //Unicode::snprintf(Mess_HV_P_VBuffer, MESS_HV_P_V_SIZE, "%d", value3);
-	            //Unicode::snprintf(zRESERVEBuffer, ZRESERVE_SIZE, "%d", value4);
-	            //Mess_HV_I_V.invalidate();
-	            //Mess_HV_I_A.invalidate();
-	            //Mess_HV_P_V.invalidate();
-	            //zRESERVE.invalidate();
-	    }
+	{
+		//Unicode::snprintf(Mess_HV_I_VBuffer, MESS_HV_I_V_SIZE, "%d", value1);
+		//Unicode::snprintf(Mess_HV_I_ABuffer, MESS_HV_I_A_SIZE, "%d", value2);
+		//Unicode::snprintf(Mess_HV_P_VBuffer, MESS_HV_P_V_SIZE, "%d", value3);
+		//Unicode::snprintf(zRESERVEBuffer, ZRESERVE_SIZE, "%d", value4);
+		//Mess_HV_I_V.invalidate();
+		//Mess_HV_I_A.invalidate();
+		//Mess_HV_P_V.invalidate();
+		//zRESERVE.invalidate();
+	}
 }
 
 

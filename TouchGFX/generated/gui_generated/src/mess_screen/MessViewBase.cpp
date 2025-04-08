@@ -330,7 +330,7 @@ MessViewBase::MessViewBase() :
     add(BG_Hell);
 
     Logo_Hengst_Mess.setBitmap(touchgfx::Bitmap(BITMAP_HENG_ID));
-    Logo_Hengst_Mess.setPosition(877, 0, 147, 81);
+    Logo_Hengst_Mess.setPosition(877, 3, 147, 81);
     Logo_Hengst_Mess.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     add(Logo_Hengst_Mess);
 
