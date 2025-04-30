@@ -14,7 +14,7 @@
 
 #include "edt_h7xx_eeprom_i2c.h"
 
-
+#define B_SAMPLE
 
 // Globale Variablen für SD
 //FATFS fs;    // Dateisystem
@@ -57,7 +57,12 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 	modelInstance = this;
 
-    uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10
+	#ifdef B_SAMPLE
+    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 for B-Samples
+	#else
+    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 for A-Samples
+	#endif
+
     HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
     HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
 
@@ -74,8 +79,12 @@ void Model::tick()
 
 	    if (tickCounter >= tickThreshold)	        	// Anfrage an den HV-Slave nach 75 Ticks senden
 	    {
-	        uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10
-	        HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+			#ifdef B_SAMPLE
+	    		uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 --> B-Muster
+	        #else
+	    		uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 --> A-Muster
+			#endif
+	    	HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
 	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
 	        tickCounter = 0;
 	    }
@@ -141,8 +150,8 @@ void Model::setBacklightValue(int value)	// Displayhelligkeit
 	FATFS SDFatFS; 	//Fatfs handle
 		  FIL SDFile; 		//File handle
 		  FRESULT fresult; //Result after operations
-		  char myFilename[] = "Text1.txt";
-		  char myData = value;
+		  //char myFilename[] = "Text1.txt";
+		  //char myData = value;
 		//uint8_t wtext[] = "This is working with FatFs + SPI \n";
 		 // UINT myBytes;
 		BYTE readBuf[30];
@@ -344,24 +353,46 @@ void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t curren
 {
     uint8_t TxData[9];
 
-    TxData[0] = 0x55;			// LIN Sync byte
-    TxData[1] = pid_Calc(0x0A); // PID
-    TxData[2] = (hv_on & 0x01) | ((regulator & 0x03) << 1);
-    TxData[3] = 0;
-    TxData[4] = current;
-    TxData[5] = voltage;
-    TxData[6] = (blower & 0x0F) << 4;
-    TxData[7] = 0;
-    TxData[8] = checksum_Calc(TxData[1], &TxData[2], 6);		// Checksum erzeugen
+	#ifdef B_SAMPLE
+		if (current > 30)current= 30; // linit current settings
 
-    HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+    	uint8_t uiSetCurrent = 255 - (19/2.5) * current;
+
+		TxData[0] = 0x55;			// LIN Sync byte
+		TxData[1] = pid_Calc(0x20); // PID for B-Sample Labor-Frame
+		TxData[2] = 0x02;			// Select Labor-Frame Level 2
+		TxData[3] = uiSetCurrent;
+		TxData[4] = 0xff;
+		TxData[5] = 0xff;
+		TxData[6] = 0xff;
+		TxData[7] = 0xff;
+		TxData[8] = 0xff;
+	#else
+		TxData[0] = 0x55;			// LIN Sync byte
+		TxData[1] = pid_Calc(0x0A); // PID
+		TxData[2] = (hv_on & 0x01) | ((regulator & 0x03) << 1);
+		TxData[3] = 0;
+		TxData[4] = current;
+		TxData[5] = voltage;
+		TxData[6] = (blower & 0x0F) << 4;
+		TxData[7] = 0;
+		TxData[8] = checksum_Calc(TxData[1], &TxData[2], 6);		// Checksum erzeugen
+	#endif
+
+	HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
     HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
 }
 
 
+
 void Model::receiveLINStatusFrame()
 {
-    uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // Sync Byte and PID for receiving status
+	#ifdef B_SAMPLE
+    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // Sync Byte and PID for receiving status from B-Samples (0x09)
+	#else
+    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // Sync Byte and PID for receiving status from A-Samples (0x10)
+	#endif
+
     HAL_LIN_SendBreak(&huart6); 				// Sendet LIN Break
     HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sendet Sync und PID
 }

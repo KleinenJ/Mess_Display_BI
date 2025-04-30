@@ -1,7 +1,10 @@
 #include <gui/mess_screen/MessView.hpp>
 
+#define B_SAMPLE
+
 int updateCounter = 0;
 int UPDATE_TIMER_THRESHOLD = 50;
+
 
 MessView::MessView() : hwVersionInitialized(false), swVersionInitialized(false), receivedVoltageValue(110)
 {
@@ -18,7 +21,12 @@ void MessView::setupScreen()
     presenter->sendLINControlFrame(0, 0, 0, 0, 5);
     HAL_Delay(100);
 
-    hvi = 60;							// Temp Startwert bis Flash gelesen wird
+	#ifdef B_SAMPLE
+    	hvi = 20;							// Temp Startwert bis Flash gelesen wird
+	#else
+    	hvi = 60;
+	#endif
+
     hvi = presenter->readEEPROMvalue();	// liest letzten HV-Wert Sollstrom
 
     presenter->sendLINControlFrame(1, 1, hvi, 55, 8);
@@ -111,7 +119,12 @@ void MessView::text_write()
 void MessView::HVI_Plus()
 {
 	hvi = hvi + 1;
-	if (hvi >= 250) hvi = 250;		// Stromgrenze
+
+	#ifdef B_SAMPLE
+	if (hvi >= 60) hvi = 60;		// Stromgrenze 20µA
+	#else
+	if (hvi >= 180) hvi = 180;		// Stromgrenze 90µA
+	#endif
 
     presenter->sendLINControlFrame(1,1,hvi,receivedVoltageValue,8);
 
