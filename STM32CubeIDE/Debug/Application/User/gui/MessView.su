@@ -13,5 +13,5 @@ C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:64
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:75:6:void MessView::text_write()	1176	static
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:111:6:virtual void MessView::HVI_Plus()	24	static
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:126:6:virtual void MessView::HVI_Minus()	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:148:6:void MessView::CANIntReceived(uint32_t, const int16_t*)	72	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:281:6:void MessView::updateLINStatus(uint8_t*)	96	static
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:148:6:void MessView::CANIntReceived(uint32_t, const int16_t*)	80	static
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessView.cpp:283:6:void MessView::updateLINStatus(uint8_t*)	96	static

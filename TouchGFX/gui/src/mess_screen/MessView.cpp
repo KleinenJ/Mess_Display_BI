@@ -223,27 +223,29 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 
 	if (ID == 0x47)
 	    {
-				float pm1 = static_cast<float>(value1) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
-				float pm2 = static_cast<float>(value2) * 1.003f;
-				float pm3 = static_cast<float>(value3) * 1.003f;
+				float fPvF10 = static_cast<float>(value1) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
+				float fPvF25 = static_cast<float>(value2) * 1.003f;
+				float fPnF10 = static_cast<float>(value3) * 1.003f;
+				float fPnF25 = static_cast<float>(value2) * 1.003f;
 
-				if(pm1 > 1000) pm1 = 1000;
-				if(pm2 > 1000) pm2 = 1000;
-				if(pm3 > 1000) pm3 = 1000;
-				if(pm1 < 0) pm1 = 0;
-				if(pm2 < 0) pm2 = 0;
-				if(pm3 < 0) pm3 = 0;
+				if(fPvF10 > 1000) fPvF10 = 1000;
+				if(fPvF25 > 1000) fPvF25 = 1000;
+				if(fPnF10 > 1000) fPnF10 = 1000;
+				if(fPnF25 > 1000) fPnF25 = 1000;
+				if(fPvF10 < 0) fPvF10 = 0;
+				if(fPvF25 < 0) fPvF25 = 0;
+				if(fPnF10 < 0) fPnF10 = 0;
+				if(fPnF25 < 0) fPnF25 = 0;
 
-				Unicode::snprintfFloat(PvFBuffer, PVF_SIZE, "%1.0f", pm1);
+				Unicode::snprintfFloat(PvF10Buffer, PVF10_SIZE, "%1.0f", fPvF10);
+				Unicode::snprintfFloat(PvF25Buffer, PVF25_SIZE, "%1.0f", fPvF25);
+				Unicode::snprintfFloat(PnF10Buffer, PNF10_SIZE, "%1.0f", fPnF10);
+				//Unicode::snprintfFloat(PnF25Buffer, PNF25_SIZE, "%1.0f", fPnF25);
 				//Unicode::snprintf(PvFBuffer, PVF_SIZE, "%d", value1);
-	            //Unicode::snprintf(PnFBuffer, PNF_SIZE, "%d", pm2);
-	            //Unicode::snprintf(PIBuffer, PI_SIZE, "%d", pm3);
-				Unicode::snprintfFloat(PnFBuffer, PNF_SIZE, "%1.0f", pm2);
-				Unicode::snprintfFloat(PIBuffer, PI_SIZE, "%1.0f", pm3);
-	            //Unicode::snprintf(xRESERVEBuffer, XRESERVE_SIZE, "%d", value4);
-	            PvF.invalidate();
-	            PnF.invalidate();
-	            PI.invalidate();
+	            PvF10.invalidate();
+	            PvF25.invalidate();
+	            PnF10.invalidate();
+	            PnF25.invalidate();
 	            //xRESERVE.invalidate();
 	    }
 
