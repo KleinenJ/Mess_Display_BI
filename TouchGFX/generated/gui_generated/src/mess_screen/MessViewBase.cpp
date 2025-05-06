@@ -101,7 +101,7 @@ MessViewBase::MessViewBase() :
     Text_PvF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BF32));
     add(Text_PvF);
 
-    PvF10.setPosition(137, 310, 126, 28);
+    PvF10.setPosition(137, 309, 126, 31);
     PvF10.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     PvF10.setLinespacing(0);
     Unicode::snprintf(PvF10Buffer, PVF10_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_VZ39).getText());
@@ -183,7 +183,7 @@ MessViewBase::MessViewBase() :
     HV_Status.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MKYI));
     add(HV_Status);
 
-    PvF25.setPosition(137, 370, 126, 28);
+    PvF25.setPosition(137, 370, 126, 32);
     PvF25.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     PvF25.setLinespacing(0);
     Unicode::snprintf(PvF25Buffer, PVF25_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_N72R).getText());

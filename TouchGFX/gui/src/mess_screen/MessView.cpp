@@ -54,11 +54,15 @@ void MessView::EEPROMRead()
 }
 */
 
-void MessView::Adj_Displ_PWM(int value)
+void MessView::updateIonVoltage(float value)
 {
     presenter->setBacklightValuePresenter(value);
 }
 
+void MessView::Adj_Displ_PWM(int value)
+{
+    presenter->setBacklightValuePresenter(value);
+}
 
 
 void MessView::setStateSDCS(bool state_SDCS_model)
@@ -226,7 +230,7 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 				float fPvF10 = static_cast<float>(value1) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
 				float fPvF25 = static_cast<float>(value2) * 1.003f;
 				float fPnF10 = static_cast<float>(value3) * 1.003f;
-				float fPnF25 = static_cast<float>(value2) * 1.003f;
+				float fPnF25 = static_cast<float>(value4) * 1.003f;
 
 				if(fPvF10 > 1000) fPvF10 = 1000;
 				if(fPvF25 > 1000) fPvF25 = 1000;
@@ -247,23 +251,52 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 	            PnF10.invalidate();
 	            PnF25.invalidate();
 	            //xRESERVE.invalidate();
+
+	            // JKL: update System image
+	            //Model->fPvF10  = fPvF10;
+	            //Model->fPvF25  = fPvF25;
+	            //Model->fPnF10  = fPnF10;
+	            //Model->fPnF25  = fPnF25;
+
 	    }
 
 	if (ID == 0x50)
 	    {
-				float currentValue = (static_cast<float>(value3) / 10.0f) * 1.25f;		// Formatierung
 
-				if(currentValue < 0) currentValue = 0;
+			float fIonVoltage = (value1 +3)*(-8);
+			float fPolVoltage = (value2 +4)*(-3);
+			float fIonCurrent =(static_cast<float>(value3) / 10.0f) * 1.25f;;
 
-	            Unicode::snprintf(MIoUBuffer, MIOU_SIZE, "%d", (value1 +3)*(-8));
-	            Unicode::snprintf(MPoUBuffer, MPOU_SIZE, "%d", (value2 +4)*(-3));
-	            Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", currentValue);	// Anzeige mit 1 Nachkommastelle
-	            //Unicode::snprintf(MPoABuffer, MPOA_SIZE, "%d", (value3*8);
-	            //Unicode::snprintf(yRESERVEBuffer, YRESERVE_SIZE, "%d", value4);
-	            MIoU.invalidate();
-	            MPoU.invalidate();
-	            MPoA.invalidate();
-	            //yRESERVE.invalidate();
+			float currentValue = (static_cast<float>(value3) / 10.0f) * 1.25f;		// Formatierung
+
+			if(fIonVoltage > 0) fIonVoltage = 0;
+			if(fIonVoltage < -8000) fIonVoltage = -8000;
+
+			if(fPolVoltage > 0) fPolVoltage = 0;
+			if(fPolVoltage < -3000) fPolVoltage = -3000;
+
+			if(fIonCurrent > 100) fIonCurrent = 100;
+			if(fIonCurrent < 0) fIonCurrent = 0;
+
+			Unicode::snprintfFloat(MIoUBuffer, MIOU_SIZE, "%3.1f", fIonVoltage);	// Anzeige mit 1 Nachkommastelle
+			Unicode::snprintfFloat(MPoUBuffer, MPOU_SIZE, "%3.1f", fPolVoltage);	// Anzeige mit 1 Nachkommastelle
+			Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", fIonCurrent);	// Anzeige mit 1 Nachkommastelle
+
+			//Unicode::snprintf(MIoUBuffer, MIOU_SIZE, "%d", (value1 +3)*(-8));
+			//Unicode::snprintf(MPoUBuffer, MPOU_SIZE, "%d", (value2 +4)*(-3));
+			//Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", currentValue);	// Anzeige mit 1 Nachkommastelle
+			//Unicode::snprintf(MPoABuffer, MPOA_SIZE, "%d", (value3*8);
+			//Unicode::snprintf(yRESERVEBuffer, YRESERVE_SIZE, "%d", value4);
+			MIoU.invalidate();
+			MPoU.invalidate();
+			MPoA.invalidate();
+			//yRESERVE.invalidate();
+
+            // JKL: update System image
+			//MessPresenter->writeUpol2Image(fPolVoltage);
+			//Model->fIonVoltage  = fIonVoltage;
+			//Model->fIonCurrent  = fPolVoltage;
+			//Model->fPolVoltage  = fIonCurrent;
 	    }
 
 	if (ID == 0x51)	// Muss nicht auf dem Display ausgegeben werden / Reserve

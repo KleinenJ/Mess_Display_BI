@@ -36,6 +36,11 @@ void MessPresenter::sendEEPROMvalue(int value)
   model->SendVlaueToEEPROM(value);
 }
 
+//void MessPresenter::writeUpol2Image( float value)
+//{
+//  model->updateUpol(value);
+//}
+
 
 void MessPresenter::setStateSDCS(bool state_SDCS_model)
 {

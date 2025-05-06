@@ -18,9 +18,9 @@ MessPresenter.cpp:20:6:void MessPresenter::setBacklightValuePresenter(int)	16	st
 MessPresenter.cpp:26:5:virtual int MessPresenter::readEEPROMvalue()	16	static
 MessPresenter.cpp:30:5:virtual int MessPresenter::readEEPROMCount()	16	static
 MessPresenter.cpp:34:6:virtual void MessPresenter::sendEEPROMvalue(int)	16	static
-MessPresenter.cpp:40:6:virtual void MessPresenter::setStateSDCS(bool)	16	static
-MessPresenter.cpp:46:6:virtual void MessPresenter::CANIntReceived(uint32_t, const int16_t*)	24	static
-MessPresenter.cpp:51:6:void MessPresenter::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
-MessPresenter.cpp:56:6:void MessPresenter::receiveLINStatusFrame()	16	static
-MessPresenter.cpp:61:6:virtual void MessPresenter::onLINStatusReceived(uint8_t*)	16	static
-MessPresenter.cpp:66:6:void MessPresenter::setHviValue(uint8_t)	16	static
+MessPresenter.cpp:45:6:virtual void MessPresenter::setStateSDCS(bool)	16	static
+MessPresenter.cpp:51:6:virtual void MessPresenter::CANIntReceived(uint32_t, const int16_t*)	24	static
+MessPresenter.cpp:56:6:void MessPresenter::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
+MessPresenter.cpp:61:6:void MessPresenter::receiveLINStatusFrame()	16	static
+MessPresenter.cpp:66:6:virtual void MessPresenter::onLINStatusReceived(uint8_t*)	16	static
+MessPresenter.cpp:71:6:void MessPresenter::setHviValue(uint8_t)	16	static

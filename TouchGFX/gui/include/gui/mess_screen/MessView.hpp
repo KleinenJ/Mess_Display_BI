@@ -37,6 +37,8 @@ public:
     void text_write();
     void setStateSDCS(bool state_SDCS_model);
 
+    void updateIonVoltage(float value);
+
 private:
     bool hwVersionInitialized;
     bool swVersionInitialized;
