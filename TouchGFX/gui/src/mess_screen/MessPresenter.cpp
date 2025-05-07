@@ -48,9 +48,14 @@ void MessPresenter::setStateSDCS(bool state_SDCS_model)
 }
 
 
-void MessPresenter::CANIntReceived(uint32_t ID, const int16_t *data)
+void MessPresenter::CANIntReceived(uint32_t ID, const int *data)
 {
     view.CANIntReceived(ID, data);
+}
+
+void MessPresenter::CANFloatReceived(uint32_t ID, const float *data)
+{
+    view.CANFloatReceived(ID, data);
 }
 
 void MessPresenter::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t current, uint8_t voltage, uint8_t blower)

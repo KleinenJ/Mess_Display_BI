@@ -5,12 +5,13 @@
 ../../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:58:5:touchgfx::Presenter::Presenter()	1
 ../../TouchGFX/gui/include/gui/model/ModelListener.hpp:11:5:ModelListener::ModelListener()	1
 ../../TouchGFX/gui/include/gui/model/ModelListener.hpp:13:18:virtual void ModelListener::CANIntReceived(uint32_t, const int16_t*)	1
-../../TouchGFX/gui/include/gui/model/ModelListener.hpp:14:18:virtual void ModelListener::onLINStatusReceived(uint8_t*)	1
-../../TouchGFX/gui/include/gui/model/ModelListener.hpp:15:13:ModelListener::~ModelListener()	1
-../../TouchGFX/gui/include/gui/model/ModelListener.hpp:15:13:virtual ModelListener::~ModelListener()	1
-../../TouchGFX/gui/include/gui/model/ModelListener.hpp:18:18:virtual void ModelListener::setStateSDCS(bool)	1
-../../TouchGFX/gui/include/gui/mess_screen/MessPresenter.hpp:41:13:MessPresenter::~MessPresenter()	1
-../../TouchGFX/gui/include/gui/mess_screen/MessPresenter.hpp:41:13:virtual MessPresenter::~MessPresenter()	1
+../../TouchGFX/gui/include/gui/model/ModelListener.hpp:14:18:virtual void ModelListener::CANFloatReceived(uint32_t, const float*)	1
+../../TouchGFX/gui/include/gui/model/ModelListener.hpp:15:18:virtual void ModelListener::onLINStatusReceived(uint8_t*)	1
+../../TouchGFX/gui/include/gui/model/ModelListener.hpp:16:13:ModelListener::~ModelListener()	1
+../../TouchGFX/gui/include/gui/model/ModelListener.hpp:16:13:virtual ModelListener::~ModelListener()	1
+../../TouchGFX/gui/include/gui/model/ModelListener.hpp:19:18:virtual void ModelListener::setStateSDCS(bool)	1
+../../TouchGFX/gui/include/gui/mess_screen/MessPresenter.hpp:42:13:MessPresenter::~MessPresenter()	1
+../../TouchGFX/gui/include/gui/mess_screen/MessPresenter.hpp:42:13:virtual MessPresenter::~MessPresenter()	1
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:4:1:MessPresenter::MessPresenter(MessView&)	1
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:10:6:virtual void MessPresenter::activate()	1
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:15:6:virtual void MessPresenter::deactivate()	1
@@ -19,8 +20,9 @@ C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.c
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:30:5:virtual int MessPresenter::readEEPROMCount()	1
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:34:6:virtual void MessPresenter::sendEEPROMvalue(int)	1
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:45:6:virtual void MessPresenter::setStateSDCS(bool)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:51:6:virtual void MessPresenter::CANIntReceived(uint32_t, const int16_t*)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:56:6:void MessPresenter::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:61:6:void MessPresenter::receiveLINStatusFrame()	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:66:6:virtual void MessPresenter::onLINStatusReceived(uint8_t*)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:71:6:void MessPresenter::setHviValue(uint8_t)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:51:6:void MessPresenter::CANIntReceived(uint32_t, const int*)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:56:6:virtual void MessPresenter::CANFloatReceived(uint32_t, const float*)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:61:6:void MessPresenter::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:66:6:void MessPresenter::receiveLINStatusFrame()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:71:6:virtual void MessPresenter::onLINStatusReceived(uint8_t*)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/mess_screen/MessPresenter.cpp:76:6:void MessPresenter::setHviValue(uint8_t)	1

@@ -14,5 +14,5 @@ MessView.cpp:68:6:void MessView::setStateSDCS(bool)	16	static
 MessView.cpp:79:6:void MessView::text_write()	1176	static
 MessView.cpp:115:6:virtual void MessView::HVI_Plus()	24	static
 MessView.cpp:130:6:virtual void MessView::HVI_Minus()	24	static
-MessView.cpp:152:6:void MessView::CANIntReceived(uint32_t, const int16_t*)	96	static
-MessView.cpp:316:6:void MessView::updateLINStatus(uint8_t*)	96	static
+MessView.cpp:152:6:void MessView::CANFloatReceived(uint32_t, const float*)	72	static
+MessView.cpp:221:6:void MessView::updateLINStatus(uint8_t*)	96	static

@@ -26,13 +26,13 @@
 bool state_SDCS = false;
 
 /// 2025/05/06, JKL: added system image
-int16_t iTempVFmV = 0;	// Extract raw value
-int16_t iHumidVFmV = 0;	// Extract raw value
-int16_t iTempNFmV = 0;	// Extract raw value
-int16_t iHumidNFmV = 0;	// Extract raw value
+int16_t iTempVFmV = 0;
+int16_t iHumidVFmV = 0;
+int16_t iTempNFmV = 0;
+int16_t iHumidNFmV = 0;
 
-float fTempVF = 25.0f; 	/// JKL
-float fTempNF = 25.0f; 	/// JKL
+float fTempVF = 25.0f;
+float fTempNF = 25.0f;
 float fHumidVF = 50.0f;
 float fHumidNF = 50.0f;
 
@@ -47,6 +47,14 @@ float fPnF25  = 0.0f;
 
 float fLinIonVoltage  = 0.0f;
 float fLinIonCurrent  = 0.0f;
+
+uint8_t bLinType = 255; 	// 0:= A-Sample
+							// 1:= B-Sample
+							// ...
+							// 255:= unknown
+
+uint8_t bLinVersion = 255;	// 255:= unknown
+
 
 
 const uint32_t CAN_TIMEOUT_THRESHOLD = 500;		// CAN Timeout-Schwellenwert (500 Ticks)
@@ -244,7 +252,7 @@ void Model::process_CAN_messages()
 					case 0x46:
 						canTimeoutCounters[0] = 0;					// Timeoutzähler zurücksetzen
 						idReceived[0] = true;						// ID als empfangen markieren
-						modelListener->CANIntReceived(id, intData);	// Empfangene CAN-Daten übertragen
+						//modelListener->CANIntReceived(id, intData);	// Empfangene CAN-Daten übertragen
 
 						iTempVFmV = intData[0]*10;	// Extract raw value
 						iHumidVFmV = intData[1]*10;	// Extract raw value
@@ -297,12 +305,14 @@ void Model::process_CAN_messages()
 						floatData[2]= fTempNF;
 						floatData[3]= fHumidNF;
 						/// add new transfer function
+
+						modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
 						break;
 
 					case 0x47:
 						canTimeoutCounters[1] = 0;
 						idReceived[1] = true;
-						modelListener->CANIntReceived(id, intData);
+						//modelListener->CANIntReceived(id, intData);
 
 						fPvF10 = static_cast<float>(intData[0]) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
 						fPvF25 = static_cast<float>(intData[1]) * 1.003f;
@@ -323,12 +333,12 @@ void Model::process_CAN_messages()
 						floatData[2]= fPnF10;
 						floatData[3]= fPnF25;
 
-						/// add new transfer function
+						modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
 						break;
                     case 0x50:
                         canTimeoutCounters[2] = 0;
                         idReceived[2] = true;
-                        modelListener->CANIntReceived(id, intData);
+                        //modelListener->CANIntReceived(id, intData);
             			fIonVoltage = (intData[0] +3)*(-8);
             			fPolVoltage = (intData[1] +4)*(-3);
             			fIonCurrent =(static_cast<float>(intData[2]) / 10.0f) * 1.25f;;
@@ -347,13 +357,14 @@ void Model::process_CAN_messages()
 						floatData[2]= fIonCurrent;
 						floatData[3]= 0.0f;			/// default
 
-						/// add new transfer function
+						modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
                         break;
 
                     case 0x51:
                         canTimeoutCounters[3] = 0;
                         idReceived[3] = true;
-                        modelListener->CANIntReceived(id, intData);
+
+                        // discard ,essage content
                         break;
                 }
 	  }
