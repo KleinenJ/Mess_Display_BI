@@ -209,8 +209,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_F_3",
-            "X": 302,
-            "Y": 7,
+            "X": 310,
+            "Y": 3,
             "Width": 83,
             "Height": 49,
             "TextId": "__SingleUse_R3PW",
@@ -225,8 +225,8 @@
           {
             "Type": "BoxWithBorder",
             "Name": "boxWithBorder5",
-            "X": 296,
-            "Y": 59,
+            "X": 304,
+            "Y": 55,
             "Width": 268,
             "Height": 220,
             "Color": {
@@ -244,8 +244,8 @@
           {
             "Type": "BoxWithBorder",
             "Name": "boxWithBorder4",
-            "X": 18,
-            "Y": 238,
+            "X": 26,
+            "Y": 234,
             "Width": 267,
             "Height": 175,
             "Color": {
@@ -263,8 +263,8 @@
           {
             "Type": "BoxWithBorder",
             "Name": "boxWithBorder3",
-            "X": 18,
-            "Y": 59,
+            "X": 26,
+            "Y": 55,
             "Width": 267,
             "Height": 174,
             "Color": {
@@ -282,8 +282,8 @@
           {
             "Type": "BoxWithBorder",
             "Name": "boxWithBorder2",
-            "X": 575,
-            "Y": 238,
+            "X": 583,
+            "Y": 234,
             "Width": 267,
             "Height": 175,
             "Color": {
@@ -301,8 +301,8 @@
           {
             "Type": "BoxWithBorder",
             "Name": "boxWithBorder1",
-            "X": 575,
-            "Y": 58,
+            "X": 583,
+            "Y": 54,
             "Width": 267,
             "Height": 174,
             "Color": {
@@ -320,8 +320,8 @@
           {
             "Type": "BoxWithBorder",
             "Name": "Box_HV_BG_1",
-            "X": 297,
-            "Y": 283,
+            "X": 305,
+            "Y": 279,
             "Width": 267,
             "Height": 200,
             "Color": {
@@ -357,8 +357,8 @@
           {
             "Type": "Box",
             "Name": "Box_P",
-            "X": 18,
-            "Y": 15,
+            "X": 26,
+            "Y": 11,
             "Width": 267,
             "Height": 39,
             "Color": {
@@ -370,8 +370,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_F_1",
-            "X": 302,
-            "Y": 7,
+            "X": 310,
+            "Y": 3,
             "Width": 83,
             "Height": 49,
             "TextId": "__SingleUse_EUHI",
@@ -386,8 +386,8 @@
           {
             "Type": "Box",
             "Name": "Box_F",
-            "X": 296,
-            "Y": 15,
+            "X": 304,
+            "Y": 11,
             "Width": 267,
             "Height": 39,
             "Color": {
@@ -399,8 +399,8 @@
           {
             "Type": "Box",
             "Name": "Box_L",
-            "X": 575,
-            "Y": 15,
+            "X": 583,
+            "Y": 11,
             "Width": 267,
             "Height": 39,
             "Color": {
@@ -428,8 +428,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_PvF",
-            "X": 23,
-            "Y": 240,
+            "X": 31,
+            "Y": 236,
             "Width": 77,
             "Height": 30,
             "TextId": "__SingleUse_BF32",
@@ -439,8 +439,8 @@
           {
             "Type": "TextArea",
             "Name": "PvF10",
-            "X": 137,
-            "Y": 309,
+            "X": 145,
+            "Y": 305,
             "Width": 126,
             "Height": 31,
             "TextId": "__SingleUse_JW9D",
@@ -454,8 +454,8 @@
           {
             "Type": "TextArea",
             "Name": "MIoU",
-            "X": 435,
-            "Y": 129,
+            "X": 443,
+            "Y": 125,
             "Width": 112,
             "Height": 30,
             "TextId": "__SingleUse_T8NI",
@@ -469,8 +469,8 @@
           {
             "Type": "TextArea",
             "Name": "MPoU",
-            "X": 435,
-            "Y": 246,
+            "X": 443,
+            "Y": 242,
             "Width": 112,
             "Height": 32,
             "TextId": "__SingleUse_FFJK",
@@ -484,8 +484,8 @@
           {
             "Type": "TextArea",
             "Name": "MPoA",
-            "X": 436,
-            "Y": 189,
+            "X": 444,
+            "Y": 185,
             "Width": 111,
             "Height": 27,
             "TextId": "__SingleUse_JO6M",
@@ -499,8 +499,8 @@
           {
             "Type": "TextArea",
             "Name": "HVU",
-            "X": 460,
-            "Y": 356,
+            "X": 468,
+            "Y": 352,
             "Width": 95,
             "Height": 30,
             "TextId": "__SingleUse_Z1Q3",
@@ -514,8 +514,8 @@
           {
             "Type": "TextArea",
             "Name": "HVI",
-            "X": 352,
-            "Y": 446,
+            "X": 360,
+            "Y": 442,
             "Width": 100,
             "Height": 30,
             "TextId": "__SingleUse_WFTL",
@@ -529,8 +529,8 @@
           {
             "Type": "TextArea",
             "Name": "HVI_Soll",
-            "X": 352,
-            "Y": 416,
+            "X": 360,
+            "Y": 412,
             "Width": 100,
             "Height": 30,
             "TextId": "__SingleUse_8O6C",
@@ -544,8 +544,8 @@
           {
             "Type": "TextArea",
             "Name": "HV_HW",
-            "X": 402,
-            "Y": 291,
+            "X": 410,
+            "Y": 287,
             "Width": 16,
             "Height": 18,
             "TextId": "__SingleUse_WWMI",
@@ -560,8 +560,8 @@
           {
             "Type": "TextArea",
             "Name": "HV_SW",
-            "X": 462,
-            "Y": 291,
+            "X": 470,
+            "Y": 287,
             "Width": 16,
             "Height": 18,
             "TextId": "__SingleUse_VEI4",
@@ -576,8 +576,8 @@
           {
             "Type": "TextArea",
             "Name": "HV_Status",
-            "X": 489,
-            "Y": 291,
+            "X": 497,
+            "Y": 287,
             "Width": 66,
             "Height": 18,
             "TextId": "__SingleUse_MKYI",
@@ -596,8 +596,8 @@
           {
             "Type": "TextArea",
             "Name": "PvF25",
-            "X": 137,
-            "Y": 370,
+            "X": 145,
+            "Y": 366,
             "Width": 126,
             "Height": 32,
             "TextId": "__SingleUse_85MM",
@@ -611,8 +611,8 @@
           {
             "Type": "TextArea",
             "Name": "TvF",
-            "X": 137,
-            "Y": 129,
+            "X": 145,
+            "Y": 125,
             "Width": 126,
             "Height": 29,
             "TextId": "__SingleUse_OCTG",
@@ -626,8 +626,8 @@
           {
             "Type": "TextArea",
             "Name": "TnF",
-            "X": 703,
-            "Y": 127,
+            "X": 711,
+            "Y": 123,
             "Width": 117,
             "Height": 31,
             "TextId": "__SingleUse_56M2",
@@ -641,8 +641,8 @@
           {
             "Type": "TextArea",
             "Name": "LvF",
-            "X": 137,
-            "Y": 189,
+            "X": 145,
+            "Y": 185,
             "Width": 126,
             "Height": 29,
             "TextId": "__SingleUse_Z69U",
@@ -656,8 +656,8 @@
           {
             "Type": "TextArea",
             "Name": "LnF",
-            "X": 703,
-            "Y": 189,
+            "X": 711,
+            "Y": 185,
             "Width": 117,
             "Height": 29,
             "TextId": "__SingleUse_CO0E",
@@ -671,8 +671,8 @@
           {
             "Type": "TextArea",
             "Name": "PnF10",
-            "X": 691,
-            "Y": 309,
+            "X": 699,
+            "Y": 305,
             "Width": 129,
             "Height": 30,
             "TextId": "__SingleUse_KBF6",
@@ -686,8 +686,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_PnF",
-            "X": 43,
-            "Y": 280,
+            "X": 51,
+            "Y": 276,
             "Width": 62,
             "Height": 24,
             "TextId": "__SingleUse_WI2N",
@@ -697,8 +697,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_TvF",
-            "X": 43,
-            "Y": 100,
+            "X": 51,
+            "Y": 96,
             "Width": 104,
             "Height": 24,
             "TextId": "__SingleUse_YBT1",
@@ -708,8 +708,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_TnF",
-            "X": 600,
-            "Y": 98,
+            "X": 608,
+            "Y": 94,
             "Width": 104,
             "Height": 24,
             "TextId": "__SingleUse_0WX6",
@@ -719,8 +719,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_LvF",
-            "X": 43,
-            "Y": 160,
+            "X": 51,
+            "Y": 156,
             "Width": 103,
             "Height": 24,
             "TextId": "__SingleUse_31PF",
@@ -730,8 +730,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_LnF",
-            "X": 600,
-            "Y": 159,
+            "X": 608,
+            "Y": 155,
             "Width": 103,
             "Height": 24,
             "TextId": "__SingleUse_SS63",
@@ -741,8 +741,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_IoU",
-            "X": 302,
-            "Y": 99,
+            "X": 310,
+            "Y": 95,
             "Width": 179,
             "Height": 24,
             "TextId": "__SingleUse_RSUZ",
@@ -752,8 +752,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_PoUA",
-            "X": 302,
-            "Y": 216,
+            "X": 310,
+            "Y": 212,
             "Width": 195,
             "Height": 24,
             "TextId": "__SingleUse_A1I5",
@@ -763,8 +763,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_HV_U",
-            "X": 302,
-            "Y": 326,
+            "X": 310,
+            "Y": 322,
             "Width": 179,
             "Height": 24,
             "TextId": "__SingleUse_QWQM",
@@ -774,8 +774,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_HV_I",
-            "X": 302,
-            "Y": 386,
+            "X": 310,
+            "Y": 382,
             "Width": 146,
             "Height": 24,
             "TextId": "__SingleUse_1UIH",
@@ -785,8 +785,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_HV_I_Soll",
-            "X": 302,
-            "Y": 419,
+            "X": 310,
+            "Y": 415,
             "Width": 35,
             "Height": 24,
             "TextId": "__SingleUse_ZKG2",
@@ -796,8 +796,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_HV_HW",
-            "X": 369,
-            "Y": 291,
+            "X": 377,
+            "Y": 287,
             "Width": 27,
             "Height": 18,
             "TextId": "__SingleUse_4ECG",
@@ -807,8 +807,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_HV_SW",
-            "X": 432,
-            "Y": 291,
+            "X": 440,
+            "Y": 287,
             "Width": 25,
             "Height": 18,
             "TextId": "__SingleUse_2DLE",
@@ -818,8 +818,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_HV_I_Ist",
-            "X": 302,
-            "Y": 449,
+            "X": 310,
+            "Y": 445,
             "Width": 25,
             "Height": 24,
             "TextId": "__SingleUse_0NZU",
@@ -829,8 +829,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_PI",
-            "X": 601,
-            "Y": 340,
+            "X": 609,
+            "Y": 336,
             "Width": 62,
             "Height": 24,
             "TextId": "__SingleUse_SBFF",
@@ -872,8 +872,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_P",
-            "X": 23,
-            "Y": 7,
+            "X": 31,
+            "Y": 3,
             "Width": 262,
             "Height": 49,
             "TextId": "__SingleUse_BI20",
@@ -887,8 +887,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_L",
-            "X": 575,
-            "Y": 7,
+            "X": 583,
+            "Y": 3,
             "Width": 262,
             "Height": 49,
             "TextId": "__SingleUse_XCOA",
@@ -902,8 +902,8 @@
           {
             "Type": "TextArea",
             "Name": "Text_F",
-            "X": 296,
-            "Y": 10,
+            "X": 304,
+            "Y": 6,
             "Width": 265,
             "Height": 51,
             "TextId": "__SingleUse_YC53",
@@ -960,8 +960,8 @@
           {
             "Type": "ButtonWithIcon",
             "Name": "But_HV_I_P",
-            "X": 461,
-            "Y": 413,
+            "X": 469,
+            "Y": 409,
             "Width": 36,
             "Height": 36,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
@@ -977,8 +977,8 @@
           {
             "Type": "ButtonWithIcon",
             "Name": "But_HV_I_M",
-            "X": 519,
-            "Y": 413,
+            "X": 527,
+            "Y": 409,
             "Width": 36,
             "Height": 36,
             "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
@@ -994,8 +994,8 @@
           {
             "Type": "Line",
             "Name": "line1",
-            "X": 302,
-            "Y": 313,
+            "X": 310,
+            "Y": 309,
             "Width": 256,
             "Height": 10,
             "Color": {
@@ -1012,8 +1012,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea1",
-            "X": 43,
-            "Y": 340,
+            "X": 51,
+            "Y": 336,
             "Width": 62,
             "Height": 24,
             "TextId": "__SingleUse_E73M",
@@ -1023,8 +1023,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea2",
-            "X": 580,
-            "Y": 58,
+            "X": 588,
+            "Y": 54,
             "Width": 40,
             "Height": 30,
             "TextId": "__SingleUse_7KTU",
@@ -1034,8 +1034,8 @@
           {
             "Type": "Line",
             "Name": "line2",
-            "X": 580,
-            "Y": 88,
+            "X": 588,
+            "Y": 84,
             "Width": 256,
             "Height": 10,
             "Color": {
@@ -1052,8 +1052,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea3",
-            "X": 580,
-            "Y": 240,
+            "X": 588,
+            "Y": 236,
             "Width": 77,
             "Height": 30,
             "TextId": "__SingleUse_U52J",
@@ -1063,8 +1063,8 @@
           {
             "Type": "Line",
             "Name": "line3",
-            "X": 581,
-            "Y": 270,
+            "X": 589,
+            "Y": 266,
             "Width": 256,
             "Height": 10,
             "Color": {
@@ -1081,8 +1081,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea4",
-            "X": 601,
-            "Y": 280,
+            "X": 609,
+            "Y": 276,
             "Width": 62,
             "Height": 24,
             "TextId": "__SingleUse_D4WC",
@@ -1092,8 +1092,8 @@
           {
             "Type": "TextArea",
             "Name": "PnF25",
-            "X": 690,
-            "Y": 370,
+            "X": 698,
+            "Y": 366,
             "Width": 130,
             "Height": 32,
             "TextId": "__SingleUse_9CSV",
@@ -1105,8 +1105,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea6",
-            "X": 23,
-            "Y": 59,
+            "X": 31,
+            "Y": 55,
             "Width": 40,
             "Height": 30,
             "TextId": "__SingleUse_2DQI",
@@ -1116,8 +1116,8 @@
           {
             "Type": "Line",
             "Name": "line4",
-            "X": 23,
-            "Y": 89,
+            "X": 31,
+            "Y": 85,
             "Width": 256,
             "Height": 10,
             "Color": {
@@ -1134,8 +1134,8 @@
           {
             "Type": "Line",
             "Name": "line5",
-            "X": 23,
-            "Y": 270,
+            "X": 31,
+            "Y": 266,
             "Width": 257,
             "Height": 10,
             "Color": {
@@ -1152,8 +1152,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea7",
-            "X": 302,
-            "Y": 59,
+            "X": 310,
+            "Y": 55,
             "Width": 70,
             "Height": 30,
             "TextId": "__SingleUse_SXUN",
@@ -1163,8 +1163,8 @@
           {
             "Type": "Line",
             "Name": "line6",
-            "X": 300,
-            "Y": 89,
+            "X": 308,
+            "Y": 85,
             "Width": 255,
             "Height": 15,
             "Color": {
@@ -1181,8 +1181,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea8",
-            "X": 302,
-            "Y": 159,
+            "X": 310,
+            "Y": 155,
             "Width": 146,
             "Height": 24,
             "TextId": "__SingleUse_G1TO",
@@ -1192,8 +1192,8 @@
           {
             "Type": "TextArea",
             "Name": "textArea9",
-            "X": 302,
-            "Y": 283,
+            "X": 310,
+            "Y": 279,
             "Width": 33,
             "Height": 30,
             "TextId": "__SingleUse_81P6",

@@ -1,18 +1,21 @@
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:83:1:Model::Model()	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:94:6:void Model::tick()	5
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:146:5:int Model::ReadValueFromEEPORM()	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:152:6:void Model::SendVlaueToEEPROM(int)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:163:5:int Model::ReadCountEEPORM()	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:170:6:void Model::setBacklightValue(int)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:215:6:bool Model::getSDCS()	2
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:230:6:void Model::process_CAN_messages()	65
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:416:6:void Model::sendLinDataOverCAN()	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:433:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:442:6:void Model::processLINData(uint8_t*, uint16_t)	2
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:457:6:void Model::rearrangeRxData(uint8_t*, uint8_t)	5
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:479:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:498:6:void Model::receiveLINStatusFrame()	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:506:9:uint8_t Model::receiveInitialHviValue()	1
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:523:9:uint8_t Model::pid_Calc(uint8_t)	2
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:537:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	3
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:553:10:bool Model::validateLINData(uint8_t*)	3
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:86:1:Model::Model()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:97:6:void Model::tick()	5
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:153:5:int Model::ReadValueFromEEPORM()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:159:6:void Model::SendVlaueToEEPROM(int)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:164:6:void Model::updatefLinIonSetCurrent(int)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:170:5:int Model::ReadCountEEPORM()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:177:6:void Model::setBacklightValue(int)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:222:6:bool Model::getSDCS()	2
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:237:6:void Model::process_CAN_messages()	65
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:423:6:void Model::sendLinDataOverCAN()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:436:6:void Model::sendSystemImageOverCAN()	5
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:487:6:void Model::fnSendFloatsViaCAN(uint32_t, float, float, float, float)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:511:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:520:6:void Model::processLINData(uint8_t*, uint16_t)	2
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:535:6:void Model::rearrangeRxData(uint8_t*, uint8_t)	5
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:557:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:576:6:void Model::receiveLINStatusFrame()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:584:9:uint8_t Model::receiveInitialHviValue()	1
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:601:9:uint8_t Model::pid_Calc(uint8_t)	2
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:615:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	3
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:631:10:bool Model::validateLINData(uint8_t*)	3

@@ -21,43 +21,43 @@ MessViewBase::MessViewBase() :
     BG.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     add(BG);
 
-    Text_F_3.setXY(302, 7);
+    Text_F_3.setXY(310, 3);
     Text_F_3.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Text_F_3.setLinespacing(0);
     Text_F_3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_R3PW));
     add(Text_F_3);
 
-    boxWithBorder5.setPosition(296, 59, 268, 220);
+    boxWithBorder5.setPosition(304, 55, 268, 220);
     boxWithBorder5.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     boxWithBorder5.setBorderColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     boxWithBorder5.setBorderSize(1);
     add(boxWithBorder5);
 
-    boxWithBorder4.setPosition(18, 238, 267, 175);
+    boxWithBorder4.setPosition(26, 234, 267, 175);
     boxWithBorder4.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     boxWithBorder4.setBorderColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     boxWithBorder4.setBorderSize(1);
     add(boxWithBorder4);
 
-    boxWithBorder3.setPosition(18, 59, 267, 174);
+    boxWithBorder3.setPosition(26, 55, 267, 174);
     boxWithBorder3.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     boxWithBorder3.setBorderColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     boxWithBorder3.setBorderSize(1);
     add(boxWithBorder3);
 
-    boxWithBorder2.setPosition(575, 238, 267, 175);
+    boxWithBorder2.setPosition(583, 234, 267, 175);
     boxWithBorder2.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     boxWithBorder2.setBorderColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     boxWithBorder2.setBorderSize(1);
     add(boxWithBorder2);
 
-    boxWithBorder1.setPosition(575, 58, 267, 174);
+    boxWithBorder1.setPosition(583, 54, 267, 174);
     boxWithBorder1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     boxWithBorder1.setBorderSize(1);
     add(boxWithBorder1);
 
-    Box_HV_BG_1.setPosition(297, 283, 267, 200);
+    Box_HV_BG_1.setPosition(305, 279, 267, 200);
     Box_HV_BG_1.setColor(touchgfx::Color::getColorFromRGB(255, 252, 252));
     Box_HV_BG_1.setBorderColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Box_HV_BG_1.setBorderSize(1);
@@ -71,21 +71,21 @@ MessViewBase::MessViewBase() :
     Box_Blau.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     add(Box_Blau);
 
-    Box_P.setPosition(18, 15, 267, 39);
+    Box_P.setPosition(26, 11, 267, 39);
     Box_P.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     add(Box_P);
 
-    Text_F_1.setXY(302, 7);
+    Text_F_1.setXY(310, 3);
     Text_F_1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Text_F_1.setLinespacing(0);
     Text_F_1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_EUHI));
     add(Text_F_1);
 
-    Box_F.setPosition(296, 15, 267, 39);
+    Box_F.setPosition(304, 11, 267, 39);
     Box_F.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     add(Box_F);
 
-    Box_L.setPosition(575, 15, 267, 39);
+    Box_L.setPosition(583, 11, 267, 39);
     Box_L.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     add(Box_L);
 
@@ -95,13 +95,13 @@ MessViewBase::MessViewBase() :
     Name.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5DG6));
     add(Name);
 
-    Text_PvF.setXY(23, 240);
+    Text_PvF.setXY(31, 236);
     Text_PvF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_PvF.setLinespacing(0);
     Text_PvF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BF32));
     add(Text_PvF);
 
-    PvF10.setPosition(137, 309, 126, 31);
+    PvF10.setPosition(145, 305, 126, 31);
     PvF10.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     PvF10.setLinespacing(0);
     Unicode::snprintf(PvF10Buffer, PVF10_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_VZ39).getText());
@@ -109,7 +109,7 @@ MessViewBase::MessViewBase() :
     PvF10.setTypedText(touchgfx::TypedText(T___SINGLEUSE_JW9D));
     add(PvF10);
 
-    MIoU.setPosition(435, 129, 112, 30);
+    MIoU.setPosition(443, 125, 112, 30);
     MIoU.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     MIoU.setLinespacing(0);
     Unicode::snprintf(MIoUBuffer, MIOU_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_02X1).getText());
@@ -117,7 +117,7 @@ MessViewBase::MessViewBase() :
     MIoU.setTypedText(touchgfx::TypedText(T___SINGLEUSE_T8NI));
     add(MIoU);
 
-    MPoU.setPosition(435, 246, 112, 32);
+    MPoU.setPosition(443, 242, 112, 32);
     MPoU.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     MPoU.setLinespacing(0);
     Unicode::snprintf(MPoUBuffer, MPOU_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_HM1P).getText());
@@ -125,7 +125,7 @@ MessViewBase::MessViewBase() :
     MPoU.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FFJK));
     add(MPoU);
 
-    MPoA.setPosition(436, 189, 111, 27);
+    MPoA.setPosition(444, 185, 111, 27);
     MPoA.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     MPoA.setLinespacing(0);
     Unicode::snprintf(MPoABuffer, MPOA_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_QGJ2).getText());
@@ -133,7 +133,7 @@ MessViewBase::MessViewBase() :
     MPoA.setTypedText(touchgfx::TypedText(T___SINGLEUSE_JO6M));
     add(MPoA);
 
-    HVU.setPosition(460, 356, 95, 30);
+    HVU.setPosition(468, 352, 95, 30);
     HVU.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     HVU.setLinespacing(0);
     Unicode::snprintf(HVUBuffer, HVU_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_8DCU).getText());
@@ -141,7 +141,7 @@ MessViewBase::MessViewBase() :
     HVU.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Z1Q3));
     add(HVU);
 
-    HVI.setPosition(352, 446, 100, 30);
+    HVI.setPosition(360, 442, 100, 30);
     HVI.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     HVI.setLinespacing(0);
     Unicode::snprintf(HVIBuffer, HVI_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_7XI6).getText());
@@ -149,7 +149,7 @@ MessViewBase::MessViewBase() :
     HVI.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WFTL));
     add(HVI);
 
-    HVI_Soll.setPosition(352, 416, 100, 30);
+    HVI_Soll.setPosition(360, 412, 100, 30);
     HVI_Soll.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     HVI_Soll.setLinespacing(0);
     Unicode::snprintf(HVI_SollBuffer, HVI_SOLL_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_C5JB).getText());
@@ -157,7 +157,7 @@ MessViewBase::MessViewBase() :
     HVI_Soll.setTypedText(touchgfx::TypedText(T___SINGLEUSE_8O6C));
     add(HVI_Soll);
 
-    HV_HW.setXY(402, 291);
+    HV_HW.setXY(410, 287);
     HV_HW.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     HV_HW.setLinespacing(0);
     Unicode::snprintf(HV_HWBuffer, HV_HW_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_2OX2).getText());
@@ -166,7 +166,7 @@ MessViewBase::MessViewBase() :
     HV_HW.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WWMI));
     add(HV_HW);
 
-    HV_SW.setXY(462, 291);
+    HV_SW.setXY(470, 287);
     HV_SW.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     HV_SW.setLinespacing(0);
     Unicode::snprintf(HV_SWBuffer, HV_SW_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_IK9T).getText());
@@ -175,7 +175,7 @@ MessViewBase::MessViewBase() :
     HV_SW.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VEI4));
     add(HV_SW);
 
-    HV_Status.setPosition(489, 291, 66, 18);
+    HV_Status.setPosition(497, 287, 66, 18);
     HV_Status.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     HV_Status.setLinespacing(0);
     Unicode::snprintf(HV_StatusBuffer, HV_STATUS_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_3G10).getText());
@@ -183,7 +183,7 @@ MessViewBase::MessViewBase() :
     HV_Status.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MKYI));
     add(HV_Status);
 
-    PvF25.setPosition(137, 370, 126, 32);
+    PvF25.setPosition(145, 366, 126, 32);
     PvF25.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     PvF25.setLinespacing(0);
     Unicode::snprintf(PvF25Buffer, PVF25_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_N72R).getText());
@@ -191,7 +191,7 @@ MessViewBase::MessViewBase() :
     PvF25.setTypedText(touchgfx::TypedText(T___SINGLEUSE_85MM));
     add(PvF25);
 
-    TvF.setPosition(137, 129, 126, 29);
+    TvF.setPosition(145, 125, 126, 29);
     TvF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     TvF.setLinespacing(0);
     Unicode::snprintf(TvFBuffer, TVF_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_FQMG).getText());
@@ -199,7 +199,7 @@ MessViewBase::MessViewBase() :
     TvF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OCTG));
     add(TvF);
 
-    TnF.setPosition(703, 127, 117, 31);
+    TnF.setPosition(711, 123, 117, 31);
     TnF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     TnF.setLinespacing(0);
     Unicode::snprintf(TnFBuffer, TNF_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_JPSY).getText());
@@ -207,7 +207,7 @@ MessViewBase::MessViewBase() :
     TnF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_56M2));
     add(TnF);
 
-    LvF.setPosition(137, 189, 126, 29);
+    LvF.setPosition(145, 185, 126, 29);
     LvF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     LvF.setLinespacing(0);
     Unicode::snprintf(LvFBuffer, LVF_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_C6RK).getText());
@@ -215,7 +215,7 @@ MessViewBase::MessViewBase() :
     LvF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_Z69U));
     add(LvF);
 
-    LnF.setPosition(703, 189, 117, 29);
+    LnF.setPosition(711, 185, 117, 29);
     LnF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     LnF.setLinespacing(0);
     Unicode::snprintf(LnFBuffer, LNF_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_4D2O).getText());
@@ -223,7 +223,7 @@ MessViewBase::MessViewBase() :
     LnF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_CO0E));
     add(LnF);
 
-    PnF10.setPosition(691, 309, 129, 30);
+    PnF10.setPosition(699, 305, 129, 30);
     PnF10.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     PnF10.setLinespacing(0);
     Unicode::snprintf(PnF10Buffer, PNF10_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_G8UL).getText());
@@ -231,85 +231,85 @@ MessViewBase::MessViewBase() :
     PnF10.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KBF6));
     add(PnF10);
 
-    Text_PnF.setXY(43, 280);
+    Text_PnF.setXY(51, 276);
     Text_PnF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_PnF.setLinespacing(0);
     Text_PnF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_WI2N));
     add(Text_PnF);
 
-    Text_TvF.setXY(43, 100);
+    Text_TvF.setXY(51, 96);
     Text_TvF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_TvF.setLinespacing(0);
     Text_TvF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YBT1));
     add(Text_TvF);
 
-    Text_TnF.setXY(600, 98);
+    Text_TnF.setXY(608, 94);
     Text_TnF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_TnF.setLinespacing(0);
     Text_TnF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0WX6));
     add(Text_TnF);
 
-    Text_LvF.setXY(43, 160);
+    Text_LvF.setXY(51, 156);
     Text_LvF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_LvF.setLinespacing(0);
     Text_LvF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_31PF));
     add(Text_LvF);
 
-    Text_LnF.setXY(600, 159);
+    Text_LnF.setXY(608, 155);
     Text_LnF.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_LnF.setLinespacing(0);
     Text_LnF.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SS63));
     add(Text_LnF);
 
-    Text_IoU.setXY(302, 99);
+    Text_IoU.setXY(310, 95);
     Text_IoU.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_IoU.setLinespacing(0);
     Text_IoU.setTypedText(touchgfx::TypedText(T___SINGLEUSE_RSUZ));
     add(Text_IoU);
 
-    Text_PoUA.setXY(302, 216);
+    Text_PoUA.setXY(310, 212);
     Text_PoUA.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_PoUA.setLinespacing(0);
     Text_PoUA.setTypedText(touchgfx::TypedText(T___SINGLEUSE_A1I5));
     add(Text_PoUA);
 
-    Text_HV_U.setXY(302, 326);
+    Text_HV_U.setXY(310, 322);
     Text_HV_U.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_HV_U.setLinespacing(0);
     Text_HV_U.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QWQM));
     add(Text_HV_U);
 
-    Text_HV_I.setXY(302, 386);
+    Text_HV_I.setXY(310, 382);
     Text_HV_I.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_HV_I.setLinespacing(0);
     Text_HV_I.setTypedText(touchgfx::TypedText(T___SINGLEUSE_1UIH));
     add(Text_HV_I);
 
-    Text_HV_I_Soll.setXY(302, 419);
+    Text_HV_I_Soll.setXY(310, 415);
     Text_HV_I_Soll.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_HV_I_Soll.setLinespacing(0);
     Text_HV_I_Soll.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ZKG2));
     add(Text_HV_I_Soll);
 
-    Text_HV_HW.setXY(369, 291);
+    Text_HV_HW.setXY(377, 287);
     Text_HV_HW.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_HV_HW.setLinespacing(0);
     Text_HV_HW.setTypedText(touchgfx::TypedText(T___SINGLEUSE_4ECG));
     add(Text_HV_HW);
 
-    Text_HV_SW.setXY(432, 291);
+    Text_HV_SW.setXY(440, 287);
     Text_HV_SW.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_HV_SW.setLinespacing(0);
     Text_HV_SW.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2DLE));
     add(Text_HV_SW);
 
-    Text_HV_I_Ist.setXY(302, 449);
+    Text_HV_I_Ist.setXY(310, 445);
     Text_HV_I_Ist.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_HV_I_Ist.setLinespacing(0);
     Text_HV_I_Ist.setTypedText(touchgfx::TypedText(T___SINGLEUSE_0NZU));
     add(Text_HV_I_Ist);
 
-    Text_PI.setXY(601, 340);
+    Text_PI.setXY(609, 336);
     Text_PI.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     Text_PI.setLinespacing(0);
     Text_PI.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SBFF));
@@ -327,19 +327,19 @@ MessViewBase::MessViewBase() :
     Adresse.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KARE));
     add(Adresse);
 
-    Text_P.setPosition(23, 7, 262, 49);
+    Text_P.setPosition(31, 3, 262, 49);
     Text_P.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Text_P.setLinespacing(0);
     Text_P.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BI20));
     add(Text_P);
 
-    Text_L.setPosition(575, 7, 262, 49);
+    Text_L.setPosition(583, 3, 262, 49);
     Text_L.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Text_L.setLinespacing(0);
     Text_L.setTypedText(touchgfx::TypedText(T___SINGLEUSE_XCOA));
     add(Text_L);
 
-    Text_F.setPosition(296, 10, 265, 51);
+    Text_F.setPosition(304, 6, 265, 51);
     Text_F.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Text_F.setLinespacing(0);
     Text_F.setTypedText(touchgfx::TypedText(T___SINGLEUSE_YC53));
@@ -364,19 +364,19 @@ MessViewBase::MessViewBase() :
     slider_helligkeit.setNewValueCallback(sliderValueChangedCallback);
     add(slider_helligkeit);
 
-    But_HV_I_P.setXY(461, 413);
+    But_HV_I_P.setXY(469, 409);
     But_HV_I_P.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_MICRO_FILL_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_MICRO_FILL_PRESSED_ID), touchgfx::Bitmap(BITMAP_ICON_THEME_IMAGES_CONTENT_ADD_CIRCLE_35_35_E8F6FB_SVG_ID), touchgfx::Bitmap(BITMAP_ICON_THEME_IMAGES_CONTENT_ADD_CIRCLE_35_35_FF0000_SVG_ID));
     But_HV_I_P.setIconXY(1, 1);
     But_HV_I_P.setAction(buttonCallback);
     add(But_HV_I_P);
 
-    But_HV_I_M.setXY(519, 413);
+    But_HV_I_M.setXY(527, 409);
     But_HV_I_M.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_MICRO_FILL_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_MICRO_FILL_PRESSED_ID), touchgfx::Bitmap(BITMAP_ICON_THEME_IMAGES_CONTENT_REMOVE_CIRCLE_35_35_E8F6FB_SVG_ID), touchgfx::Bitmap(BITMAP_ICON_THEME_IMAGES_CONTENT_REMOVE_CIRCLE_35_35_FF0000_SVG_ID));
     But_HV_I_M.setIconXY(1, 1);
     But_HV_I_M.setAction(buttonCallback);
     add(But_HV_I_M);
 
-    line1.setPosition(302, 313, 256, 10);
+    line1.setPosition(310, 309, 256, 10);
     line1Painter.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     line1.setPainter(line1Painter);
     line1.setStart(0, 5);
@@ -385,19 +385,19 @@ MessViewBase::MessViewBase() :
     line1.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
     add(line1);
 
-    textArea1.setXY(43, 340);
+    textArea1.setXY(51, 336);
     textArea1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_E73M));
     add(textArea1);
 
-    textArea2.setXY(580, 58);
+    textArea2.setXY(588, 54);
     textArea2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea2.setLinespacing(0);
     textArea2.setTypedText(touchgfx::TypedText(T___SINGLEUSE_7KTU));
     add(textArea2);
 
-    line2.setPosition(580, 88, 256, 10);
+    line2.setPosition(588, 84, 256, 10);
     line2Painter.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     line2.setPainter(line2Painter);
     line2.setStart(0, 5);
@@ -406,13 +406,13 @@ MessViewBase::MessViewBase() :
     line2.setLineEndingStyle(touchgfx::Line::BUTT_CAP_ENDING);
     add(line2);
 
-    textArea3.setXY(580, 240);
+    textArea3.setXY(588, 236);
     textArea3.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea3.setLinespacing(0);
     textArea3.setTypedText(touchgfx::TypedText(T___SINGLEUSE_U52J));
     add(textArea3);
 
-    line3.setPosition(581, 270, 256, 10);
+    line3.setPosition(589, 266, 256, 10);
     line3Painter.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     line3.setPainter(line3Painter);
     line3.setStart(0, 5);
@@ -421,26 +421,26 @@ MessViewBase::MessViewBase() :
     line3.setLineEndingStyle(touchgfx::Line::BUTT_CAP_ENDING);
     add(line3);
 
-    textArea4.setXY(601, 280);
+    textArea4.setXY(609, 276);
     textArea4.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea4.setLinespacing(0);
     textArea4.setTypedText(touchgfx::TypedText(T___SINGLEUSE_D4WC));
     add(textArea4);
 
-    PnF25.setPosition(690, 370, 130, 32);
+    PnF25.setPosition(698, 366, 130, 32);
     PnF25.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     PnF25.setLinespacing(0);
     PnF25.setWildcard(touchgfx::TypedText(T___SINGLEUSE_3GAL).getText());
     PnF25.setTypedText(touchgfx::TypedText(T___SINGLEUSE_9CSV));
     add(PnF25);
 
-    textArea6.setXY(23, 59);
+    textArea6.setXY(31, 55);
     textArea6.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea6.setLinespacing(0);
     textArea6.setTypedText(touchgfx::TypedText(T___SINGLEUSE_2DQI));
     add(textArea6);
 
-    line4.setPosition(23, 89, 256, 10);
+    line4.setPosition(31, 85, 256, 10);
     line4Painter.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     line4.setPainter(line4Painter);
     line4.setStart(0, 5);
@@ -449,7 +449,7 @@ MessViewBase::MessViewBase() :
     line4.setLineEndingStyle(touchgfx::Line::BUTT_CAP_ENDING);
     add(line4);
 
-    line5.setPosition(23, 270, 257, 10);
+    line5.setPosition(31, 266, 257, 10);
     line5Painter.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     line5.setPainter(line5Painter);
     line5.setStart(0, 5);
@@ -458,13 +458,13 @@ MessViewBase::MessViewBase() :
     line5.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
     add(line5);
 
-    textArea7.setXY(302, 59);
+    textArea7.setXY(310, 55);
     textArea7.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea7.setLinespacing(0);
     textArea7.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SXUN));
     add(textArea7);
 
-    line6.setPosition(300, 89, 255, 15);
+    line6.setPosition(308, 85, 255, 15);
     line6Painter.setColor(touchgfx::Color::getColorFromRGB(15, 19, 82));
     line6.setPainter(line6Painter);
     line6.setStart(0, 5);
@@ -473,13 +473,13 @@ MessViewBase::MessViewBase() :
     line6.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
     add(line6);
 
-    textArea8.setXY(302, 159);
+    textArea8.setXY(310, 155);
     textArea8.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea8.setLinespacing(0);
     textArea8.setTypedText(touchgfx::TypedText(T___SINGLEUSE_G1TO));
     add(textArea8);
 
-    textArea9.setXY(302, 283);
+    textArea9.setXY(310, 279);
     textArea9.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     textArea9.setLinespacing(0);
     textArea9.setTypedText(touchgfx::TypedText(T___SINGLEUSE_81P6));

@@ -22,6 +22,7 @@ public:
             return modelListener;
         }
 
+    void fnSendFloatsViaCAN(uint32_t uiCanID, float fValue1, float fValue2, float fValue3, float fValue4);
     void tick();
     void setBacklightValue(int value);
     void process_CAN_messages();
@@ -44,6 +45,8 @@ public:
     void SendVlaueToEEPROM(int value);
     int ReadCountEEPORM();
     bool getSDCS();
+    void updatefLinIonSetCurrent(int value);
+    void sendSystemImageOverCAN();
 
 protected:
     ModelListener* modelListener;

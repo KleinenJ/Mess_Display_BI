@@ -75,6 +75,6 @@ void MessPresenter::onLINStatusReceived(uint8_t *status)
 
 void MessPresenter::setHviValue(uint8_t value)
 {
-
+	model->updatefLinIonSetCurrent(value);
 }
 

@@ -47,6 +47,7 @@ float fPnF25  = 0.0f;
 
 float fLinIonVoltage  = 0.0f;
 float fLinIonCurrent  = 0.0f;
+float fLinIonSetCurrent  = 0.0f;
 
 uint8_t bLinType = 255; 	// 0:= A-Sample
 							// 1:= B-Sample
@@ -54,6 +55,8 @@ uint8_t bLinType = 255; 	// 0:= A-Sample
 							// 255:= unknown
 
 uint8_t bLinVersion = 255;	// 255:= unknown
+
+uint8_t bSubImageSelect = 0; /// die vier fragmente des Images müssen nacheinander versendet werden, für das Umschalten wird diese Variable verwendet
 
 
 
@@ -134,7 +137,11 @@ void Model::tick()
 	    linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
 	    }
 
-	    sendLinDataOverCAN();
+	    fLinIonVoltage = tempRxData[16]; 					// HV Ist-Spannung
+	    fLinIonCurrent = tempRxData[15]; 					// HV Ist-Strom
+
+	    sendSystemImageOverCAN();
+		//sendLinDataOverCAN();
 
 
 	   	state_SDCS = getSDCS();
@@ -154,10 +161,10 @@ void Model::SendVlaueToEEPROM(int value)
   EE_Write_PWM(value);
 }
 
-//void Model::updateUpol(int value)
-//{
-//	fPolVoltage = value;
-//}
+void Model::updatefLinIonSetCurrent(int value)
+{
+	fLinIonSetCurrent = value;
+}
 
 
 int Model::ReadCountEEPORM()
@@ -416,19 +423,90 @@ void Model::process_CAN_messages()
 void Model::sendLinDataOverCAN()
 {
 	extern FDCAN_HandleTypeDef hfdcan1;
-    uint8_t hvVoltage = tempRxData[16]; 					// HV Ist-Spannung
-    uint8_t hvCurrent = tempRxData[15]; 					// HV Ist-Strom
-    uint8_t canMessage[8]; 									// Standard-CAN-Frames zum Senden (8 Datenbytes)
-    canMessage[0] = hvVoltage;
-    canMessage[1] = hvCurrent;
+
+	uint8_t canMessage[2];
+	canMessage[0] = tempRxData[16];
+	canMessage[1] = tempRxData[15];
+
     uint32_t canID = 0x123; 								// CAN Sende-ID
     EDT_FDCANx_Send_Msg(&hfdcan1, canID, canMessage, 2);	// LIN-Daten über CAN senden
 
-    // JKL: update System image
-    fLinIonVoltage = (float) hvVoltage;
-    fLinIonCurrent = (float) hvCurrent;
 }
 
+void Model::sendSystemImageOverCAN()
+{
+	/// das gesamte Image braucht drei CAN-Nachrichten
+	/// die ID's der Statusnachrichten, sind extra größer als die der Messnachrichten, um die Messwertübertragung höher zu prorisieren.
+
+	switch(bSubImageSelect)
+	{
+		case 0:	/// 1. (0x005a bzw. 90|dec) Luftwerte vor dem Filter
+				/// [0-1] fTempVF
+				/// [2-3] fHumidVF
+				///	[4-5] fPvF10
+				/// [6-7] fPvF25
+				this->fnSendFloatsViaCAN(0x005a, fTempVF, fHumidVF, fPvF10, fPvF25);
+				bSubImageSelect = 1;
+				break;
+
+		case 1:	// 2. (0x005b bzw. 91|dec) Elektrische Werte des Filters
+				/// [0-1] fIonVoltage
+				/// [2-3] fIonCurrent
+				///	[4-5] fPolVoltage
+				/// [6-7] Reserve
+				this->fnSendFloatsViaCAN(0x005b, fIonVoltage, fIonCurrent, fPolVoltage, 0.0f);
+				bSubImageSelect = 2;
+				break;
+
+		case 2:	// 3. (0x005c bzw. 92|dec)LIN-Werte der HV-Quelle
+				/// [0-1] 	fLinIonVoltage
+				/// [2-3] 	fLinIonCurrent
+				///	[4-5] 	fLinIonSetCurrent
+				/// [6-7] Reserve
+				this->fnSendFloatsViaCAN(0x005c, fLinIonVoltage, fLinIonCurrent, fLinIonSetCurrent, 0.0f);
+
+				bSubImageSelect = 3;
+				break;
+
+		case 3:	// 4. (0x005d bzw. 92|dec)Luftwerte nach dem Filter
+				/// [0-1] fTempNF
+				/// [2-3] fHumidNF
+				///	[4-5] fPnF10
+				/// [6-7] fPnF25
+				this->fnSendFloatsViaCAN(0x005d, fTempNF, fHumidNF, fPnF10, fPnF25);
+
+				bSubImageSelect = 0;
+				break;
+
+		default:
+				bSubImageSelect = 0;
+				break;
+	}
+}
+
+void Model::fnSendFloatsViaCAN(uint32_t uiCanID, float fValue1, float fValue2, float fValue3, float fValue4)
+{
+	extern FDCAN_HandleTypeDef hfdcan1;
+
+	uint16_t baInputValues[4]={0xffff,0xffff,0xffff,0xffff};
+	uint8_t baMessageBuffer[8]={0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+
+	baInputValues[0]= (uint16_t) (fValue1 * 10.0f);
+	baInputValues[1]= (uint16_t) (fValue2 * 10.0f);
+	baInputValues[2]= (uint16_t) (fValue3 * 10.0f);
+	baInputValues[3]= (uint16_t) (fValue4 * 10.0f);
+
+	baMessageBuffer[0]=  baInputValues[0] & 0xFF;
+	baMessageBuffer[1]= (baInputValues[0] >> 8)  & 0xFF;
+	baMessageBuffer[2]=  baInputValues[1] & 0xFF;
+	baMessageBuffer[3]= (baInputValues[1] >> 8)  & 0xFF;
+	baMessageBuffer[4]=  baInputValues[2] & 0xFF;
+	baMessageBuffer[5]= (baInputValues[2] >> 8)  & 0xFF;
+	baMessageBuffer[6]=  baInputValues[3] & 0xFF;
+	baMessageBuffer[6]= (baInputValues[3] >> 8)  & 0xFF;
+
+    EDT_FDCANx_Send_Msg(&hfdcan1, uiCanID, baMessageBuffer, 8);	// LIN-Daten über CAN senden
+}
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {

@@ -1,0 +1,33 @@
+VERSION "0.81"
+
+NS_:
+
+
+BS_:
+
+BU_:
+
+BO_ 90 Luftwerte_vor_Filter: 8 DISPL
+ SG_ Temp_vor_Filter : 0|16@1+ (0.1,0) [0|850] "°C" DISPL
+ SG_ Feuchte_vor_Filter : 16|16@1+ (0.1,0) [0|1000] "%" DISPL
+ SG_ PM1_vor_Filter : 32|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+ SG_ PM2_5_vor_Filter : 48|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+
+BO_ 91 Elektrische_Werte_Filter: 8 DISPL
+ SG_ Ionisationsspannung : 0|16@1+ (0.1,0) [0|8000] "V" DISPL
+ SG_ Ionisationsstrom : 16|16@1+ (0.1,0) [0|1000] "µA" DISPL
+ SG_ Polarisationsspannung : 32|16@1+ (0.1,0) [0|3000] "V" DISPL
+ SG_ Reserve_1 : 48|16@1+ (1,0) [0|65535] "" DISPL
+
+BO_ 92 LIN_HV_Quelle: 8 DISPL
+ SG_ LinIonVoltage : 0|16@1+ (0.1,0) [0|8000] "V" DISPL
+ SG_ LinIonCurrent : 16|16@1+ (0.1,0) [0|1000] "µA" DISPL
+ SG_ LinIonSetCurrent : 32|16@1+ (0.1,0) [0|1000] "µA" DISPL
+ SG_ Reserve_2 : 48|16@1+ (1,0) [0|65535] "" DISPL
+
+BO_ 93 Luftwerte_nach_Filter: 8 DISPL
+ SG_ Temp_nach_Filter : 0|16@1+ (0.1,0) [0|850] "°C" DISPL
+ SG_ Feuchte_nach_Filter : 16|16@1+ (0.1,0) [0|1000] "%" DISPL
+ SG_ PM1_nach_Filter : 32|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+ SG_ PM2_5_nach_Filter : 48|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+
