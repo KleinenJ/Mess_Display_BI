@@ -72,6 +72,9 @@ uint8_t linStatus[22];
 //uint8_t status[9];   // Buffer für den Status
 uint8_t RxData[22];
 uint8_t tempRxData[22];
+uint8_t uiaCanRxBuffer[8];	// global buffer for
+uint8_t uiaCanTxBuffer[8];	// global buffer for
+
 
 //uint32_t Rx_Mem[1];
 //uint32_t Tx_Mem[] = {0x28};
@@ -96,6 +99,7 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 void Model::tick()
 {
+	uint8_t bSendSystemImage = 0;
 	process_CAN_messages();
 
     linTimeoutCounter++;		 // LIN-Timeout-Zähler hochzählen
@@ -109,6 +113,7 @@ void Model::tick()
 	        HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
 	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
 	        tickCounter = 0;
+	       bSendSystemImage = 4;
 	    }
 
 	   HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
@@ -137,11 +142,14 @@ void Model::tick()
 	    linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
 	    }
 
-	    fLinIonVoltage = tempRxData[16]; 					// HV Ist-Spannung
-	    fLinIonCurrent = tempRxData[15]; 					// HV Ist-Strom
+	    fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
+	    fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
 
-	    sendSystemImageOverCAN();
-		//sendLinDataOverCAN();
+/*		if (bSendSystemImage>0)
+		{*/
+			sendSystemImageOverCAN();
+/*	    	bSendSystemImage--;
+		}*/
 
 
 	   	state_SDCS = getSDCS();
@@ -152,7 +160,10 @@ void Model::tick()
 
 int Model::ReadValueFromEEPORM()
 {
-  return EE_Read_PWM();
+	int iReadValue = EE_Read_PWM();
+
+    fLinIonSetCurrent = (-1.0) * (iReadValue / 2.0f);
+	return iReadValue;
 }
 
 
@@ -163,7 +174,7 @@ void Model::SendVlaueToEEPROM(int value)
 
 void Model::updatefLinIonSetCurrent(int value)
 {
-	fLinIonSetCurrent = value;
+    fLinIonSetCurrent = (-1.0) * (value / 2.0f);
 }
 
 
@@ -346,9 +357,11 @@ void Model::process_CAN_messages()
                         canTimeoutCounters[2] = 0;
                         idReceived[2] = true;
                         //modelListener->CANIntReceived(id, intData);
-            			fIonVoltage = (intData[0] +3)*(-8);
-            			fPolVoltage = (intData[1] +4)*(-3);
-            			fIonCurrent =(static_cast<float>(intData[2]) / 10.0f) * 1.25f;;
+            			fIonVoltage = (static_cast<float>(intData[0]) +3.0)*(-8.0f);
+            			fPolVoltage = (static_cast<float>(intData[1]) +4.0)*(-3.0f);
+            			fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-1.25f);
+            			//fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * 0.89f;
+
 
             			if(fIonVoltage > 0) fIonVoltage = 0;
             			if(fIonVoltage < -8000) fIonVoltage = -8000;
@@ -356,8 +369,8 @@ void Model::process_CAN_messages()
             			if(fPolVoltage > 0) fPolVoltage = 0;
             			if(fPolVoltage < -3000) fPolVoltage = -3000;
 
-            			if(fIonCurrent > 100) fIonCurrent = 100;
-            			if(fIonCurrent < 0) fIonCurrent = 0;
+            			if(fIonCurrent > 0) fIonCurrent = 0;
+            			if(fIonCurrent < -100) fIonCurrent = -100;
 
 						floatData[0]= fIonVoltage;
 						floatData[1]= fPolVoltage;
@@ -370,8 +383,7 @@ void Model::process_CAN_messages()
                     case 0x51:
                         canTimeoutCounters[3] = 0;
                         idReceived[3] = true;
-
-                        // discard ,essage content
+						// discard ,essage content
                         break;
                 }
 	  }
@@ -438,6 +450,12 @@ void Model::sendSystemImageOverCAN()
 	/// das gesamte Image braucht drei CAN-Nachrichten
 	/// die ID's der Statusnachrichten, sind extra größer als die der Messnachrichten, um die Messwertübertragung höher zu prorisieren.
 
+/*	this->fnSendFloatsViaCAN(0x005a, ((fTempVF * 10.0f)), (fHumidVF * 10.0f), (fPvF10 * 10.0f), (fPvF25 * 10.0f));
+	this->fnSendFloatsViaCAN(0x005b, fIonVoltage, (fIonCurrent * 10.0f), fPolVoltage, 0.0f);
+	this->fnSendFloatsViaCAN(0x005c, fLinIonVoltage, (fLinIonCurrent * 10.0f), (fLinIonSetCurrent * 10.0f), 0.0f);
+	this->fnSendFloatsViaCAN(0x005d, ((fTempNF * 10.0f)), (fHumidNF * 10.0f), (fPnF10 * 10.0f), (fPnF25 * 10.0f));
+*/
+
 	switch(bSubImageSelect)
 	{
 		case 0:	/// 1. (0x005a bzw. 90|dec) Luftwerte vor dem Filter
@@ -445,7 +463,10 @@ void Model::sendSystemImageOverCAN()
 				/// [2-3] fHumidVF
 				///	[4-5] fPvF10
 				/// [6-7] fPvF25
-				this->fnSendFloatsViaCAN(0x005a, fTempVF, fHumidVF, fPvF10, fPvF25);
+				//uiaCanRxBuffer
+
+
+				this->fnSendFloatsViaCAN (0x005a, ((fTempVF * 10.0f)), (fHumidVF * 10.0f), (fPvF10 * 10.0f), (fPvF25 * 10.0f));
 				bSubImageSelect = 1;
 				break;
 
@@ -454,7 +475,7 @@ void Model::sendSystemImageOverCAN()
 				/// [2-3] fIonCurrent
 				///	[4-5] fPolVoltage
 				/// [6-7] Reserve
-				this->fnSendFloatsViaCAN(0x005b, fIonVoltage, fIonCurrent, fPolVoltage, 0.0f);
+				this->fnSendFloatsViaCAN(0x005b, fIonVoltage, (fIonCurrent * 10.0f), fPolVoltage, 0.0f);
 				bSubImageSelect = 2;
 				break;
 
@@ -463,17 +484,17 @@ void Model::sendSystemImageOverCAN()
 				/// [2-3] 	fLinIonCurrent
 				///	[4-5] 	fLinIonSetCurrent
 				/// [6-7] Reserve
-				this->fnSendFloatsViaCAN(0x005c, fLinIonVoltage, fLinIonCurrent, fLinIonSetCurrent, 0.0f);
+				this->fnSendFloatsViaCAN(0x005c, fLinIonVoltage, (fLinIonCurrent * 10.0f), (fLinIonSetCurrent * 10.0f), 0.0f);
 
 				bSubImageSelect = 3;
 				break;
 
-		case 3:	// 4. (0x005d bzw. 92|dec)Luftwerte nach dem Filter
+		case 3:	// 4. (0x005d bzw. 93|dec)Luftwerte nach dem Filter
 				/// [0-1] fTempNF
 				/// [2-3] fHumidNF
 				///	[4-5] fPnF10
 				/// [6-7] fPnF25
-				this->fnSendFloatsViaCAN(0x005d, fTempNF, fHumidNF, fPnF10, fPnF25);
+				this->fnSendFloatsViaCAN(0x005d, ((fTempNF * 10.0f)), (fHumidNF * 10.0f), (fPnF10 * 10.0f), (fPnF25 * 10.0f));
 
 				bSubImageSelect = 0;
 				break;
@@ -488,13 +509,13 @@ void Model::fnSendFloatsViaCAN(uint32_t uiCanID, float fValue1, float fValue2, f
 {
 	extern FDCAN_HandleTypeDef hfdcan1;
 
-	uint16_t baInputValues[4]={0xffff,0xffff,0xffff,0xffff};
+	int16_t baInputValues[4];//={0xffff,0xffff,0xffff,0xffff};
 	uint8_t baMessageBuffer[8]={0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 
-	baInputValues[0]= (uint16_t) (fValue1 * 10.0f);
-	baInputValues[1]= (uint16_t) (fValue2 * 10.0f);
-	baInputValues[2]= (uint16_t) (fValue3 * 10.0f);
-	baInputValues[3]= (uint16_t) (fValue4 * 10.0f);
+	baInputValues[0]= (int16_t) (fValue1);
+	baInputValues[1]= (int16_t) (fValue2);
+	baInputValues[2]= (int16_t) (fValue3);
+	baInputValues[3]= (int16_t) (fValue4);
 
 	baMessageBuffer[0]=  baInputValues[0] & 0xFF;
 	baMessageBuffer[1]= (baInputValues[0] >> 8)  & 0xFF;
@@ -503,9 +524,16 @@ void Model::fnSendFloatsViaCAN(uint32_t uiCanID, float fValue1, float fValue2, f
 	baMessageBuffer[4]=  baInputValues[2] & 0xFF;
 	baMessageBuffer[5]= (baInputValues[2] >> 8)  & 0xFF;
 	baMessageBuffer[6]=  baInputValues[3] & 0xFF;
-	baMessageBuffer[6]= (baInputValues[3] >> 8)  & 0xFF;
+	baMessageBuffer[7]= (baInputValues[3] >> 8)  & 0xFF;
 
     EDT_FDCANx_Send_Msg(&hfdcan1, uiCanID, baMessageBuffer, 8);	// LIN-Daten über CAN senden
+}
+
+void Model::fnTxViaCAN(uint32_t uiCanID, uint8_t bLength, uint8_t *baBuffer)
+{
+	extern FDCAN_HandleTypeDef hfdcan1;
+
+    EDT_FDCANx_Send_Msg(&hfdcan1, uiCanID, baBuffer, bLength);	// LIN-Daten über CAN senden
 }
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)

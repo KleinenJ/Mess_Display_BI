@@ -195,8 +195,8 @@ void MessView::CANFloatReceived(uint32_t ID, const float *data)
 			float fPolVoltage = data[1];
 			float fIonCurrent = data[2];
 
-			Unicode::snprintfFloat(MIoUBuffer, MIOU_SIZE, "%3.1f", fIonVoltage);	// Anzeige mit 1 Nachkommastelle
-			Unicode::snprintfFloat(MPoUBuffer, MPOU_SIZE, "%3.1f", fPolVoltage);	// Anzeige mit 1 Nachkommastelle
+			Unicode::snprintfFloat(MIoUBuffer, MIOU_SIZE, "%3.0f", fIonVoltage);	// Anzeige mit 1 Nachkommastelle
+			Unicode::snprintfFloat(MPoUBuffer, MPOU_SIZE, "%3.0f", fPolVoltage);	// Anzeige mit 1 Nachkommastelle
 			Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", fIonCurrent);	// Anzeige mit 1 Nachkommastelle
 
 			MIoU.invalidate();
@@ -228,12 +228,12 @@ void MessView::updateLINStatus(uint8_t *status)
 
 	receivedVoltageValue = newHVU;
 
-    Unicode::snprintf(HVUBuffer, HVU_SIZE, "%d", newHVU*40); // Display voltage in
+    Unicode::snprintf(HVUBuffer, HVU_SIZE, "%d", (-1)*newHVU*40); // Display voltage in
 
-    float hviValue = static_cast<float>(newHVI) / 2.0f;
+    float hviValue = (-1.0)*static_cast<float>(newHVI) / 2.0f;
     Unicode::snprintfFloat(HVIBuffer, HVI_SIZE, "%2.1f", hviValue);
 
-    float hvisollValue = static_cast<float>(hvi) / 2.0f;
+    float hvisollValue = (-1.0)*static_cast<float>(hvi) / 2.0f;
     Unicode::snprintfFloat(HVI_SollBuffer, HVI_SOLL_SIZE, "%2.1f", hvisollValue);
 
 
