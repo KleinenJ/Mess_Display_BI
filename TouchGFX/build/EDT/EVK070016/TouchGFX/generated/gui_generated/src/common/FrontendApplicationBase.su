@@ -35,7 +35,7 @@ FrontendApplicationBase.hpp:16:13:FrontendApplicationBase::~FrontendApplicationB
 FrontendApplicationBase.hpp:16:13:virtual FrontendApplicationBase::~FrontendApplicationBase()	16	static
 FrontendApplicationBase.hpp:18:18:virtual void FrontendApplicationBase::changeToStartScreen()	16	static
 NoTransition.hpp:35:18:virtual void touchgfx::NoTransition::handleTickEvent()	16	static
-ModelListener.hpp:20:10:void ModelListener::bind(Model*)	16	static
+ModelListener.hpp:21:10:void ModelListener::bind(Model*)	16	static
 FrontendApplicationBase.cpp:19:1:FrontendApplicationBase::FrontendApplicationBase(Model&, FrontendHeap&)	24	static
 Callback.hpp:175:7:constexpr touchgfx::GenericCallback<void>& touchgfx::GenericCallback<void>::operator=(const touchgfx::GenericCallback<void>&)	16	static
 Callback.hpp:424:8:constexpr touchgfx::Callback<FrontendApplicationBase>& touchgfx::Callback<FrontendApplicationBase>::operator=(touchgfx::Callback<FrontendApplicationBase>&&)	16	static

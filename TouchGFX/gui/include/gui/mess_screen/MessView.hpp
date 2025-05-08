@@ -22,7 +22,8 @@ public:
   //  virtual void HVU_Minus();
     virtual void HVI_Plus();
     virtual void HVI_Minus();
-    void CANIntReceived(uint32_t ID, const int16_t *data);
+    void CANIntReceived(uint32_t ID, const int *data);
+    void CANFloatReceived(uint32_t ID, const float *data);
     // Method to display LIN status
     //void displayLINStatus(uint8_t hvStatus, uint8_t regulationType, uint8_t regulatorStatus, uint8_t linError, uint8_t currentActualValue, uint8_t voltageActualValue, uint8_t hardwareVersion, uint8_t softwareVersion);
     void updateLINStatus(uint8_t *status);
@@ -36,6 +37,8 @@ public:
 
     void text_write();
     void setStateSDCS(bool state_SDCS_model);
+
+    void updateIonVoltage(float value);
 
 private:
     bool hwVersionInitialized;

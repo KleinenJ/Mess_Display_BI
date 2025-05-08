@@ -17,7 +17,8 @@ public:
     virtual void deactivate();
 
     void setBacklightValuePresenter(int value);
-    void CANIntReceived(uint32_t ID, const int16_t *data) override;
+    void CANIntReceived(uint32_t ID, const int *data);
+    void CANFloatReceived(uint32_t ID, const float *data);
 
     void sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t current, uint8_t voltage, uint8_t blower);
 

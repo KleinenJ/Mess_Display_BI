@@ -8,8 +8,8 @@
 #include <mvp/View.hpp>
 #include <gui/mess_screen/MessPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/containers/Slider.hpp>
@@ -50,17 +50,22 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box BG;
-    touchgfx::BoxWithBorder Box_HV_BG;
+    touchgfx::TextArea Text_F_3;
+    touchgfx::BoxWithBorder boxWithBorder5;
+    touchgfx::BoxWithBorder boxWithBorder4;
+    touchgfx::BoxWithBorder boxWithBorder3;
+    touchgfx::BoxWithBorder boxWithBorder2;
+    touchgfx::BoxWithBorder boxWithBorder1;
+    touchgfx::BoxWithBorder Box_HV_BG_1;
     touchgfx::Box Box_Gelb;
     touchgfx::Box Box_Blau;
     touchgfx::Box Box_P;
-    touchgfx::Box Box_T;
+    touchgfx::TextArea Text_F_1;
     touchgfx::Box Box_F;
-    touchgfx::Box Box_HV;
     touchgfx::Box Box_L;
     touchgfx::TextArea Name;
     touchgfx::TextArea Text_PvF;
-    touchgfx::TextAreaWithOneWildcard PvF;
+    touchgfx::TextAreaWithOneWildcard PvF10;
     touchgfx::TextAreaWithOneWildcard MIoU;
     touchgfx::TextAreaWithOneWildcard MPoU;
     touchgfx::TextAreaWithOneWildcard MPoA;
@@ -70,12 +75,12 @@ protected:
     touchgfx::TextAreaWithOneWildcard HV_HW;
     touchgfx::TextAreaWithOneWildcard HV_SW;
     touchgfx::TextAreaWithOneWildcard HV_Status;
-    touchgfx::TextAreaWithOneWildcard PnF;
+    touchgfx::TextAreaWithOneWildcard PvF25;
     touchgfx::TextAreaWithOneWildcard TvF;
     touchgfx::TextAreaWithOneWildcard TnF;
     touchgfx::TextAreaWithOneWildcard LvF;
     touchgfx::TextAreaWithOneWildcard LnF;
-    touchgfx::TextAreaWithOneWildcard PI;
+    touchgfx::TextAreaWithOneWildcard PnF10;
     touchgfx::TextArea Text_PnF;
     touchgfx::TextArea Text_TvF;
     touchgfx::TextArea Text_TnF;
@@ -93,10 +98,8 @@ protected:
     touchgfx::TextArea Version;
     touchgfx::TextArea Adresse;
     touchgfx::TextArea Text_P;
-    touchgfx::TextArea Text_T;
     touchgfx::TextArea Text_L;
     touchgfx::TextArea Text_F;
-    touchgfx::TextArea Text_HV;
     touchgfx::TextArea BG_Hell;
     touchgfx::ScalableImage Logo_Hengst_Mess;
     touchgfx::Slider slider_helligkeit;
@@ -104,12 +107,31 @@ protected:
     touchgfx::ButtonWithIcon But_HV_I_M;
     touchgfx::Line line1;
     touchgfx::PainterRGB565 line1Painter;
+    touchgfx::TextArea textArea1;
+    touchgfx::TextArea textArea2;
+    touchgfx::Line line2;
+    touchgfx::PainterRGB565 line2Painter;
+    touchgfx::TextArea textArea3;
+    touchgfx::Line line3;
+    touchgfx::PainterRGB565 line3Painter;
+    touchgfx::TextArea textArea4;
+    touchgfx::TextAreaWithOneWildcard PnF25;
+    touchgfx::TextArea textArea6;
+    touchgfx::Line line4;
+    touchgfx::PainterRGB565 line4Painter;
+    touchgfx::Line line5;
+    touchgfx::PainterRGB565 line5Painter;
+    touchgfx::TextArea textArea7;
+    touchgfx::Line line6;
+    touchgfx::PainterRGB565 line6Painter;
+    touchgfx::TextArea textArea8;
+    touchgfx::TextArea textArea9;
 
     /*
      * Wildcard Buffers
      */
-    static const uint16_t PVF_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar PvFBuffer[PVF_SIZE];
+    static const uint16_t PVF10_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar PvF10Buffer[PVF10_SIZE];
     static const uint16_t MIOU_SIZE = 10;
     touchgfx::Unicode::UnicodeChar MIoUBuffer[MIOU_SIZE];
     static const uint16_t MPOU_SIZE = 10;
@@ -128,8 +150,8 @@ protected:
     touchgfx::Unicode::UnicodeChar HV_SWBuffer[HV_SW_SIZE];
     static const uint16_t HV_STATUS_SIZE = 20;
     touchgfx::Unicode::UnicodeChar HV_StatusBuffer[HV_STATUS_SIZE];
-    static const uint16_t PNF_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar PnFBuffer[PNF_SIZE];
+    static const uint16_t PVF25_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar PvF25Buffer[PVF25_SIZE];
     static const uint16_t TVF_SIZE = 10;
     touchgfx::Unicode::UnicodeChar TvFBuffer[TVF_SIZE];
     static const uint16_t TNF_SIZE = 10;
@@ -138,8 +160,8 @@ protected:
     touchgfx::Unicode::UnicodeChar LvFBuffer[LVF_SIZE];
     static const uint16_t LNF_SIZE = 10;
     touchgfx::Unicode::UnicodeChar LnFBuffer[LNF_SIZE];
-    static const uint16_t PI_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar PIBuffer[PI_SIZE];
+    static const uint16_t PNF10_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar PnF10Buffer[PNF10_SIZE];
 
 private:
 

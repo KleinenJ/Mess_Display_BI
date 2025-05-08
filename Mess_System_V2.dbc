@@ -1,0 +1,63 @@
+VERSION "0.81"
+
+NS_:
+
+
+BS_:
+
+BU_:
+
+BO_ 70 Mess_1_T_F: 8 SM_1
+ SG_ x1_Temp_vF : 0|16@1- (-0.2948,97.5) [-40|80] "°C"  SM_1
+ SG_ x1_Feucht_vF : 16|16@1- (0.3663794,-35.5388) [0|100] "%"  SM_1
+ SG_ x1_Temp_nF : 32|16@1- (-0.2948,97.5) [-40|80] "°C"  SM_1
+ SG_ x1_Feucht_nF : 48|16@1- (0.3663794,-35.5388) [0|100] "%"  SM_1
+
+BO_ 71 Mess_2_P_X: 8 SM_1
+ SG_ x2_PM1_vF : 0|16@1- (1.003,0) [0|1000] "µg/m³"  SM_1
+ SG_ x2_PM1_nF : 16|16@1- (1,0) [0|1000] "µg/m³"  SM_1
+ SG_ x2_PM1_In : 32|16@1- (1,0) [0|1000] "µg/m³"  SM_1
+ SG_ x2_Res_1 : 48|16@1- (1,0) [0|100] ""  SM_1
+
+BO_ 80 Mess_3_HV_X: 8 SM_2
+ SG_ x3_HV_Ioni_V : 0|16@1- (-8,-48) [0|-8000] "V"  SM_2
+ SG_ x3_HV_Polari_V : 16|16@1- (-3,-15) [0|-3000] "V"  SM_2
+ SG_ x3_HV_Polari_I : 32|16@1- (-0.09,-0.54) [0|90] "µA"  SM_2
+ SG_ x3_Res_2 : 48|16@1- (1,0) [0|100] ""  SM_2
+
+BO_ 81 Mess_4_Rel_X: 8 SM_2
+ SG_ x4_Mess_R_HV_P_V : 0|16@1- (1,0) [0|100] "X"  SM_2
+ SG_ x4_Mess_R_HV_I_V : 16|16@1- (1,0) [0|100] "X"  SM_2
+ SG_ x4_Mess_R_HV_I_A : 32|16@1- (1,0) [0|100] "X"  SM_2
+ SG_ x4_Res_3 : 48|16@1- (1,0) [0|100] ""  SM_2
+
+BO_ 90 Luftwerte_vor_Filter: 8 DISPL
+ SG_ Temp_vor_Filter : 0|16@1+ (0.1,0) [0|850] "°C" DISPL
+ SG_ Feuchte_vor_Filter : 16|16@1+ (0.1,0) [0|1000] "%" DISPL
+ SG_ PM1_vor_Filter : 32|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+ SG_ PM2_5_vor_Filter : 48|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+
+BO_ 91 Elektrische_Werte_Filter: 8 DISPL
+ SG_ Ionisationsspannung : 0|16@1+ (0.1,0) [0|8000] "V" DISPL
+ SG_ Ionisationsstrom : 16|16@1+ (0.1,0) [0|1000] "µA" DISPL
+ SG_ Polarisationsspannung : 32|16@1+ (0.1,0) [0|3000] "V" DISPL
+ SG_ Reserve_1 : 48|16@1+ (1,0) [0|65535] "" DISPL
+
+BO_ 92 LIN_HV_Quelle: 8 DISPL
+ SG_ LinIonVoltage : 0|16@1+ (0.1,0) [0|8000] "V" DISPL
+ SG_ LinIonCurrent : 16|16@1+ (0.1,0) [0|1000] "µA" DISPL
+ SG_ LinIonSetCurrent : 32|16@1+ (0.1,0) [0|1000] "µA" DISPL
+ SG_ Reserve_2 : 48|16@1+ (1,0) [0|65535] "" DISPL
+
+
+
+BO_ 93 Luftwerte_nach_Filter: 8 DISPL
+ SG_ Temp_nach_Filter : 0|16@1+ (0.1,0) [0|850] "°C" DISPL
+ SG_ Feuchte_nach_Filter : 16|16@1+ (0.1,0) [0|1000] "%" DISPL
+ SG_ PM1_nach_Filter : 32|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+ SG_ PM2_5_nach_Filter : 48|16@1+ (0.1,0) [0|1000] "µg/m³" DISPL
+
+BO_ 291 Mess_LIN: 2 DSPL
+SG_ x5_LIN_HV_Q_U : 0|8@1+ (40,0) [0|255] "V"  DSPL
+ SG_ x5_LIN_HV_Q_I : 8|16@1+ (0.5,0) [0|455] "µA"  DSPL
+

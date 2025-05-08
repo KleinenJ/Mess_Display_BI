@@ -1,10 +1,7 @@
 #include <gui/mess_screen/MessView.hpp>
 
-#define B_SAMPLE
-
 int updateCounter = 0;
 int UPDATE_TIMER_THRESHOLD = 50;
-
 
 MessView::MessView() : hwVersionInitialized(false), swVersionInitialized(false), receivedVoltageValue(110)
 {
@@ -21,12 +18,7 @@ void MessView::setupScreen()
     presenter->sendLINControlFrame(0, 0, 0, 0, 5);
     HAL_Delay(100);
 
-	#ifdef B_SAMPLE
-    	hvi = 20;							// Temp Startwert bis Flash gelesen wird
-	#else
-    	hvi = 60;
-	#endif
-
+    hvi = 60;							// Temp Startwert bis Flash gelesen wird
     hvi = presenter->readEEPROMvalue();	// liest letzten HV-Wert Sollstrom
 
     presenter->sendLINControlFrame(1, 1, hvi, 55, 8);
@@ -62,11 +54,15 @@ void MessView::EEPROMRead()
 }
 */
 
-void MessView::Adj_Displ_PWM(int value)
+void MessView::updateIonVoltage(float value)
 {
     presenter->setBacklightValuePresenter(value);
 }
 
+void MessView::Adj_Displ_PWM(int value)
+{
+    presenter->setBacklightValuePresenter(value);
+}
 
 
 void MessView::setStateSDCS(bool state_SDCS_model)
@@ -119,12 +115,7 @@ void MessView::text_write()
 void MessView::HVI_Plus()
 {
 	hvi = hvi + 1;
-
-	#ifdef B_SAMPLE
-	if (hvi >= 60) hvi = 60;		// Stromgrenze 20µA
-	#else
-	if (hvi >= 180) hvi = 180;		// Stromgrenze 90µA
-	#endif
+	if (hvi >= 250) hvi = 250;		// Stromgrenze
 
     presenter->sendLINControlFrame(1,1,hvi,receivedVoltageValue,8);
 
@@ -158,70 +149,15 @@ void MessView::HVI_Minus()
 }
 
 
-void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
+void MessView::CANFloatReceived(uint32_t ID, const float *data)
 {
-    int16_t value1 = data[0]; // 4 Empfangsdaten sortieren
-    int16_t value2 = data[1];
-    int16_t value3 = data[2];
-    int16_t value4 = data[3];
-
 	if (ID == 0x46)
 	    {
 			/// JKL, 2025/04/03: changed static temperature calculation to "LookUpTable"
-			float fTempVF = 0.0;
-			int16_t iTempVFmV = value1*10;	// Extract raw value
-
-			if(iTempVFmV < 715) fTempVF = 81.0f;
-			else if (iTempVFmV <= 911) fTempVF= ((iTempVFmV - 715) * (-0.0510204081632653)) + 80.0f;
-			else if (iTempVFmV <= 1158) fTempVF= ((iTempVFmV - 911) * (-0.0404858299595142)) + 70.0f;
-			else if (iTempVFmV <= 1469) fTempVF= ((iTempVFmV - 1158) * (-0.0321543408360129)) + 60.0f;
-			else if (iTempVFmV <= 1842) fTempVF= ((iTempVFmV - 1469) * (-0.0268096514745308)) + 50.0f;
-			else if (iTempVFmV <= 2270) fTempVF= ((iTempVFmV - 1842) * (-0.0233644859813084)) + 40.0f;
-			else if (iTempVFmV <= 2500) fTempVF= ((iTempVFmV - 2270) * (-0.0217391304347826)) + 30.0f;
-			else if (iTempVFmV <= 2736) fTempVF= ((iTempVFmV - 2500) * (-0.0211864406779661)) + 25.0f;
-			else if (iTempVFmV <= 3210) fTempVF= ((iTempVFmV - 2736) * (-0.0210970464135021)) + 20.0f;
-			else if (iTempVFmV <= 3657) fTempVF= ((iTempVFmV - 3210) * (-0.0223713646532438)) + 10.0f;
-			else if (iTempVFmV <= 4048) fTempVF= ((iTempVFmV - 3657) * (-0.0255754475703325)) + 0.0f;
-			else if (iTempVFmV <= 4361) fTempVF= ((iTempVFmV - 4048) * (-0.0319488817891374)) - 10.0f;
-			else if (iTempVFmV <= 4595) fTempVF= ((iTempVFmV - 4361) * (-0.0427350427350427)) - 20.0f;
-			else if (iTempVFmV <= 4757) fTempVF= ((iTempVFmV - 4595) * (-0.0617283950617284)) - 30.0f;
-			else if (iTempVFmV > 4757) fTempVF= -41.0f;
-
-			/// JKL, 2025/04/03: changed static temperature calculation to "LookUpTable"
-			float fTempNF = 0.0;
-			int16_t iTempNFmV = value3*10;	// Extract raw value
-
-			if(iTempNFmV < 715) fTempNF = 81.0f;
-			else if (iTempNFmV <= 911) fTempNF= ((iTempNFmV - 715) * (-0.0510204081632653)) + 80.0f;
-			else if (iTempNFmV <= 1158) fTempNF= ((iTempNFmV - 911) * (-0.0404858299595142)) + 70.0f;
-			else if (iTempNFmV <= 1469) fTempNF= ((iTempNFmV - 1158) * (-0.0321543408360129)) + 60.0f;
-			else if (iTempNFmV <= 1842) fTempNF= ((iTempNFmV - 1469) * (-0.0268096514745308)) + 50.0f;
-			else if (iTempNFmV <= 2270) fTempNF= ((iTempNFmV - 1842) * (-0.0233644859813084)) + 40.0f;
-			else if (iTempNFmV <= 2500) fTempNF= ((iTempNFmV - 2270) * (-0.0217391304347826)) + 30.0f;
-			else if (iTempNFmV <= 2736) fTempNF= ((iTempNFmV - 2500) * (-0.0211864406779661)) + 25.0f;
-			else if (iTempNFmV <= 3210) fTempNF= ((iTempNFmV - 2736) * (-0.0210970464135021)) + 20.0f;
-			else if (iTempNFmV <= 3657) fTempNF= ((iTempNFmV - 3210) * (-0.0223713646532438)) + 10.0f;
-			else if (iTempNFmV <= 4048) fTempNF= ((iTempNFmV - 3657) * (-0.0255754475703325)) + 0.0f;
-			else if (iTempNFmV <= 4361) fTempNF= ((iTempNFmV - 4048) * (-0.0319488817891374)) - 10.0f;
-			else if (iTempNFmV <= 4595) fTempNF= ((iTempNFmV - 4361) * (-0.0427350427350427)) - 20.0f;
-			else if (iTempNFmV <= 4757) fTempNF= ((iTempNFmV - 4595) * (-0.0617283950617284)) - 30.0f;
-			else if (iTempNFmV > 4757) fTempNF= -41.0f;
-
-			/// JK, 2025/04/03: Umrechnen der Feuchtigkeitswerte
-			float fHumidVF = 0.0f;
-			int16_t iHumidVFmV = value2*10;	// Extract raw value
-
-			if(iHumidVFmV < 1235) fHumidVF = 9.0f;
-			else if (iHumidVFmV <= 3555) fHumidVF = (iHumidVFmV * 0.0366379310344828f) - 35.2478448f;
-			else fHumidVF = 96.0f;
-
-			float fHumidNF = 0.0f;
-			int16_t iHumidNFmV = value4*10;	// Extract raw value
-
-			if(iHumidNFmV < 1235) fHumidNF = 9.0f;
-			else if (iHumidNFmV <= 3555) fHumidNF = (iHumidNFmV * 0.0366379310344828f) - 35.2478448f;
-			else fHumidNF = 96.0f;
-
+			float fTempVF = data[0];
+			float fTempNF = data[2];
+			float fHumidVF = data[1];
+			float fHumidNF = data[3];
 
 			Unicode::snprintfFloat(TvFBuffer, TVF_SIZE, "%2.1f", fTempVF);
 			Unicode::snprintfFloat(LvFBuffer, LVF_SIZE, "%2.0f", fHumidVF);
@@ -235,61 +171,50 @@ void MessView::CANIntReceived(uint32_t ID, const int16_t *data)
 	    }
 
 	if (ID == 0x47)
-    {
-		float pm1 = static_cast<float>(value1) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
-		float pm2 = static_cast<float>(value2) * 1.003f;
-		float pm3 = static_cast<float>(value3) * 1.003f;
+	    {
+			float fPvF10 = data[0];
+			float fPvF25 = data[1];
+			float fPnF10 = data[2];
+			float fPnF25 = data[3];
 
-		if(pm1 > 1000) pm1 = 1000;
-		if(pm2 > 1000) pm2 = 1000;
-		if(pm3 > 1000) pm3 = 1000;
-		if(pm1 < 0) pm1 = 0;
-		if(pm2 < 0) pm2 = 0;
-		if(pm3 < 0) pm3 = 0;
+			Unicode::snprintfFloat(PvF10Buffer, PVF10_SIZE, "%1.0f", fPvF10);
+			Unicode::snprintfFloat(PvF25Buffer, PVF25_SIZE, "%1.0f", fPvF25);
+			Unicode::snprintfFloat(PnF10Buffer, PNF10_SIZE, "%1.0f", fPnF10);
+			//Unicode::snprintfFloat(PnF25Buffer, PNF25_SIZE, "%1.0f", fPnF25);
 
-		Unicode::snprintfFloat(PvFBuffer, PVF_SIZE, "%1.0f", pm1);
-		//Unicode::snprintf(PvFBuffer, PVF_SIZE, "%d", value1);
-		//Unicode::snprintf(PnFBuffer, PNF_SIZE, "%d", pm2);
-		//Unicode::snprintf(PIBuffer, PI_SIZE, "%d", pm3);
-		Unicode::snprintfFloat(PnFBuffer, PNF_SIZE, "%1.0f", pm2);
-		Unicode::snprintfFloat(PIBuffer, PI_SIZE, "%1.0f", pm3);
-		//Unicode::snprintf(xRESERVEBuffer, XRESERVE_SIZE, "%d", value4);
-		PvF.invalidate();
-		PnF.invalidate();
-		PI.invalidate();
-		//xRESERVE.invalidate();
-    }
+			PvF10.invalidate();
+			PvF25.invalidate();
+			PnF10.invalidate();
+			PnF25.invalidate();
+	    }
 
 	if (ID == 0x50)
-	{
-		int16_t iCurrentValue = value3 * 10;	// Extract raw value and bring it to mV
-		float fCurrentValue = iCurrentValue * 0.009f;		// Sense range HV-Card of 90µA equals to a correction factor of 0.009 (36µA would be 0.0036)
-		//float currentValue = (static_cast<float>(value3) / 10.0f) * 1.25f;		// Formatierung
+	    {
 
-		if(fCurrentValue < 0) fCurrentValue = 0; // Limit signal range to only positive values
+			float fIonVoltage = data[0];
+			float fPolVoltage = data[1];
+			float fIonCurrent = data[2];
 
-		Unicode::snprintf(MIoUBuffer, MIOU_SIZE, "%d", (value1 +3)*(-8));
-		Unicode::snprintf(MPoUBuffer, MPOU_SIZE, "%d", (value2 +4)*(-3));
-		Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", fCurrentValue);	// Anzeige mit 1 Nachkommastelle
-		//Unicode::snprintf(MPoABuffer, MPOA_SIZE, "%d", (value3*8);
-		//Unicode::snprintf(yRESERVEBuffer, YRESERVE_SIZE, "%d", value4);
-		MIoU.invalidate();
-		MPoU.invalidate();
-		MPoA.invalidate();
-		//yRESERVE.invalidate();
-	}
+			Unicode::snprintfFloat(MIoUBuffer, MIOU_SIZE, "%3.0f", fIonVoltage);	// Anzeige mit 1 Nachkommastelle
+			Unicode::snprintfFloat(MPoUBuffer, MPOU_SIZE, "%3.0f", fPolVoltage);	// Anzeige mit 1 Nachkommastelle
+			Unicode::snprintfFloat(MPoABuffer, MPOA_SIZE, "%3.1f", fIonCurrent);	// Anzeige mit 1 Nachkommastelle
+
+			MIoU.invalidate();
+			MPoU.invalidate();
+			MPoA.invalidate();
+	    }
 
 	if (ID == 0x51)	// Muss nicht auf dem Display ausgegeben werden / Reserve
-	{
-		//Unicode::snprintf(Mess_HV_I_VBuffer, MESS_HV_I_V_SIZE, "%d", value1);
-		//Unicode::snprintf(Mess_HV_I_ABuffer, MESS_HV_I_A_SIZE, "%d", value2);
-		//Unicode::snprintf(Mess_HV_P_VBuffer, MESS_HV_P_V_SIZE, "%d", value3);
-		//Unicode::snprintf(zRESERVEBuffer, ZRESERVE_SIZE, "%d", value4);
-		//Mess_HV_I_V.invalidate();
-		//Mess_HV_I_A.invalidate();
-		//Mess_HV_P_V.invalidate();
-		//zRESERVE.invalidate();
-	}
+	    {
+	            //Unicode::snprintf(Mess_HV_I_VBuffer, MESS_HV_I_V_SIZE, "%d", value1);
+	            //Unicode::snprintf(Mess_HV_I_ABuffer, MESS_HV_I_A_SIZE, "%d", value2);
+	            //Unicode::snprintf(Mess_HV_P_VBuffer, MESS_HV_P_V_SIZE, "%d", value3);
+	            //Unicode::snprintf(zRESERVEBuffer, ZRESERVE_SIZE, "%d", value4);
+	            //Mess_HV_I_V.invalidate();
+	            //Mess_HV_I_A.invalidate();
+	            //Mess_HV_P_V.invalidate();
+	            //zRESERVE.invalidate();
+	    }
 }
 
 
@@ -303,12 +228,12 @@ void MessView::updateLINStatus(uint8_t *status)
 
 	receivedVoltageValue = newHVU;
 
-    Unicode::snprintf(HVUBuffer, HVU_SIZE, "%d", newHVU*40); // Display voltage in
+    Unicode::snprintf(HVUBuffer, HVU_SIZE, "%d", (-1)*newHVU*40); // Display voltage in
 
-    float hviValue = static_cast<float>(newHVI) / 2.0f;
+    float hviValue = (-1.0)*static_cast<float>(newHVI) / 2.0f;
     Unicode::snprintfFloat(HVIBuffer, HVI_SIZE, "%2.1f", hviValue);
 
-    float hvisollValue = static_cast<float>(hvi) / 2.0f;
+    float hvisollValue = (-1.0)*static_cast<float>(hvi) / 2.0f;
     Unicode::snprintfFloat(HVI_SollBuffer, HVI_SOLL_SIZE, "%2.1f", hvisollValue);
 
 
