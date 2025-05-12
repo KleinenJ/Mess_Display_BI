@@ -59,7 +59,6 @@ uint8_t bLinVersion = 255;	// 255:= unknown
 uint8_t bSubImageSelect = 0; /// die vier fragmente des Images müssen nacheinander versendet werden, für das Umschalten wird diese Variable verwendet
 
 
-
 const uint32_t CAN_TIMEOUT_THRESHOLD = 500;		// CAN Timeout-Schwellenwert (500 Ticks)
 uint32_t canTimeoutCounters[4] = {0, 0, 0, 0};	// Timeout-Zähler für die vier CAN-IDs 0x46, 0x47, 0x50, 0x51
 const uint32_t LIN_TIMEOUT_THRESHOLD = 50;
@@ -91,6 +90,7 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 	modelInstance = this;
 
+	// request Data from A-Sample
 	#ifdef B_SAMPLE
     	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 for B-Samples
 	#else
@@ -99,7 +99,17 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
     HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
     HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+    // check if A-Sample answered
+    // if yes, set device type to "A"
+    bLinType = 0;
+    // if else request Data fom B-Sample
 
+    // check if B-Sample answered
+
+    // if yes, set device type to "B"
+    // bLinType = 1;
+    // else set device type to "X"
+    // bLinType = 255;
 }
 
 void Model::tick()
@@ -137,28 +147,30 @@ void Model::tick()
 
 	    if (lastSize == 12)
 	    {
-	    modelListener->onLINStatusReceived(tempRxData);
-	    linTimeoutCounter = 0;
+			modelListener->onLINStatusReceived(tempRxData);
+			linTimeoutCounter = 0;
 	    }
 	    else if (linTimeoutCounter > LIN_TIMEOUT_THRESHOLD)	// Timeout erkannt = keine Daten
 	    {
-	    linStatus[22] = {0};
-	    __disable_irq();
-	    memset(RxData, 0, sizeof(RxData));
-	    memset(tempRxData, 0, sizeof(tempRxData));
-	    __enable_irq();
-	    modelListener->onLINStatusReceived(tempRxData);		// 0 Senden wenn keine Daten mehr empfangen werden
-	    linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
+			linStatus[22] = {0};
+			__disable_irq();
+			memset(RxData, 0, sizeof(RxData));
+			memset(tempRxData, 0, sizeof(tempRxData));
+			__enable_irq();
+			modelListener->onLINStatusReceived(tempRxData);		// 0 Senden wenn keine Daten mehr empfangen werden
+			linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
 	    }
 
-	    fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
-	    fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+		#ifdef B_Sample
+			fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
+			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+		#else
+	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
+			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+		#endif
 
-/*		if (bSendSystemImage>0)
-		{*/
-			sendSystemImageOverCAN();
-/*	    	bSendSystemImage--;
-		}*/
+
+		sendSystemImageOverCAN();
 
 
 	   	state_SDCS = getSDCS();
