@@ -430,7 +430,8 @@ MessViewBase::MessViewBase() :
     PnF25.setPosition(698, 366, 130, 32);
     PnF25.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     PnF25.setLinespacing(0);
-    PnF25.setWildcard(touchgfx::TypedText(T___SINGLEUSE_3GAL).getText());
+    Unicode::snprintf(PnF25Buffer, PNF25_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_V6M4).getText());
+    PnF25.setWildcard(PnF25Buffer);
     PnF25.setTypedText(touchgfx::TypedText(T___SINGLEUSE_9CSV));
     add(PnF25);
 

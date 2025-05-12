@@ -14,7 +14,7 @@ C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:553:6:void 
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:560:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	16	static
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:569:6:void Model::processLINData(uint8_t*, uint16_t)	24	static
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:584:6:void Model::rearrangeRxData(uint8_t*, uint8_t)	48	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:606:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	40	static
+C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:606:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:642:6:void Model::receiveLINStatusFrame()	24	static
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:655:9:uint8_t Model::receiveInitialHviValue()	16	static
 C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/gui/src/model/Model.cpp:672:9:uint8_t Model::pid_Calc(uint8_t)	24	static

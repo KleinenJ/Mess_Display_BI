@@ -162,6 +162,8 @@ protected:
     touchgfx::Unicode::UnicodeChar LnFBuffer[LNF_SIZE];
     static const uint16_t PNF10_SIZE = 10;
     touchgfx::Unicode::UnicodeChar PnF10Buffer[PNF10_SIZE];
+    static const uint16_t PNF25_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar PnF25Buffer[PNF25_SIZE];
 
 private:
 

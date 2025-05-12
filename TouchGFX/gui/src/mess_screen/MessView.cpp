@@ -180,7 +180,7 @@ void MessView::CANFloatReceived(uint32_t ID, const float *data)
 			Unicode::snprintfFloat(PvF10Buffer, PVF10_SIZE, "%1.0f", fPvF10);
 			Unicode::snprintfFloat(PvF25Buffer, PVF25_SIZE, "%1.0f", fPvF25);
 			Unicode::snprintfFloat(PnF10Buffer, PNF10_SIZE, "%1.0f", fPnF10);
-			//Unicode::snprintfFloat(PnF25Buffer, PNF25_SIZE, "%1.0f", fPnF25);
+			Unicode::snprintfFloat(PnF25Buffer, PNF25_SIZE, "%1.0f", fPnF25);
 
 			PvF10.invalidate();
 			PvF25.invalidate();

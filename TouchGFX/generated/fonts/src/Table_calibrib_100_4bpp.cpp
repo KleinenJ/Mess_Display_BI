@@ -4,16 +4,17 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_calibrib_100_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
-    {     0, 0x003F,  38,  69,  68,   5,  46,   0,   0, 0x00 },
-    {  1311, 0x0050,  45,  63,  63,   6,  53,   0,   0, 0x00 },
-    {  2760, 0x0065,  44,  49,  48,   3,  50,   0,   0, 0x00 },
-    {  3838, 0x0066,  32,  69,  68,   1,  32,   0,   0, 0x00 },
-    {  4942, 0x0068,  42,  69,  68,   6,  54,   0,   0, 0x00 },
-    {  6391, 0x0069,  15,  67,  67,   5,  25,   0,   0, 0x00 },
-    {  6927, 0x006E,  42,  48,  48,   6,  54,   0,   0, 0x00 },
-    {  7935, 0x0072,  29,  49,  49,   6,  36,   0,   0, 0x00 },
-    {  8670, 0x0074,  31,  60,  59,   1,  35,   0,   0, 0x00 },
-    {  9630, 0x00FC,  43,  67,  66,   5,  54,   0,   0, 0x00 }
+    {     0, 0x0030,  46,  66,  65,   2,  51,   0,   0, 0x00 },
+    {  1518, 0x003F,  38,  69,  68,   5,  46,   0,   0, 0x00 },
+    {  2829, 0x0050,  45,  63,  63,   6,  53,   0,   0, 0x00 },
+    {  4278, 0x0065,  44,  49,  48,   3,  50,   0,   0, 0x00 },
+    {  5356, 0x0066,  32,  69,  68,   1,  32,   0,   0, 0x00 },
+    {  6460, 0x0068,  42,  69,  68,   6,  54,   0,   0, 0x00 },
+    {  7909, 0x0069,  15,  67,  67,   5,  25,   0,   0, 0x00 },
+    {  8445, 0x006E,  42,  48,  48,   6,  54,   0,   0, 0x00 },
+    {  9453, 0x0072,  29,  49,  49,   6,  36,   0,   0, 0x00 },
+    { 10188, 0x0074,  31,  60,  59,   1,  35,   0,   0, 0x00 },
+    { 11148, 0x00FC,  43,  67,  66,   5,  54,   0,   0, 0x00 }
 };
 
 // calibrib_100_4bpp
@@ -32,6 +33,6 @@ touchgfx::GeneratedFont& getFont_calibrib_100_4bpp();
 
 touchgfx::GeneratedFont& getFont_calibrib_100_4bpp()
 {
-    static touchgfx::GeneratedFont calibrib_100_4bpp(glyphs_calibrib_100_4bpp, 10, 101, 100, 0, 0, 4, 1, 0, 1, unicodes_calibrib_100_4bpp, kerning_calibrib_100_4bpp, 63, 0, 0, &calibrib_contextualFormsTable);
+    static touchgfx::GeneratedFont calibrib_100_4bpp(glyphs_calibrib_100_4bpp, 11, 101, 100, 0, 0, 4, 1, 0, 1, unicodes_calibrib_100_4bpp, kerning_calibrib_100_4bpp, 63, 0, 0, &calibrib_contextualFormsTable);
     return calibrib_100_4bpp;
 }

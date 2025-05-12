@@ -10,7 +10,7 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE;
 // Remap all strings
 TEXT_LOCATION_FLASH_PRAGMA
 KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
-    312, // T___SINGLEUSE_3GAL: "0000"
+    312, // T___SINGLEUSE_V6M4: "0000"
     337, // T___SINGLEUSE_81P6: "LIN"
     141, // T___SINGLEUSE_G1TO: "Ionisationsstrom:"
     304, // T___SINGLEUSE_SXUN: "Analog"
@@ -22,7 +22,7 @@ KEEP extern const uint32_t indicesGb[] TEXT_LOCATION_FLASH_ATTRIBUTE = {
     296, // T___SINGLEUSE_E73M: "PM 2.5:"
     193, // T___SINGLEUSE_R3PW: "Filter"
     193, // T___SINGLEUSE_EUHI: "Filter"
-    236, // T___SINGLEUSE_ATVF: "Version 2.0"
+    236, // T___SINGLEUSE_ATVF: "Version 2.3"
     259, // T___SINGLEUSE_3G10: "Einregeln"
     186, // T___SINGLEUSE_MKYI: "<>"
     314, // T___SINGLEUSE_IK9T: "00"

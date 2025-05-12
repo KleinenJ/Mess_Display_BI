@@ -1100,7 +1100,9 @@
             "TextId": "__SingleUse_9CSV",
             "TextRotation": "0",
             "Wildcard1": {
-              "TextId": "__SingleUse_3GAL"
+              "TextId": "__SingleUse_V6M4",
+              "UseBuffer": true,
+              "BufferSize": 10
             }
           },
           {

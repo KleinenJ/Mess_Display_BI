@@ -14,7 +14,7 @@
 
 #include "edt_h7xx_eeprom_i2c.h"
 
-#define B_SAMPLE
+//#define B_SAMPLE
 
 // Globale Variablen für SD
 //FATFS fs;    // Dateisystem
