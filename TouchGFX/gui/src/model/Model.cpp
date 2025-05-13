@@ -272,6 +272,8 @@ void Model::process_CAN_messages()
 	uint32_t id;
 	char CRxData[10];
 	int16_t intData[4];
+	int16_t iRawIonCurrent;
+
 	float floatData[4];
 
 	bool idReceived[4] = {false, false, false, false};			// Array, um empfangene IDs zu markieren
@@ -287,126 +289,182 @@ void Model::process_CAN_messages()
         }
 
         switch (id)													// ID und CAN-Daten "sortieren"
-                {
-					case 0x46:
-						canTimeoutCounters[0] = 0;					// Timeoutzähler zurücksetzen
-						idReceived[0] = true;						// ID als empfangen markieren
-						//modelListener->CANIntReceived(id, intData);	// Empfangene CAN-Daten übertragen
+		{
+			case 0x46:
+				canTimeoutCounters[0] = 0;					// Timeoutzähler zurücksetzen
+				idReceived[0] = true;						// ID als empfangen markieren
+				//modelListener->CANIntReceived(id, intData);	// Empfangene CAN-Daten übertragen
 
-						iTempVFmV = intData[0]*10;	// Extract raw value
-						iHumidVFmV = intData[1]*10;	// Extract raw value
-						iTempNFmV = intData[2]*10;	// Extract raw value
-						iHumidNFmV = intData[3]*10;	// Extract raw value
-
-
-						if(iTempVFmV < 715) fTempVF = 81.0f;
-						else if (iTempVFmV <= 911) fTempVF= ((iTempVFmV - 715) * (-0.0510204081632653)) + 80.0f;
-						else if (iTempVFmV <= 1158) fTempVF= ((iTempVFmV - 911) * (-0.0404858299595142)) + 70.0f;
-						else if (iTempVFmV <= 1469) fTempVF= ((iTempVFmV - 1158) * (-0.0321543408360129)) + 60.0f;
-						else if (iTempVFmV <= 1842) fTempVF= ((iTempVFmV - 1469) * (-0.0268096514745308)) + 50.0f;
-						else if (iTempVFmV <= 2270) fTempVF= ((iTempVFmV - 1842) * (-0.0233644859813084)) + 40.0f;
-						else if (iTempVFmV <= 2500) fTempVF= ((iTempVFmV - 2270) * (-0.0217391304347826)) + 30.0f;
-						else if (iTempVFmV <= 2736) fTempVF= ((iTempVFmV - 2500) * (-0.0211864406779661)) + 25.0f;
-						else if (iTempVFmV <= 3210) fTempVF= ((iTempVFmV - 2736) * (-0.0210970464135021)) + 20.0f;
-						else if (iTempVFmV <= 3657) fTempVF= ((iTempVFmV - 3210) * (-0.0223713646532438)) + 10.0f;
-						else if (iTempVFmV <= 4048) fTempVF= ((iTempVFmV - 3657) * (-0.0255754475703325)) + 0.0f;
-						else if (iTempVFmV <= 4361) fTempVF= ((iTempVFmV - 4048) * (-0.0319488817891374)) - 10.0f;
-						else if (iTempVFmV <= 4595) fTempVF= ((iTempVFmV - 4361) * (-0.0427350427350427)) - 20.0f;
-						else if (iTempVFmV <= 4757) fTempVF= ((iTempVFmV - 4595) * (-0.0617283950617284)) - 30.0f;
-						else if (iTempVFmV > 4757) fTempVF= -41.0f;
-
-						if(iHumidVFmV < 1235) fHumidVF = 9.0f;
-						else if (iHumidVFmV <= 3555) fHumidVF = (iHumidVFmV * 0.0366379310344828f) - 35.2478448f;
-						else fHumidVF = 96.0f;
-
-						if(iTempNFmV < 715) fTempNF = 81.0f;
-						else if (iTempNFmV <= 911) fTempNF= ((iTempNFmV - 715) * (-0.0510204081632653)) + 80.0f;
-						else if (iTempNFmV <= 1158) fTempNF= ((iTempNFmV - 911) * (-0.0404858299595142)) + 70.0f;
-						else if (iTempNFmV <= 1469) fTempNF= ((iTempNFmV - 1158) * (-0.0321543408360129)) + 60.0f;
-						else if (iTempNFmV <= 1842) fTempNF= ((iTempNFmV - 1469) * (-0.0268096514745308)) + 50.0f;
-						else if (iTempNFmV <= 2270) fTempNF= ((iTempNFmV - 1842) * (-0.0233644859813084)) + 40.0f;
-						else if (iTempNFmV <= 2500) fTempNF= ((iTempNFmV - 2270) * (-0.0217391304347826)) + 30.0f;
-						else if (iTempNFmV <= 2736) fTempNF= ((iTempNFmV - 2500) * (-0.0211864406779661)) + 25.0f;
-						else if (iTempNFmV <= 3210) fTempNF= ((iTempNFmV - 2736) * (-0.0210970464135021)) + 20.0f;
-						else if (iTempNFmV <= 3657) fTempNF= ((iTempNFmV - 3210) * (-0.0223713646532438)) + 10.0f;
-						else if (iTempNFmV <= 4048) fTempNF= ((iTempNFmV - 3657) * (-0.0255754475703325)) + 0.0f;
-						else if (iTempNFmV <= 4361) fTempNF= ((iTempNFmV - 4048) * (-0.0319488817891374)) - 10.0f;
-						else if (iTempNFmV <= 4595) fTempNF= ((iTempNFmV - 4361) * (-0.0427350427350427)) - 20.0f;
-						else if (iTempNFmV <= 4757) fTempNF= ((iTempNFmV - 4595) * (-0.0617283950617284)) - 30.0f;
-						else if (iTempNFmV > 4757) fTempNF= -41.0f;
-
-						if(iHumidNFmV < 1235) fHumidNF = 9.0f;
-						else if (iHumidNFmV <= 3555) fHumidNF = (iHumidNFmV * 0.0366379310344828f) - 35.2478448f;
-						else fHumidNF = 96.0f;
-
-						floatData[0]= fTempVF;
-						floatData[1]= fHumidVF;
-						floatData[2]= fTempNF;
-						floatData[3]= fHumidNF;
-						/// add new transfer function
-
-						modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
-						break;
-
-					case 0x47:
-						canTimeoutCounters[1] = 0;
-						idReceived[1] = true;
-						//modelListener->CANIntReceived(id, intData);
-
-						fPvF10 = static_cast<float>(intData[0]) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
-						fPvF25 = static_cast<float>(intData[1]) * 1.003f;
-						fPnF10 = static_cast<float>(intData[2]) * 1.003f;
-						fPnF25 = static_cast<float>(intData[3]) * 1.003f;
-
-						if(fPvF10 > 1000) fPvF10 = 1000;
-						if(fPvF25 > 1000) fPvF25 = 1000;
-						if(fPnF10 > 1000) fPnF10 = 1000;
-						if(fPnF25 > 1000) fPnF25 = 1000;
-						if(fPvF10 < 0) fPvF10 = 0;
-						if(fPvF25 < 0) fPvF25 = 0;
-						if(fPnF10 < 0) fPnF10 = 0;
-						if(fPnF25 < 0) fPnF25 = 0;
-
-						floatData[0]= fPvF10;
-						floatData[1]= fPvF25;
-						floatData[2]= fPnF10;
-						floatData[3]= fPnF25;
-
-						modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
-						break;
-                    case 0x50:
-                        canTimeoutCounters[2] = 0;
-                        idReceived[2] = true;
-                        //modelListener->CANIntReceived(id, intData);
-            			fIonVoltage = (static_cast<float>(intData[0]) +3.0)*(-8.0f);
-            			fPolVoltage = (static_cast<float>(intData[1]) +4.0)*(-3.0f);
-            			fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-1.25f);
-            			//fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * 0.89f;
+				iTempVFmV = intData[0]*10;	// Extract raw value
+				iHumidVFmV = intData[1]*10;	// Extract raw value
+				iTempNFmV = intData[2]*10;	// Extract raw value
+				iHumidNFmV = intData[3]*10;	// Extract raw value
 
 
-            			if(fIonVoltage > 0) fIonVoltage = 0;
-            			if(fIonVoltage < -8000) fIonVoltage = -8000;
+				if(iTempVFmV < 715) fTempVF = 81.0f;
+				else if (iTempVFmV <= 911) fTempVF= ((iTempVFmV - 715) * (-0.0510204081632653)) + 80.0f;
+				else if (iTempVFmV <= 1158) fTempVF= ((iTempVFmV - 911) * (-0.0404858299595142)) + 70.0f;
+				else if (iTempVFmV <= 1469) fTempVF= ((iTempVFmV - 1158) * (-0.0321543408360129)) + 60.0f;
+				else if (iTempVFmV <= 1842) fTempVF= ((iTempVFmV - 1469) * (-0.0268096514745308)) + 50.0f;
+				else if (iTempVFmV <= 2270) fTempVF= ((iTempVFmV - 1842) * (-0.0233644859813084)) + 40.0f;
+				else if (iTempVFmV <= 2500) fTempVF= ((iTempVFmV - 2270) * (-0.0217391304347826)) + 30.0f;
+				else if (iTempVFmV <= 2736) fTempVF= ((iTempVFmV - 2500) * (-0.0211864406779661)) + 25.0f;
+				else if (iTempVFmV <= 3210) fTempVF= ((iTempVFmV - 2736) * (-0.0210970464135021)) + 20.0f;
+				else if (iTempVFmV <= 3657) fTempVF= ((iTempVFmV - 3210) * (-0.0223713646532438)) + 10.0f;
+				else if (iTempVFmV <= 4048) fTempVF= ((iTempVFmV - 3657) * (-0.0255754475703325)) + 0.0f;
+				else if (iTempVFmV <= 4361) fTempVF= ((iTempVFmV - 4048) * (-0.0319488817891374)) - 10.0f;
+				else if (iTempVFmV <= 4595) fTempVF= ((iTempVFmV - 4361) * (-0.0427350427350427)) - 20.0f;
+				else if (iTempVFmV <= 4757) fTempVF= ((iTempVFmV - 4595) * (-0.0617283950617284)) - 30.0f;
+				else if (iTempVFmV > 4757) fTempVF= -41.0f;
 
-            			if(fPolVoltage > 0) fPolVoltage = 0;
-            			if(fPolVoltage < -3000) fPolVoltage = -3000;
+				if(iHumidVFmV < 1235) fHumidVF = 9.0f;
+				else if (iHumidVFmV <= 3555) fHumidVF = (iHumidVFmV * 0.0366379310344828f) - 35.2478448f;
+				else fHumidVF = 96.0f;
 
-            			if(fIonCurrent > 0) fIonCurrent = 0;
-            			if(fIonCurrent < -100) fIonCurrent = -100;
+				if(iTempNFmV < 715) fTempNF = 81.0f;
+				else if (iTempNFmV <= 911) fTempNF= ((iTempNFmV - 715) * (-0.0510204081632653)) + 80.0f;
+				else if (iTempNFmV <= 1158) fTempNF= ((iTempNFmV - 911) * (-0.0404858299595142)) + 70.0f;
+				else if (iTempNFmV <= 1469) fTempNF= ((iTempNFmV - 1158) * (-0.0321543408360129)) + 60.0f;
+				else if (iTempNFmV <= 1842) fTempNF= ((iTempNFmV - 1469) * (-0.0268096514745308)) + 50.0f;
+				else if (iTempNFmV <= 2270) fTempNF= ((iTempNFmV - 1842) * (-0.0233644859813084)) + 40.0f;
+				else if (iTempNFmV <= 2500) fTempNF= ((iTempNFmV - 2270) * (-0.0217391304347826)) + 30.0f;
+				else if (iTempNFmV <= 2736) fTempNF= ((iTempNFmV - 2500) * (-0.0211864406779661)) + 25.0f;
+				else if (iTempNFmV <= 3210) fTempNF= ((iTempNFmV - 2736) * (-0.0210970464135021)) + 20.0f;
+				else if (iTempNFmV <= 3657) fTempNF= ((iTempNFmV - 3210) * (-0.0223713646532438)) + 10.0f;
+				else if (iTempNFmV <= 4048) fTempNF= ((iTempNFmV - 3657) * (-0.0255754475703325)) + 0.0f;
+				else if (iTempNFmV <= 4361) fTempNF= ((iTempNFmV - 4048) * (-0.0319488817891374)) - 10.0f;
+				else if (iTempNFmV <= 4595) fTempNF= ((iTempNFmV - 4361) * (-0.0427350427350427)) - 20.0f;
+				else if (iTempNFmV <= 4757) fTempNF= ((iTempNFmV - 4595) * (-0.0617283950617284)) - 30.0f;
+				else if (iTempNFmV > 4757) fTempNF= -41.0f;
 
-						floatData[0]= fIonVoltage;
-						floatData[1]= fPolVoltage;
-						floatData[2]= fIonCurrent;
-						floatData[3]= 0.0f;			/// default
+				if(iHumidNFmV < 1235) fHumidNF = 9.0f;
+				else if (iHumidNFmV <= 3555) fHumidNF = (iHumidNFmV * 0.0366379310344828f) - 35.2478448f;
+				else fHumidNF = 96.0f;
 
-						modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
-                        break;
+				floatData[0]= fTempVF;
+				floatData[1]= fHumidVF;
+				floatData[2]= fTempNF;
+				floatData[3]= fHumidNF;
+				/// add new transfer function
 
-                    case 0x51:
-                        canTimeoutCounters[3] = 0;
-                        idReceived[3] = true;
-						// discard ,essage content
-                        break;
-                }
+				modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
+				break;
+
+			case 0x47:
+				canTimeoutCounters[1] = 0;
+				idReceived[1] = true;
+				//modelListener->CANIntReceived(id, intData);
+
+				fPvF10 = static_cast<float>(intData[0]) * 1.003f;	// 1.003009027081244 - Umrechnungsfaktor wegen 500 Ohm bei PM (0 - 20mA)
+				fPvF25 = static_cast<float>(intData[1]) * 1.003f;
+				fPnF10 = static_cast<float>(intData[2]) * 1.003f;
+				fPnF25 = static_cast<float>(intData[3]) * 1.003f;
+
+				if(fPvF10 > 1000) fPvF10 = 1000;
+				if(fPvF25 > 1000) fPvF25 = 1000;
+				if(fPnF10 > 1000) fPnF10 = 1000;
+				if(fPnF25 > 1000) fPnF25 = 1000;
+				if(fPvF10 < 0) fPvF10 = 0;
+				if(fPvF25 < 0) fPvF25 = 0;
+				if(fPnF10 < 0) fPnF10 = 0;
+				if(fPnF25 < 0) fPnF25 = 0;
+
+				floatData[0]= fPvF10;
+				floatData[1]= fPvF25;
+				floatData[2]= fPnF10;
+				floatData[3]= fPnF25;
+
+				modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
+				break;
+
+			case 0x50:
+				canTimeoutCounters[2] = 0;
+				idReceived[2] = true;
+
+				//modelListener->CANIntReceived(id, intData);
+				fIonVoltage = (static_cast<float>(intData[0]) +3.0)*(-8.0f);
+				fPolVoltage = (static_cast<float>(intData[1]) +4.0)*(-3.0f);
+				//fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-1.25f);
+				fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-0.8789f);
+				/*iRawIonCurrent = static_cast<float>(intData[2]);
+
+				if (iRawIonCurrent <= 127) // <= -10µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.07717f));
+				}
+				else if (iRawIonCurrent <= 197) // <= -15µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.07462f));
+				}
+				else if (iRawIonCurrent <= 272) // <= -20µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.07279f));
+				}
+				else if (iRawIonCurrent <= 348) // <= -25µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.07040f));
+				}
+				else if (iRawIonCurrent <= 388) // <= -30µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.07603f));
+				}
+				else if (iRawIonCurrent <= 421) // <= -35µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.07933f));
+				}
+				else if (iRawIonCurrent <= 454) // <= -40µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.08263f));
+				}
+				else if (iRawIonCurrent <= 487) // <= -45µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.08593f));
+				}
+				else if (iRawIonCurrent <= 520) // <= -50µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.08923f));
+				}
+				else if (iRawIonCurrent <= 553) // <= -55µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.09253f));
+				}
+				else if (iRawIonCurrent <= 586) // <= -60µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.09583f));
+				}
+				else if (iRawIonCurrent <= 619) // <= -65µA
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.09913f));
+				}
+				else
+				{
+					fIonCurrent = (iRawIonCurrent * (-0.01f));
+				}*/
+
+				if(fIonVoltage > 0) fIonVoltage = 0;
+				if(fIonVoltage < -8000) fIonVoltage = -8000;
+
+				if(fPolVoltage > 0) fPolVoltage = 0;
+				if(fPolVoltage < -3000) fPolVoltage = -3000;
+
+				if(fIonCurrent > 0) fIonCurrent = 0;
+				if(fIonCurrent < -100) fIonCurrent = -100;
+
+				floatData[0]= fIonVoltage;
+				floatData[1]= fPolVoltage;
+				floatData[2]= fIonCurrent;
+				floatData[3]= 0.0f;			/// default
+
+				modelListener->CANFloatReceived(id, floatData);	// Empfangene CAN-Daten übertragen
+				break;
+
+			case 0x51:
+				canTimeoutCounters[3] = 0;
+				idReceived[3] = true;
+				// discard ,essage content
+				break;
+
+		}
 	  }
 
 
