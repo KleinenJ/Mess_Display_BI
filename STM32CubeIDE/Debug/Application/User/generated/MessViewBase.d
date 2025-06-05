@@ -1,5 +1,5 @@
 Application/User/generated/MessViewBase.o: \
- C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/generated/gui_generated/src/mess_screen/MessViewBase.cpp \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/generated/gui_generated/src/mess_screen/MessViewBase.cpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/mess_screen/MessViewBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp \

@@ -25,7 +25,8 @@ KEEP extern const touchgfx::GlyphNode glyphs_calibri_10_4bpp[] FONT_TABLE_LOCATI
     {   293, 0x006E,   5,   5,   5,   0,   5,   0,   0, 0x00 },
     {   308, 0x006F,   5,   5,   5,   0,   5,   0,   0, 0x00 },
     {   323, 0x0072,   4,   5,   5,   0,   3,   0,   0, 0x00 },
-    {   333, 0x0073,   4,   5,   5,   0,   4,   0,   0, 0x00 }
+    {   333, 0x0073,   4,   5,   5,   0,   4,   0,   0, 0x00 },
+    {   343, 0x0078,   4,   5,   5,   0,   4,   0,   0, 0x00 }
 };
 
 // calibri_10_4bpp
@@ -199,6 +200,6 @@ touchgfx::GeneratedFont& getFont_calibri_10_4bpp();
 
 touchgfx::GeneratedFont& getFont_calibri_10_4bpp()
 {
-    static touchgfx::GeneratedFont calibri_10_4bpp(glyphs_calibri_10_4bpp, 22, 10, 10, 0, 0, 4, 1, 0, 1, unicodes_calibri_10_4bpp, kerning_calibri_10_4bpp, 63, 0, 0, &calibri_contextualFormsTable);
+    static touchgfx::GeneratedFont calibri_10_4bpp(glyphs_calibri_10_4bpp, 23, 10, 10, 0, 0, 4, 1, 0, 1, unicodes_calibri_10_4bpp, kerning_calibri_10_4bpp, 63, 0, 0, &calibri_contextualFormsTable);
     return calibri_10_4bpp;
 }

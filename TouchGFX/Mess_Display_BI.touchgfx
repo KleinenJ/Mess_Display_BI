@@ -127,7 +127,7 @@
             "Name": "Version",
             "X": 963,
             "Y": 575,
-            "Width": 45,
+            "Width": 49,
             "Height": 10,
             "TextId": "__SingleUse_50T4",
             "TextRotation": "0",
@@ -842,7 +842,7 @@
             "Name": "Version",
             "X": 963,
             "Y": 575,
-            "Width": 45,
+            "Width": 49,
             "Height": 10,
             "TextId": "__SingleUse_ATVF",
             "TextRotation": "0",
@@ -1242,7 +1242,7 @@
       }
     ],
     "CustomContainerDefinitions": [],
-    "Name": "Mess_Display_BI_08",
+    "Name": "Mess_Display_BI",
     "Resolution": {
       "Width": 1024,
       "Height": 600

@@ -1,5 +1,5 @@
 Application/User/USB_DEVICE/Target/usbd_conf.o: \
- C:/TouchGFXProjects/Mess_Display_BI/USB_DEVICE/Target/usbd_conf.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/USB_DEVICE/Target/usbd_conf.c \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h \
  ../../Drivers/CMSIS/Include/core_cm7.h \

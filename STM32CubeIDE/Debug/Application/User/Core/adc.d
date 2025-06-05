@@ -1,6 +1,6 @@
 Application/User/Core/adc.o: \
- C:/TouchGFXProjects/Mess_Display_BI/Core/Src/adc.c ../../Core/Inc/adc.h \
- ../../Core/Inc/main.h \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/adc.c \
+ ../../Core/Inc/adc.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \

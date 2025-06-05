@@ -114,7 +114,6 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 void Model::tick()
 {
-	uint8_t bSendSystemImage = 0;
 	process_CAN_messages();
 
     linTimeoutCounter++;		 // LIN-Timeout-Zähler hochzählen
@@ -132,7 +131,6 @@ void Model::tick()
 	    	HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
 	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
 	        tickCounter = 0;
-	       bSendSystemImage = 4;
 	    }
 
 	   HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
@@ -272,7 +270,6 @@ void Model::process_CAN_messages()
 	uint32_t id;
 	char CRxData[10];
 	int16_t intData[4];
-	int16_t iRawIonCurrent;
 
 	float floatData[4];
 
@@ -386,60 +383,6 @@ void Model::process_CAN_messages()
 				fPolVoltage = (static_cast<float>(intData[1]) +4.0)*(-3.0f);
 				//fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-1.25f);
 				fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-0.8789f);
-				/*iRawIonCurrent = static_cast<float>(intData[2]);
-
-				if (iRawIonCurrent <= 127) // <= -10µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07717f));
-				}
-				else if (iRawIonCurrent <= 197) // <= -15µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07462f));
-				}
-				else if (iRawIonCurrent <= 272) // <= -20µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07279f));
-				}
-				else if (iRawIonCurrent <= 348) // <= -25µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07040f));
-				}
-				else if (iRawIonCurrent <= 388) // <= -30µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07603f));
-				}
-				else if (iRawIonCurrent <= 421) // <= -35µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07933f));
-				}
-				else if (iRawIonCurrent <= 454) // <= -40µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.08263f));
-				}
-				else if (iRawIonCurrent <= 487) // <= -45µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.08593f));
-				}
-				else if (iRawIonCurrent <= 520) // <= -50µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.08923f));
-				}
-				else if (iRawIonCurrent <= 553) // <= -55µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.09253f));
-				}
-				else if (iRawIonCurrent <= 586) // <= -60µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.09583f));
-				}
-				else if (iRawIonCurrent <= 619) // <= -65µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.09913f));
-				}
-				else
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.01f));
-				}*/
 
 				if(fIonVoltage > 0) fIonVoltage = 0;
 				if(fIonVoltage < -8000) fIonVoltage = -8000;

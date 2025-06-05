@@ -1,6 +1,6 @@
 Application/User/LWIP/App/lwip.o: \
- C:/TouchGFXProjects/Mess_Display_BI/LWIP/App/lwip.c \
- C:/TouchGFXProjects/Mess_Display_BI/LWIP/App/lwip.h \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/LWIP/App/lwip.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/LWIP/App/lwip.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
@@ -113,7 +113,7 @@ Application/User/LWIP/App/lwip.o: \
  ../../LWIP/Target/ethernetif.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/tcpip.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/init.h
-C:/TouchGFXProjects/Mess_Display_BI/LWIP/App/lwip.h:
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/LWIP/App/lwip.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h:
 ../../LWIP/Target/lwipopts.h:
 ../../Core/Inc/main.h:

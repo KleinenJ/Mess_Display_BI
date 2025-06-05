@@ -6,6 +6,6 @@
 
 static unsigned short SIM_WIDTH = 1024;
 static unsigned short SIM_HEIGHT = 600;
-#define SIM_TITLE "Mess_Display_BI_08"
+#define SIM_TITLE "Mess_Display_BI"
 
 #endif // SIMCONSTANTS_HPP

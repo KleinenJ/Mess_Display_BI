@@ -1,5 +1,5 @@
 Middlewares/LwIP/pppos.o: \
- C:/TouchGFXProjects/Mess_Display_BI/Middlewares/Third_Party/LwIP/src/netif/ppp/pppos.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Middlewares/Third_Party/LwIP/src/netif/ppp/pppos.c \
  ../../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h ../../Core/Inc/main.h \

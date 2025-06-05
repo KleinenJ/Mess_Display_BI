@@ -1,5 +1,5 @@
 Application/User/generated/ApplicationFontProvider.o: \
- C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/generated/fonts/src/ApplicationFontProvider.cpp \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/generated/fonts/src/ApplicationFontProvider.cpp \
  ../../TouchGFX/generated/fonts/include/fonts/ApplicationFontProvider.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/FontManager.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Font.hpp \
