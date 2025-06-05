@@ -1,22 +1,22 @@
 Model.cpp:88:1:Model::Model()	24	static
-Model.cpp:115:6:void Model::tick()	56	static
-Model.cpp:182:5:int Model::ReadValueFromEEPORM()	24	static
-Model.cpp:191:6:void Model::SendVlaueToEEPROM(int)	16	static
-Model.cpp:196:6:void Model::updatefLinIonSetCurrent(int)	16	static
-Model.cpp:202:5:int Model::ReadCountEEPORM()	16	static
-Model.cpp:209:6:void Model::setBacklightValue(int)	1192	static
-Model.cpp:254:6:bool Model::getSDCS()	24	static
-Model.cpp:269:6:void Model::process_CAN_messages()	88	static
-Model.cpp:514:6:void Model::sendLinDataOverCAN()	24	static
-Model.cpp:527:6:void Model::sendSystemImageOverCAN()	24	static
-Model.cpp:587:6:void Model::fnSendFloatsViaCAN(uint32_t, float, float, float, float)	40	static
-Model.cpp:611:6:void Model::fnTxViaCAN(uint32_t, uint8_t, uint8_t*)	24	static
-Model.cpp:618:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	16	static
-Model.cpp:627:6:void Model::processLINData(uint8_t*, uint16_t)	24	static
-Model.cpp:642:6:void Model::rearrangeRxData(uint8_t*, uint8_t)	48	static
-Model.cpp:664:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
-Model.cpp:700:6:void Model::receiveLINStatusFrame()	24	static
-Model.cpp:713:9:uint8_t Model::receiveInitialHviValue()	16	static
-Model.cpp:730:9:uint8_t Model::pid_Calc(uint8_t)	24	static
-Model.cpp:744:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	32	static
-Model.cpp:760:10:bool Model::validateLINData(uint8_t*)	24	static
+Model.cpp:115:6:void Model::tick()	48	static
+Model.cpp:180:5:int Model::ReadValueFromEEPORM()	24	static
+Model.cpp:189:6:void Model::SendVlaueToEEPROM(int)	16	static
+Model.cpp:194:6:void Model::updatefLinIonSetCurrent(int)	16	static
+Model.cpp:200:5:int Model::ReadCountEEPORM()	16	static
+Model.cpp:207:6:void Model::setBacklightValue(int)	1192	static
+Model.cpp:252:6:bool Model::getSDCS()	24	static
+Model.cpp:267:6:void Model::process_CAN_messages()	88	static
+Model.cpp:457:6:void Model::sendLinDataOverCAN()	24	static
+Model.cpp:470:6:void Model::sendSystemImageOverCAN()	24	static
+Model.cpp:530:6:void Model::fnSendFloatsViaCAN(uint32_t, float, float, float, float)	40	static
+Model.cpp:554:6:void Model::fnTxViaCAN(uint32_t, uint8_t, uint8_t*)	24	static
+Model.cpp:561:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	16	static
+Model.cpp:570:6:void Model::processLINData(uint8_t*, uint16_t)	24	static
+Model.cpp:585:6:void Model::rearrangeRxData(uint8_t*, uint8_t)	48	static
+Model.cpp:607:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
+Model.cpp:643:6:void Model::receiveLINStatusFrame()	24	static
+Model.cpp:656:9:uint8_t Model::receiveInitialHviValue()	16	static
+Model.cpp:673:9:uint8_t Model::pid_Calc(uint8_t)	24	static
+Model.cpp:687:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	32	static
+Model.cpp:703:10:bool Model::validateLINData(uint8_t*)	24	static

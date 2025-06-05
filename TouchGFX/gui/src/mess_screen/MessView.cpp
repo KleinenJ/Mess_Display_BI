@@ -115,7 +115,7 @@ void MessView::text_write()
 void MessView::HVI_Plus()
 {
 	hvi = hvi + 1;
-	if (hvi >= 250) hvi = 250;		// Stromgrenze
+	if (hvi >= 60) hvi = 60;		// Stromgrenze
 
     presenter->sendLINControlFrame(1,1,hvi,receivedVoltageValue,8);
 
