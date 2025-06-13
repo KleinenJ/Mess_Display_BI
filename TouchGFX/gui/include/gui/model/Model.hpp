@@ -49,6 +49,9 @@ public:
     void updatefLinIonSetCurrent(int value);
     void sendSystemImageOverCAN();
 
+    void activateHV();
+    void disableHV();
+
 protected:
     ModelListener* modelListener;
 

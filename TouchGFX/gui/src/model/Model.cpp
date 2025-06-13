@@ -14,7 +14,7 @@
 
 #include "edt_h7xx_eeprom_i2c.h"
 
-//#define B_SAMPLE
+#define B_SAMPLE
 
 // Globale Variablen für SD
 //FATFS fs;    // Dateisystem
@@ -90,15 +90,18 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 	modelInstance = this;
 
-	// request Data from A-Sample
-	#ifdef B_SAMPLE
-    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 for B-Samples
-	#else
-    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 for A-Samples
-	#endif
 
-    HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
-    HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+	this->activateHV(); // initial activation of HV
+
+	// request Data from A-Sample
+//	#ifdef B_SAMPLE
+//    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 for B-Samples
+//	#else
+//    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 for A-Samples
+//	#endif
+//
+//    HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+//    HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
     // check if A-Sample answered
     // if yes, set device type to "A"
     bLinType = 0;
@@ -130,6 +133,10 @@ void Model::tick()
 			#endif
 	    	HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
 	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+//
+//	        uint8_t tmp_rx[12];
+//	        HAL_UART_Receive(&huart6, tmp_rx, 12, 10); // 10ms Timeout
+
 	        tickCounter = 0;
 	    }
 
@@ -159,9 +166,9 @@ void Model::tick()
 			linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
 	    }
 
-		#ifdef B_Sample
-			fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
-			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+		#ifdef B_SAMPLE
+			fLinIonVoltage = (-1.0) * (tempRxData[6] + (tempRxData[7]&&0x3) * 256); 				// HV Ist-Spannung = Rohwert *40
+			fLinIonCurrent = (-1.0) * tempRxData[1] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
 		#else
 	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
 			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
@@ -606,12 +613,12 @@ void Model::rearrangeRxData(uint8_t* data, uint8_t size)
 
 void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t current, uint8_t voltage, uint8_t blower)
 {
-    uint8_t TxData[9];
+    uint8_t TxData[11];
 
 	#ifdef B_SAMPLE
-		if (current > 30)current= 30; // linit current settings
+		if (current > 60)current= 60; // limit current settings
 
-    	uint8_t uiSetCurrent = 255 - (19/2.5) * current;
+    	uint8_t uiSetCurrent = 255 - (19/2.5) * (current/2.0) - (2 * current/60); // (2 * current/60) is to compensate a nonlinearity which effects the result at higher currents
 
 		TxData[0] = 0x55;			// LIN Sync byte
 		TxData[1] = pid_Calc(0x20); // PID for B-Sample Labor-Frame
@@ -622,6 +629,8 @@ void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t curren
 		TxData[6] = 0xff;
 		TxData[7] = 0xff;
 		TxData[8] = 0xff;
+		TxData[9] = 0xff;
+		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
 	#else
 		TxData[0] = 0x55;			// LIN Sync byte
 		TxData[1] = pid_Calc(0x0A); // PID
@@ -638,6 +647,53 @@ void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t curren
     HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
 }
 
+void Model::activateHV()
+{
+    uint8_t TxData[11];
+
+	#ifdef B_SAMPLE
+		TxData[0] = 0x55;			// LIN Sync byte
+		TxData[1] = pid_Calc(0x06); // PID PCUe Frame
+		TxData[2] = 0x1e;			// 0x1? turns HV on
+		TxData[3] = 0x00;
+		TxData[4] = 0xfe;
+		TxData[5] = 0xfe;
+		TxData[6] = 0x00;
+		TxData[7] = 0xfe;
+		TxData[8] = 0xc3;
+		TxData[9] = 0xff;
+		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
+	#else
+		// t.b.d.
+	#endif
+
+	HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+    HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+}
+
+void Model::disableHV()
+{
+    uint8_t TxData[11];
+
+	#ifdef B_SAMPLE
+		TxData[0] = 0x55;			// LIN Sync byte
+		TxData[1] = pid_Calc(0x06); // PID PCUe Frame
+		TxData[2] = 0x0e;			// 0x0? turns HV off
+		TxData[3] = 0x00;
+		TxData[4] = 0xfe;
+		TxData[5] = 0xfe;
+		TxData[6] = 0x00;
+		TxData[7] = 0xfe;
+		TxData[8] = 0xc3;
+		TxData[9] = 0xff;
+		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
+	#else
+		// t.b.d.
+	#endif
+
+	HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+    HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+}
 
 
 void Model::receiveLINStatusFrame()

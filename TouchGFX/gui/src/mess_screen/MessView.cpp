@@ -129,16 +129,10 @@ void MessView::HVI_Plus()
 }
 void MessView::HVI_Minus()
 {
-	if (hvi >= 1)	hvi = hvi - 1;
+	hvi = hvi - 1;
+	if (hvi < 10)	hvi = 10; // minimaler Stromwert 5µA
 
-    if (hvi > 0)
-    {
     presenter->sendLINControlFrame(1,1,hvi,receivedVoltageValue,8);
-    }
-    else
-    {
-    	presenter->sendLINControlFrame(0,1,hvi,0,8);
-    }
 
     presenter->setHviValue(hvi);  // Wert an den Presenter weitergeben
     presenter->receiveLINStatusFrame();
