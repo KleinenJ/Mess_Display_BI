@@ -15,10 +15,10 @@ Model.cpp:568:6:void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef*, uint16_t)	1
 Model.cpp:577:6:void Model::processLINData(uint8_t*, uint16_t)	24	static
 Model.cpp:592:6:void Model::rearrangeRxData(uint8_t*, uint8_t)	48	static
 Model.cpp:614:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	40	static
-Model.cpp:650:6:void Model::activateHV()	32	static
-Model.cpp:674:6:void Model::disableHV()	32	static
-Model.cpp:699:6:void Model::receiveLINStatusFrame()	24	static
-Model.cpp:712:9:uint8_t Model::receiveInitialHviValue()	16	static
-Model.cpp:729:9:uint8_t Model::pid_Calc(uint8_t)	24	static
-Model.cpp:743:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	32	static
-Model.cpp:759:10:bool Model::validateLINData(uint8_t*)	24	static
+Model.cpp:656:6:void Model::activateHV()	32	static
+Model.cpp:680:6:void Model::disableHV()	32	static
+Model.cpp:705:6:void Model::receiveLINStatusFrame()	24	static
+Model.cpp:718:9:uint8_t Model::receiveInitialHviValue()	16	static
+Model.cpp:735:9:uint8_t Model::pid_Calc(uint8_t)	24	static
+Model.cpp:749:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	32	static
+Model.cpp:765:10:bool Model::validateLINData(uint8_t*)	24	static

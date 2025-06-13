@@ -146,8 +146,8 @@ void Model::tick()
 	    {
 	       __disable_irq();					// Interrupts deaktivieren
 	       memcpy(tempRxData, RxData, 22);	// Kopiere RxData in den temporären Puffer
-	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
 	       __enable_irq();					// Interrupts wieder aktivieren
+	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
 	    }
 
 	    if (lastSize == 12)
@@ -167,8 +167,8 @@ void Model::tick()
 	    }
 
 		#ifdef B_SAMPLE
-			fLinIonVoltage = (-1.0) * (tempRxData[6] + (tempRxData[7]&&0x3) * 256); 				// HV Ist-Spannung = Rohwert *40
-			fLinIonCurrent = (-1.0) * tempRxData[1] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+			fLinIonVoltage = (-1.0) * (((tempRxData[20]&0x3) << 8) + (tempRxData[19])); 				// HV Ist-Spannung = Rohwert *40
+			fLinIonCurrent = (-1.0) * tempRxData[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
 		#else
 	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
 			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
@@ -614,6 +614,7 @@ void Model::rearrangeRxData(uint8_t* data, uint8_t size)
 void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t current, uint8_t voltage, uint8_t blower)
 {
     uint8_t TxData[11];
+    uint8_t LastCurrentValue;
 
 	#ifdef B_SAMPLE
 		if (current > 60)current= 60; // limit current settings
@@ -643,8 +644,13 @@ void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t curren
 		TxData[8] = checksum_Calc(TxData[1], &TxData[2], 6);		// Checksum erzeugen
 	#endif
 
-	HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
-    HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+	if (LastCurrentValue != current)
+	{
+		HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+		HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+		LastCurrentValue = current;
+	}
+
 }
 
 void Model::activateHV()
@@ -654,14 +660,14 @@ void Model::activateHV()
 	#ifdef B_SAMPLE
 		TxData[0] = 0x55;			// LIN Sync byte
 		TxData[1] = pid_Calc(0x06); // PID PCUe Frame
-		TxData[2] = 0x1e;			// 0x1? turns HV on
-		TxData[3] = 0x00;
-		TxData[4] = 0xfe;
-		TxData[5] = 0xfe;
-		TxData[6] = 0x00;
-		TxData[7] = 0xfe;
-		TxData[8] = 0xc3;
-		TxData[9] = 0xff;
+		TxData[2] = 0x16;			// 0x1? turns HV on, FAN-Stage = 6 and no Test selected
+		TxData[3] = 0x00;			// PCU address
+		TxData[4] = 0x41;			// ext. temp. 25°C
+		TxData[5] = 0xfd;			// int. temp not available
+		TxData[6] = 0x00;			// rel. humidity mot available
+		TxData[7] = 0xfd;			// rel. humidity mot available
+		TxData[8] = 0xda;			// int vent flap "10" and PCU-Mode
+		TxData[9] = 0xff;			// reserve
 		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
 	#else
 		// t.b.d.

@@ -217,15 +217,18 @@ void MessView::updateLINStatus(uint8_t *status)
     static uint8_t oldHVI = 0;
     static uint8_t oldHVU = 0;
 
-    uint8_t newHVI = status[15];
+    uint8_t newHVI = status[14];
     uint8_t newHVU = status[16];
+
+    float fLinIonVoltage = (-1.0) * (((status[20]&0x3) << 8) + (status[19])); 				// HV Ist-Spannung = Rohwert *40
+	float fLinIonCurrent = (-1.0) * status[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
 
 	receivedVoltageValue = newHVU;
 
-    Unicode::snprintf(HVUBuffer, HVU_SIZE, "%d", (-1)*newHVU*40); // Display voltage in
+    Unicode::snprintfFloat(HVUBuffer, HVU_SIZE, "%4.0f", fLinIonVoltage); // Display voltage in
 
-    float hviValue = (-1.0)*static_cast<float>(newHVI) / 2.0f;
-    Unicode::snprintfFloat(HVIBuffer, HVI_SIZE, "%2.1f", hviValue);
+    // float hviValue = (-1.0)*static_cast<float>(newHVI) / 2.0f;
+    Unicode::snprintfFloat(HVIBuffer, HVI_SIZE, "%2.1f", fLinIonCurrent);
 
     float hvisollValue = (-1.0)*static_cast<float>(hvi) / 2.0f;
     Unicode::snprintfFloat(HVI_SollBuffer, HVI_SOLL_SIZE, "%2.1f", hvisollValue);
@@ -248,7 +251,7 @@ void MessView::updateLINStatus(uint8_t *status)
     }
 
 
-    uint8_t regulationState = (status[13] >> 4) & 0x03;	// Prüfen, welchen Status die HV-Quelle zurückgibt
+    uint8_t regulationState = status[13] & 0x03;	// Prüfen, welchen Status die HV-Quelle zurückgibt
 
         const char* statusText;
         switch (regulationState)
@@ -261,13 +264,13 @@ void MessView::updateLINStatus(uint8_t *status)
 				hwVersionInitialized = false;
                 break;
             case 1:
-                statusText = "Einregeln";
+                statusText = "ein";
                 break;
             case 2:
-                statusText = "Eingeregelt";
+                statusText = "auto";
                 break;
             case 3:
-                statusText = "Fehler";
+                statusText = "init";
                 break;
             default:
                 statusText = "Unbekannt";
@@ -283,19 +286,22 @@ void MessView::updateLINStatus(uint8_t *status)
 
         Unicode::snprintf(HV_StatusBuffer, HV_STATUS_SIZE, "%s", unicodeStatusText);
 
+        Unicode::snprintf(HV_HWBuffer, HV_HW_SIZE, "x");
 
-        if (hwVersionInitialized == false && (status[20] & 0x0F) > 0 )		// HW/SW Version auslesen und einmalig auf Display setzen (sonst flackert es)
-        {
-                Unicode::snprintf(HV_HWBuffer, HV_HW_SIZE, "%d", status[20] & 0x0F);
-                hwVersionInitialized = true;  // Flag setzen, um die HW-Version nicht erneut zu setzen
-                HV_HW.invalidate();
-        }
-        if (swVersionInitialized == false && ((status[20] >> 4) & 0x0F) > 0)
-        {
-               Unicode::snprintf(HV_SWBuffer, HV_SW_SIZE, "%d", (status[20] >> 4) & 0x0F);
-               swVersionInitialized = true;  // Flag setzen, um die SW-Version nicht erneut zu setzen
-               HV_SW.invalidate();
-        }
+        Unicode::snprintf(HV_SWBuffer, HV_SW_SIZE, "x");
+
+//        if (hwVersionInitialized == false && (status[20] & 0x0F) > 0 )		// HW/SW Version auslesen und einmalig auf Display setzen (sonst flackert es)
+//        {
+//                Unicode::snprintf(HV_HWBuffer, HV_HW_SIZE, "%d", status[20] & 0x0F);
+//                hwVersionInitialized = true;  // Flag setzen, um die HW-Version nicht erneut zu setzen
+//                HV_HW.invalidate();
+//        }
+//        if (swVersionInitialized == false && ((status[20] >> 4) & 0x0F) > 0)
+//        {
+//               Unicode::snprintf(HV_SWBuffer, HV_SW_SIZE, "%d", (status[20] >> 4) & 0x0F);
+//               swVersionInitialized = true;  // Flag setzen, um die SW-Version nicht erneut zu setzen
+//               HV_SW.invalidate();
+//        }
 
     HV_HW.invalidate();
     HV_SW.invalidate();

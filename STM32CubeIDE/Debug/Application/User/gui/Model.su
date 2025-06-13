@@ -15,10 +15,10 @@ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model
 C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:577:6:void Model::processLINData(uint8_t*, uint16_t)	24	static
 C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:592:6:void Model::rearrangeRxData(uint8_t*, uint8_t)	48	static
 C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:614:6:void Model::sendLINControlFrame(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	40	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:650:6:void Model::activateHV()	32	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:674:6:void Model::disableHV()	32	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:699:6:void Model::receiveLINStatusFrame()	24	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:712:9:uint8_t Model::receiveInitialHviValue()	16	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:729:9:uint8_t Model::pid_Calc(uint8_t)	24	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:743:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	32	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:759:10:bool Model::validateLINData(uint8_t*)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:656:6:void Model::activateHV()	32	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:680:6:void Model::disableHV()	32	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:705:6:void Model::receiveLINStatusFrame()	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:718:9:uint8_t Model::receiveInitialHviValue()	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:735:9:uint8_t Model::pid_Calc(uint8_t)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:749:9:uint8_t Model::checksum_Calc(uint8_t, uint8_t*, uint8_t)	32	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/model/Model.cpp:765:10:bool Model::validateLINData(uint8_t*)	24	static
