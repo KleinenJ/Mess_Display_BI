@@ -1,5 +1,5 @@
 src/ff_gen_drv.o: \
- C:/TouchGFXProjects/Mess_Display_BI/FATFS/src/ff_gen_drv.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/ff_gen_drv.c \
  ../../FATFS/include/ff_gen_drv.h ../../FATFS/include/diskio.h \
  ../../FATFS/include/integer.h ../../FATFS/include/ff.h \
  ../../FATFS/include/ffconf.h ../../Core/Inc/main.h \

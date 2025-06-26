@@ -315,7 +315,7 @@ MessViewBase::MessViewBase() :
     Text_PI.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SBFF));
     add(Text_PI);
 
-    Version.setXY(963, 575);
+    Version.setXY(960, 585);
     Version.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Version.setLinespacing(0);
     Version.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ATVF));

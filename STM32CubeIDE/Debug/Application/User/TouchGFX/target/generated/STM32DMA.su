@@ -11,23 +11,23 @@
 ../../TouchGFX/target/generated/STM32DMA.hpp:107:18:virtual void STM32DMA::signalDMAInterrupt()	16	static
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:110:17:static touchgfx::HAL* touchgfx::HAL::getInstance()	4	static
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:164:10:void touchgfx::HAL::signalDMAInterrupt()	16	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:38:17:void DMA2D_IRQHandler()	8	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:38:17:void DMA2D_IRQHandler()	8	static
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/BlitOp.hpp:46:8:touchgfx::BlitOp::BlitOp()	16	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:58:1:STM32DMA::STM32DMA()	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:63:1:STM32DMA::~STM32DMA()	16	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:63:1:virtual STM32DMA::~STM32DMA()	16	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:69:6:virtual void STM32DMA::initialize()	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:81:17:uint32_t STM32DMA::getChromARTInputFormat(touchgfx::Bitmap::BitmapFormat)	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:116:17:uint32_t STM32DMA::getChromARTOutputFormat(touchgfx::Bitmap::BitmapFormat)	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:149:16:virtual touchgfx::BlitOperations STM32DMA::getBlitCaps()	16	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:172:6:virtual void STM32DMA::setupDataCopy(const touchgfx::BlitOp&)	48	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:341:6:virtual void STM32DMA::setupDataFill(const touchgfx::BlitOp&)	32	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:409:6:void touchgfx::paint::setL8Palette(const uint8_t*)	16	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:420:6:void touchgfx::paint::tearDown()	4	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:437:6:void touchgfx::paint::rgb565::lineFromColor(uint16_t*, unsigned int, uint32_t, uint8_t, uint32_t)	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:487:6:void touchgfx::paint::rgb565::lineFromRGB565(uint16_t*, const uint16_t*, unsigned int, uint8_t)	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:531:6:void touchgfx::paint::rgb565::lineFromARGB8888(uint16_t*, const uint32_t*, unsigned int, uint8_t)	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:564:6:void touchgfx::paint::rgb565::lineFromL8RGB888(uint16_t*, const uint8_t*, unsigned int, uint8_t)	24	static
-C:/TouchGFXProjects/Mess_Display_BI/TouchGFX/target/generated/STM32DMA.cpp:629:6:void touchgfx::paint::rgb565::lineFromL8ARGB8888(uint16_t*, const uint8_t*, unsigned int, uint8_t)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:58:1:STM32DMA::STM32DMA()	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:63:1:STM32DMA::~STM32DMA()	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:63:1:virtual STM32DMA::~STM32DMA()	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:69:6:virtual void STM32DMA::initialize()	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:81:17:uint32_t STM32DMA::getChromARTInputFormat(touchgfx::Bitmap::BitmapFormat)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:116:17:uint32_t STM32DMA::getChromARTOutputFormat(touchgfx::Bitmap::BitmapFormat)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:149:16:virtual touchgfx::BlitOperations STM32DMA::getBlitCaps()	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:172:6:virtual void STM32DMA::setupDataCopy(const touchgfx::BlitOp&)	48	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:341:6:virtual void STM32DMA::setupDataFill(const touchgfx::BlitOp&)	32	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:409:6:void touchgfx::paint::setL8Palette(const uint8_t*)	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:420:6:void touchgfx::paint::tearDown()	4	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:437:6:void touchgfx::paint::rgb565::lineFromColor(uint16_t*, unsigned int, uint32_t, uint8_t, uint32_t)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:487:6:void touchgfx::paint::rgb565::lineFromRGB565(uint16_t*, const uint16_t*, unsigned int, uint8_t)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:531:6:void touchgfx::paint::rgb565::lineFromARGB8888(uint16_t*, const uint32_t*, unsigned int, uint8_t)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:564:6:void touchgfx::paint::rgb565::lineFromL8RGB888(uint16_t*, const uint8_t*, unsigned int, uint8_t)	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/generated/STM32DMA.cpp:629:6:void touchgfx::paint::rgb565::lineFromL8ARGB8888(uint16_t*, const uint8_t*, unsigned int, uint8_t)	24	static
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/DMA.hpp:87:7:touchgfx::LockFreeDMA_Queue::~LockFreeDMA_Queue()	16	static
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/DMA.hpp:87:7:virtual touchgfx::LockFreeDMA_Queue::~LockFreeDMA_Queue()	16	static

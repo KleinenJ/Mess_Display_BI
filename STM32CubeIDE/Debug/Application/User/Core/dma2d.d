@@ -1,5 +1,5 @@
 Application/User/Core/dma2d.o: \
- C:/TouchGFXProjects/Mess_Display_BI/Core/Src/dma2d.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/dma2d.c \
  ../../Core/Inc/dma2d.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \

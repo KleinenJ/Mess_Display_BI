@@ -14,7 +14,7 @@
 
 #include "edt_h7xx_eeprom_i2c.h"
 
-//#define B_SAMPLE
+#define B_SAMPLE
 
 // Globale Variablen für SD
 //FATFS fs;    // Dateisystem
@@ -90,15 +90,18 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 	modelInstance = this;
 
-	// request Data from A-Sample
-	#ifdef B_SAMPLE
-    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 for B-Samples
-	#else
-    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 for A-Samples
-	#endif
 
-    HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
-    HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+	this->activateHV(); // initial activation of HV
+
+	// request Data from A-Sample
+//	#ifdef B_SAMPLE
+//    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 for B-Samples
+//	#else
+//    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 for A-Samples
+//	#endif
+//
+//    HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+//    HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
     // check if A-Sample answered
     // if yes, set device type to "A"
     bLinType = 0;
@@ -114,7 +117,6 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 void Model::tick()
 {
-	uint8_t bSendSystemImage = 0;
 	process_CAN_messages();
 
     linTimeoutCounter++;		 // LIN-Timeout-Zähler hochzählen
@@ -131,8 +133,11 @@ void Model::tick()
 			#endif
 	    	HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
 	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+//
+//	        uint8_t tmp_rx[12];
+//	        HAL_UART_Receive(&huart6, tmp_rx, 12, 10); // 10ms Timeout
+
 	        tickCounter = 0;
-	       bSendSystemImage = 4;
 	    }
 
 	   HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
@@ -141,8 +146,8 @@ void Model::tick()
 	    {
 	       __disable_irq();					// Interrupts deaktivieren
 	       memcpy(tempRxData, RxData, 22);	// Kopiere RxData in den temporären Puffer
-	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
 	       __enable_irq();					// Interrupts wieder aktivieren
+	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
 	    }
 
 	    if (lastSize == 12)
@@ -161,9 +166,9 @@ void Model::tick()
 			linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
 	    }
 
-		#ifdef B_Sample
-			fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
-			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+		#ifdef B_SAMPLE
+			fLinIonVoltage = (-1.0) * (((tempRxData[20]&0x3) << 8) + (tempRxData[19])); 				// HV Ist-Spannung = Rohwert *40
+			fLinIonCurrent = (-1.0) * tempRxData[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
 		#else
 	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
 			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
@@ -272,7 +277,6 @@ void Model::process_CAN_messages()
 	uint32_t id;
 	char CRxData[10];
 	int16_t intData[4];
-	int16_t iRawIonCurrent;
 
 	float floatData[4];
 
@@ -386,60 +390,6 @@ void Model::process_CAN_messages()
 				fPolVoltage = (static_cast<float>(intData[1]) +4.0)*(-3.0f);
 				//fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-1.25f);
 				fIonCurrent = (static_cast<float>(intData[2]) / 10.0f) * (-0.8789f);
-				/*iRawIonCurrent = static_cast<float>(intData[2]);
-
-				if (iRawIonCurrent <= 127) // <= -10µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07717f));
-				}
-				else if (iRawIonCurrent <= 197) // <= -15µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07462f));
-				}
-				else if (iRawIonCurrent <= 272) // <= -20µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07279f));
-				}
-				else if (iRawIonCurrent <= 348) // <= -25µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07040f));
-				}
-				else if (iRawIonCurrent <= 388) // <= -30µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07603f));
-				}
-				else if (iRawIonCurrent <= 421) // <= -35µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.07933f));
-				}
-				else if (iRawIonCurrent <= 454) // <= -40µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.08263f));
-				}
-				else if (iRawIonCurrent <= 487) // <= -45µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.08593f));
-				}
-				else if (iRawIonCurrent <= 520) // <= -50µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.08923f));
-				}
-				else if (iRawIonCurrent <= 553) // <= -55µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.09253f));
-				}
-				else if (iRawIonCurrent <= 586) // <= -60µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.09583f));
-				}
-				else if (iRawIonCurrent <= 619) // <= -65µA
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.09913f));
-				}
-				else
-				{
-					fIonCurrent = (iRawIonCurrent * (-0.01f));
-				}*/
 
 				if(fIonVoltage > 0) fIonVoltage = 0;
 				if(fIonVoltage < -8000) fIonVoltage = -8000;
@@ -663,12 +613,13 @@ void Model::rearrangeRxData(uint8_t* data, uint8_t size)
 
 void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t current, uint8_t voltage, uint8_t blower)
 {
-    uint8_t TxData[9];
+    uint8_t TxData[11];
+    uint8_t LastCurrentValue;
 
 	#ifdef B_SAMPLE
-		if (current > 30)current= 30; // linit current settings
+		if (current > 60)current= 60; // limit current settings
 
-    	uint8_t uiSetCurrent = 255 - (19/2.5) * current;
+    	uint8_t uiSetCurrent = 255 - (19/2.5) * (current/2.0) - (2 * current/60); // (2 * current/60) is to compensate a nonlinearity which effects the result at higher currents
 
 		TxData[0] = 0x55;			// LIN Sync byte
 		TxData[1] = pid_Calc(0x20); // PID for B-Sample Labor-Frame
@@ -679,6 +630,8 @@ void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t curren
 		TxData[6] = 0xff;
 		TxData[7] = 0xff;
 		TxData[8] = 0xff;
+		TxData[9] = 0xff;
+		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
 	#else
 		TxData[0] = 0x55;			// LIN Sync byte
 		TxData[1] = pid_Calc(0x0A); // PID
@@ -691,10 +644,62 @@ void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t curren
 		TxData[8] = checksum_Calc(TxData[1], &TxData[2], 6);		// Checksum erzeugen
 	#endif
 
+	if (LastCurrentValue != current)
+	{
+		HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+		HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+		LastCurrentValue = current;
+	}
+
+}
+
+void Model::activateHV()
+{
+    uint8_t TxData[11];
+
+	#ifdef B_SAMPLE
+		TxData[0] = 0x55;			// LIN Sync byte
+		TxData[1] = pid_Calc(0x06); // PID PCUe Frame
+		TxData[2] = 0x16;			// 0x1? turns HV on, FAN-Stage = 6 and no Test selected
+		TxData[3] = 0x00;			// PCU address
+		TxData[4] = 0x41;			// ext. temp. 25°C
+		TxData[5] = 0xfd;			// int. temp not available
+		TxData[6] = 0x00;			// rel. humidity mot available
+		TxData[7] = 0xfd;			// rel. humidity mot available
+		TxData[8] = 0xda;			// int vent flap "10" and PCU-Mode
+		TxData[9] = 0xff;			// reserve
+		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
+	#else
+		// t.b.d.
+	#endif
+
 	HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
     HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
 }
 
+void Model::disableHV()
+{
+    uint8_t TxData[11];
+
+	#ifdef B_SAMPLE
+		TxData[0] = 0x55;			// LIN Sync byte
+		TxData[1] = pid_Calc(0x06); // PID PCUe Frame
+		TxData[2] = 0x0e;			// 0x0? turns HV off
+		TxData[3] = 0x00;
+		TxData[4] = 0xfe;
+		TxData[5] = 0xfe;
+		TxData[6] = 0x00;
+		TxData[7] = 0xfe;
+		TxData[8] = 0xc3;
+		TxData[9] = 0xff;
+		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
+	#else
+		// t.b.d.
+	#endif
+
+	HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+    HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+}
 
 
 void Model::receiveLINStatusFrame()

@@ -61,11 +61,6 @@ void MX_ADC3_Init(void)
   {
     Error_Handler();
   }
-  hadc3.Init.Resolution = ADC_RESOLUTION_16B;
-  if (HAL_ADC_Init(&hadc3) != HAL_OK)
-  {
-    Error_Handler();
-  }
 
   /** Configure Regular Channel
   */

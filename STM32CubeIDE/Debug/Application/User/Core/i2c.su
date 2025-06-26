@@ -1,4 +1,4 @@
-C:/TouchGFXProjects/Mess_Display_BI/Core/Src/i2c.c:31:6:MX_I2C2_Init	8	static
-C:/TouchGFXProjects/Mess_Display_BI/Core/Src/i2c.c:74:6:MX_I2C4_Init	8	static
-C:/TouchGFXProjects/Mess_Display_BI/Core/Src/i2c.c:117:6:HAL_I2C_MspInit	256	static
-C:/TouchGFXProjects/Mess_Display_BI/Core/Src/i2c.c:198:6:HAL_I2C_MspDeInit	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/i2c.c:31:6:MX_I2C2_Init	8	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/i2c.c:74:6:MX_I2C4_Init	8	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/i2c.c:117:6:HAL_I2C_MspInit	256	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/i2c.c:198:6:HAL_I2C_MspDeInit	16	static

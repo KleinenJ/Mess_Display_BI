@@ -1,4 +1,5 @@
-src/ff.o: C:/TouchGFXProjects/Mess_Display_BI/FATFS/src/ff.c \
+src/ff.o: \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/ff.c \
  ../../FATFS/include/ff.h ../../FATFS/include/integer.h \
  ../../FATFS/include/ffconf.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \

@@ -1,5 +1,5 @@
 src/edt_h7xx_eeprom_i2c.o: \
- C:/TouchGFXProjects/Mess_Display_BI/EEPROM/src/edt_h7xx_eeprom_i2c.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/EEPROM/src/edt_h7xx_eeprom_i2c.c \
  ../../Drivers/Vendor/Driver/edt_h7xx_eeprom_i2c.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \

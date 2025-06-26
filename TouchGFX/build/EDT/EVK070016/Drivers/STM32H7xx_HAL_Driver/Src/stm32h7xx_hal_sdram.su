@@ -22,5 +22,5 @@ stm32h7xx_hal_sdram.c:1154:19:HAL_SDRAM_SetAutoRefreshNumber	16	static
 stm32h7xx_hal_sdram.c:1186:10:HAL_SDRAM_GetModeStatus	16	static
 stm32h7xx_hal_sdram.c:1217:24:HAL_SDRAM_GetState	16	static
 stm32h7xx_hal_sdram.c:1238:13:SDRAM_DMACplt	24	static
-stm32h7xx_hal_sdram.c:1260:13:SDRAM_DMACpltProt	24	static
-stm32h7xx_hal_sdram.c:1282:13:SDRAM_DMAError	24	static
+stm32h7xx_hal_sdram.c:1261:13:SDRAM_DMACpltProt	24	static
+stm32h7xx_hal_sdram.c:1284:13:SDRAM_DMAError	24	static
