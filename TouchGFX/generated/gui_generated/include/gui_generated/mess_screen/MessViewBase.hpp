@@ -95,8 +95,8 @@ protected:
     touchgfx::TextArea Text_HV_SW;
     touchgfx::TextArea Text_HV_I_Ist;
     touchgfx::TextArea Text_PI;
-    touchgfx::TextArea Version;
     touchgfx::TextArea Adresse;
+    touchgfx::TextArea Version;
     touchgfx::TextArea Text_P;
     touchgfx::TextArea Text_L;
     touchgfx::TextArea Text_F;

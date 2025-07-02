@@ -82,6 +82,63 @@ uint8_t tickCounter = 0;
 //#define SD_CS_GPIO_Port GPIOA  // Port A für den CS-Pin (PA15)
 //#define SD_CS_Pin GPIO_PIN_15  // Pin 15 als CS-Pin
 
+/// Main loop state machine
+#define MSM_INIT 0
+#define MSM_ENABLE_HV 1
+#define MSM_SET_CURRENT 2
+#define MSM_REQ_PCUE 3
+#define MSM_READ_PCUE 4
+#define MSM_START_DIAG 5
+#define MSM_REQ_DIAG_1 6
+#define MSM_READ_DIAG_1 7
+#define MSM_REQ_DIAG_2 8
+#define MSM_READ_DIAG_2 9
+#define MSM_REQ_DIAG_3 10
+#define MSM_READ_DIAG_3 11
+#define MSM_REQ_DIAG_4 12
+#define MSM_READ_DIAG_4 13
+#define MSM_REQ_DIAG_5 14
+#define MSM_READ_DIAG_5 15
+#define MSM_REQ_DIAG_6 16
+#define MSM_READ_DIAG_6 17
+#define MSM_READ_CAN 18
+#define MSM_CALC_SYSIMAGE 19
+#define MSM_SEND_SYSIMAGE_CAN 20
+
+uint8_t uiMainStateMachine = MSM_INIT;
+
+uint16_t auiLinDiagWord[16];
+
+HAL_StatusTypeDef LinStatus;
+
+uint8_t auiLinTx[11];
+uint8_t auiLinRx[22];
+
+#define PCU_OFF 0
+#define PCU_ON 1
+#define PCU_INIT 2
+uint8_t bPcuState;
+
+bool xPcuStatusLed;
+
+#define PCU_ERR_NONE 0
+#define PCU_ERR_MEM 1
+#define PCU_ERR_HV 2
+uint8_t bPcuErrorInt;
+
+bool xPcuLin2Error;
+bool xPcuDefect;
+
+uint16_t bPcuOperatingHours =  ((uint16_t)auiLinRx[4]<<8) | auiLinRx[3];
+
+
+uint8_t lin_diag_request[8] = {0x7F, 0x03, 0x22, 0xFD, 0x00, 0xFF, 0xFF, 0xFF};
+
+// Empfangspuffer für 6 Antwort-Frames (je 8 Bytes)
+#define NUM_RESP_FRAMES 6
+uint8_t lin_diag_response[NUM_RESP_FRAMES][8];
+
+
 Model* modelInstance = nullptr; // Globale Instanz von Model
 
 
@@ -91,7 +148,7 @@ Model::Model() : modelListener(0)//, hviValue(0)
 	modelInstance = this;
 
 
-	this->activateHV(); // initial activation of HV
+//	this->activateHV(); // initial activation of HV
 
 	// request Data from A-Sample
 //	#ifdef B_SAMPLE
@@ -108,7 +165,7 @@ Model::Model() : modelListener(0)//, hviValue(0)
     // if else request Data fom B-Sample
 
     // check if B-Sample answered
-
+    // this->readLinDiagnose();
     // if yes, set device type to "B"
     // bLinType = 1;
     // else set device type to "X"
@@ -117,65 +174,346 @@ Model::Model() : modelListener(0)//, hviValue(0)
 
 void Model::tick()
 {
+
 	process_CAN_messages();
 
-    linTimeoutCounter++;		 // LIN-Timeout-Zähler hochzählen
+	switch (uiMainStateMachine)
+	{
+	case  MSM_INIT:					uiMainStateMachine= MSM_ENABLE_HV;
+									/// here could ba the place for the hv-device detection
 
-	const uint32_t tickThreshold = 75;
-	tickCounter++;
+									break;
 
-	    if (tickCounter >= tickThreshold)	        	// Anfrage an den HV-Slave nach 75 Ticks senden
-	    {
-			#ifdef B_SAMPLE
-	    		uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 --> B-Muster
-	        #else
-	    		uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 --> A-Muster
-			#endif
-	    	HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
-	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+	case  MSM_ENABLE_HV:			///
+									auiLinTx[0] = 0x55;			// LIN Sync byte
+									auiLinTx[1] = pid_Calc(0x06); // PID for B-Sample PCUe-Frame
+									auiLinTx[2] = 0x1e;			// Select Labor-Frame Level 2
+									auiLinTx[3] = 0x00;
+									auiLinTx[4] = 0xfe;
+									auiLinTx[5] = 0xfe;
+									auiLinTx[6] = 0x00;
+									auiLinTx[7] = 0xfe;
+									auiLinTx[8] = 0xce;
+									auiLinTx[9] = 0xff;
+									auiLinTx[10] = checksum_Calc(auiLinTx[1], &auiLinTx[2], 8);
+
+									HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+									HAL_UART_Transmit(&huart6, auiLinTx, sizeof(auiLinTx), 100);	// Daten an LIN-Transceiver senden
+
+									uiMainStateMachine= MSM_SET_CURRENT;
+									break;
+
+	case  MSM_SET_CURRENT:			if (fLinIonSetCurrent > 60) fLinIonSetCurrent= 60; // limit current settings ---> doesnt belong here ... needs to be handeled in update function for fLinIonSetCurrent
+
+									/// prepare lin control frame
+									auiLinTx[0] = 0x55;			// LIN Sync byte
+									auiLinTx[1] = pid_Calc(0x20); // PID for B-Sample Labor-Frame
+									auiLinTx[2] = 0x02;			// Select Labor-Frame Level 2
+									auiLinTx[3] = 255 - (19/2.5) * (fLinIonSetCurrent/2.0) - (2 * fLinIonSetCurrent/60); //(2 * fLinIonSetCurrent/60) is to compensate a nonlinearity which effects the result at higher currents
+									auiLinTx[4] = 0xff;
+									auiLinTx[5] = 0xff;
+									auiLinTx[6] = 0xff;
+									auiLinTx[7] = 0xff;
+									auiLinTx[8] = 0xff;
+									auiLinTx[9] = 0xff;
+									auiLinTx[10] = checksum_Calc(auiLinTx[1], &auiLinTx[2], 8);
+
+									/// send lin control frame
+									HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+									HAL_UART_Transmit(&huart6, auiLinTx, sizeof(auiLinTx), 100);	// Daten an LIN-Transceiver senden
+
+									/// switch to read diagnose frame as next step
+									uiMainStateMachine= MSM_REQ_PCUE;
+									break;
+
+	case  MSM_REQ_PCUE:				/// start lin diagnose service
+
+									auiLinTx[0] = 0x55;
+									auiLinTx[1] = pid_Calc(0x09); // Request PCUs-Frame
+
+									__HAL_UART_FLUSH_DRREGISTER(&huart6);
+									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+
+									HAL_UARTEx_ReceiveToIdle_IT(&huart6, auiLinRx, 8);
+
+									uiMainStateMachine= MSM_READ_PCUE;
+									break;
+
+	case  MSM_READ_PCUE:			/// start lin diagnose service
+//									while (HAL_UART_Receive(&huart6, auiLinRx, 8, 2000)!= HAL_OK);
+//									LinStatus = HAL_UART_Receive(&huart6, auiLinRx, 8, 2000);
+
+									bPcuState =  auiLinRx[1] & 0x03;
+									xPcuStatusLed =  auiLinRx[1] & 0x04;
+									bPcuErrorInt =  auiLinRx[1] & 0x38;
+									xPcuLin2Error =  auiLinRx[1] & 0x40;
+									xPcuDefect =  auiLinRx[1] & 0x80;
+
+									bPcuOperatingHours =  ((uint16_t)auiLinRx[5]<<8) | auiLinRx[4];
+
+									uiMainStateMachine= MSM_START_DIAG;
+									break;
+
+	case  MSM_START_DIAG:			/// start lin diagnose service
+
+									/// request diagnose Service
+									auiLinTx[0] = 0x55;			// LIN Sync byte
+									auiLinTx[1] = pid_Calc(0x3c); // PID LIN-Diagnose REquest Frame
+									auiLinTx[2] = 0x7f;			// Select Labor-Frame Level 2
+									auiLinTx[3] = 0x03;
+									auiLinTx[4] = 0x22;
+									auiLinTx[5] = 0xfd;
+									auiLinTx[6] = 0x00;
+									auiLinTx[7] = 0xff;
+									auiLinTx[8] = 0xff;
+									auiLinTx[9] = 0xff;
+									auiLinTx[10] = LIN_ClassicChecksum(&auiLinTx[2], 8);
+
+									/// send lin control frame
+//									HAL_UARTEx_ReceiveToIdle_IT(&huart6, auiLinTx, sizeof(auiLinTx));
+
+									HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+									HAL_UART_Transmit(&huart6, auiLinTx, sizeof(auiLinTx), 100);	// Daten an LIN-Transceiver senden
+
+									uiMainStateMachine= MSM_REQ_DIAG_1;
+									break;
+
+	case  MSM_REQ_DIAG_1:			/// start lin diagnose service
+									auiLinTx[0] = 0x55; // LIN-PID 0x09 --> B-Muster
+									auiLinTx[1] = pid_Calc(0x3d); // Request Diagnose response
+
+									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+
+									uiMainStateMachine= MSM_READ_DIAG_1;
+									break;
+
+	case  MSM_READ_DIAG_1:			/// start lin diagnose service
+									HAL_UART_Receive(&huart6, auiLinRx, 8, 100);
+
+									auiLinDiagWord[0] = (uint16_t) ((auiLinRx[7] << 8)|auiLinRx[6]);
+
+									uiMainStateMachine= MSM_REQ_DIAG_2;
+									break;
+
+	case  MSM_REQ_DIAG_2:			/// start lin diagnose service
+									auiLinTx[0] = 0x55; // LIN-PID 0x09 --> B-Muster
+									auiLinTx[1] = pid_Calc(0x3d); // Request Diagnose response
+
+									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+
+									uiMainStateMachine= MSM_READ_DIAG_2;
+									break;
+
+	case  MSM_READ_DIAG_2:			/// start lin diagnose service
+									HAL_UART_Receive(&huart6, auiLinRx, 8, 100);
+
+									auiLinDiagWord[1] = (uint16_t) ((auiLinRx[3] << 8)|auiLinRx[2]);
+									auiLinDiagWord[2] = (uint16_t) ((auiLinRx[5] << 8)|auiLinRx[4]);
+									auiLinDiagWord[3] = (uint16_t) ((auiLinRx[7] << 8)|auiLinRx[6]);
+
+									uiMainStateMachine= MSM_REQ_DIAG_3;
+									break;
+
+	case  MSM_REQ_DIAG_3:			/// start lin diagnose service
+									auiLinTx[0] = 0x55; // LIN-PID 0x09 --> B-Muster
+									auiLinTx[1] = pid_Calc(0x3d); // Request Diagnose response
+
+									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+
+									uiMainStateMachine= MSM_READ_DIAG_3;
+									break;
+
+	case  MSM_READ_DIAG_3:			/// start lin diagnose service
+									HAL_UART_Receive(&huart6, auiLinRx, 8, 100);
+
+									auiLinDiagWord[4] = (uint16_t) ((auiLinRx[3] << 8)|auiLinRx[2]);
+									auiLinDiagWord[5] = (uint16_t) ((auiLinRx[5] << 8)|auiLinRx[4]);
+									auiLinDiagWord[6] = (uint16_t) ((auiLinRx[7] << 8)|auiLinRx[6]);
+									uiMainStateMachine= MSM_REQ_DIAG_4;
+									break;
+
+	case  MSM_REQ_DIAG_4:			/// start lin diagnose service
+									auiLinTx[0] = 0x55; // LIN-PID 0x09 --> B-Muster
+									auiLinTx[1] = pid_Calc(0x3d); // Request Diagnose response
+
+									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+
+									uiMainStateMachine= MSM_READ_DIAG_4;
+									break;
+
+	case  MSM_READ_DIAG_4:			/// start lin diagnose service
+									HAL_UART_Receive(&huart6, auiLinRx, 8, 100);
+
+									auiLinDiagWord[7] = (uint16_t) ((auiLinRx[3] << 8)|auiLinRx[2]);
+									auiLinDiagWord[8] = (uint16_t) ((auiLinRx[5] << 8)|auiLinRx[4]);
+									auiLinDiagWord[9] = (uint16_t) ((auiLinRx[7] << 8)|auiLinRx[6]);
+
+									uiMainStateMachine= MSM_REQ_DIAG_5;
+									break;
+
+	case  MSM_REQ_DIAG_5:			/// start lin diagnose service
+									auiLinTx[0] = 0x55; // LIN-PID 0x09 --> B-Muster
+									auiLinTx[1] = pid_Calc(0x3d); // Request Diagnose response
+
+									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+
+									uiMainStateMachine= MSM_READ_DIAG_5;
+									break;
+
+	case  MSM_READ_DIAG_5:			/// start lin diagnose service
+									HAL_UART_Receive(&huart6, auiLinRx, 8, 100);
+
+									auiLinDiagWord[10] = (uint16_t) ((auiLinRx[3] << 8)|auiLinRx[2]);
+									auiLinDiagWord[11] = (uint16_t) ((auiLinRx[5] << 8)|auiLinRx[4]);
+									auiLinDiagWord[12] = (uint16_t) ((auiLinRx[7] << 8)|auiLinRx[6]);
+
+									uiMainStateMachine= MSM_REQ_DIAG_6;
+									break;
+
+	case  MSM_REQ_DIAG_6:			/// start lin diagnose service
+									auiLinTx[0] = 0x55; // LIN-PID 0x09 --> B-Muster
+									auiLinTx[1] = pid_Calc(0x3d); // Request Diagnose response
+
+									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+
+									uiMainStateMachine= MSM_READ_DIAG_6;
+									break;
+
+	case  MSM_READ_DIAG_6:			/// start lin diagnose service
+									HAL_UART_Receive(&huart6, auiLinRx, 8, 100);
+
+									auiLinDiagWord[13] = (uint16_t) ((auiLinRx[3] << 8)|auiLinRx[2]);
+									auiLinDiagWord[14] = (uint16_t) ((auiLinRx[5] << 8)|auiLinRx[4]);
+									auiLinDiagWord[15] = (uint16_t) ((auiLinRx[7] << 8)|auiLinRx[6]);
+
+									fLinIonVoltage  = -1.0f * auiLinDiagWord[13];
+									fLinIonCurrent  = -1.0f * auiLinDiagWord[7];
+
+									uiMainStateMachine= MSM_READ_CAN;
+									break;
+
+	case  MSM_READ_CAN:				uiMainStateMachine= MSM_CALC_SYSIMAGE;
+									break;
+
+	case  MSM_CALC_SYSIMAGE:		///
+									uiMainStateMachine= MSM_SEND_SYSIMAGE_CAN;
+									break;
+
+	case  MSM_SEND_SYSIMAGE_CAN:	/// 1. (0x005a bzw. 90|dec) Luftwerte vor dem Filter
+									/// [0-1] fTempVF
+									/// [2-3] fHumidVF
+									///	[4-5] fPvF10
+									/// [6-7] fPvF25
+									this->fnSendFloatsViaCAN (0x005a, ((fTempVF * 10.0f)), (fHumidVF * 10.0f), (fPvF10 * 10.0f), (fPvF25 * 10.0f));
+
+									// 2. (0x005b bzw. 91|dec) Elektrische Werte des Filters
+									/// [0-1] fIonVoltage
+									/// [2-3] fIonCurrent
+									///	[4-5] fPolVoltage
+									/// [6-7] Reserve
+									this->fnSendFloatsViaCAN(0x005b, fIonVoltage, (fIonCurrent * 10.0f), fPolVoltage, 0.0f);
+									// 3. (0x005c bzw. 92|dec)LIN-Werte der HV-Quelle
+									/// [0-1] 	fLinIonVoltage
+									/// [2-3] 	fLinIonCurrent
+									///	[4-5] 	fLinIonSetCurrent
+									/// [6-7] Reserve
+									this->fnSendFloatsViaCAN(0x005c, fLinIonVoltage, (fLinIonCurrent * 10.0f), (fLinIonSetCurrent * 10.0f), 0.0f);
+
+									// 4. (0x005d bzw. 93|dec)Luftwerte nach dem Filter
+									/// [0-1] fTempNF
+									/// [2-3] fHumidNF
+									///	[4-5] fPnF10
+									/// [6-7] fPnF25
+									this->fnSendFloatsViaCAN(0x005d, ((fTempNF * 10.0f)), (fHumidNF * 10.0f), (fPnF10 * 10.0f), (fPnF25 * 10.0f));
+
+									uiMainStateMachine= MSM_SET_CURRENT;
+									break;
+
+	default:						uiMainStateMachine= MSM_INIT;
+									break;
+	}
+
+
+////    linTimeoutCounter++;		 // LIN-Timeout-Zähler hochzählen
+////
+////	const uint32_t tickThreshold = 75;
+////	tickCounter++;
 //
-//	        uint8_t tmp_rx[12];
-//	        HAL_UART_Receive(&huart6, tmp_rx, 12, 10); // 10ms Timeout
-
-	        tickCounter = 0;
-	    }
-
-	   HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
-
-	    if (RxData[10] != 0)  // Prüfen auf Datenempfang
-	    {
-	       __disable_irq();					// Interrupts deaktivieren
-	       memcpy(tempRxData, RxData, 22);	// Kopiere RxData in den temporären Puffer
-	       __enable_irq();					// Interrupts wieder aktivieren
-	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
-	    }
-
-	    if (lastSize == 12)
-	    {
-			modelListener->onLINStatusReceived(tempRxData);
-			linTimeoutCounter = 0;
-	    }
-	    else if (linTimeoutCounter > LIN_TIMEOUT_THRESHOLD)	// Timeout erkannt = keine Daten
-	    {
-			linStatus[22] = {0};
-			__disable_irq();
-			memset(RxData, 0, sizeof(RxData));
-			memset(tempRxData, 0, sizeof(tempRxData));
-			__enable_irq();
-			modelListener->onLINStatusReceived(tempRxData);		// 0 Senden wenn keine Daten mehr empfangen werden
-			linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
-	    }
-
-		#ifdef B_SAMPLE
-			fLinIonVoltage = (-1.0) * (((tempRxData[20]&0x3) << 8) + (tempRxData[19])); 				// HV Ist-Spannung = Rohwert *40
-			fLinIonCurrent = (-1.0) * tempRxData[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
-		#else
-	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
-			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
-		#endif
-
-
-		sendSystemImageOverCAN();
+//	/// LIN send controll command
+//
+//
+//
+//	//	switch(LIN_STATE)
+////	{
+////	case LIN_DIAG_START:
+////							this->readLinDiagnose();
+////
+////	}
+////
+//	    if (tickCounter >= tickThreshold)	        	// Anfrage an den HV-Slave nach 75 Ticks senden
+//	    {
+////			#ifdef B_SAMPLE
+////	    		uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 --> B-Muster
+////	        #else
+////	    		uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 --> A-Muster
+////			#endif
+////	    	HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+////	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+//
+//	        this->readLinDiagnose();
+//	        uint8_t TxData[2] = {0x55, pid_Calc(0x3d)}; // LIN-PID 0x09 --> B-Muster
+//	        HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+//	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
+////
+////	        uint8_t tmp_rx[12];
+////	        HAL_UART_Receive(&huart6, tmp_rx, 12, 10); // 10ms Timeout
+//
+//	        tickCounter = 0;
+//	    }
+//
+//	   HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
+//
+//	    if (RxData[10] != 0)  // Prüfen auf Datenempfang
+//	    {
+//	       __disable_irq();					// Interrupts deaktivieren
+//	       memcpy(tempRxData, RxData, 22);	// Kopiere RxData in den temporären Puffer
+//	       __enable_irq();					// Interrupts wieder aktivieren
+//	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
+//	    }
+//
+//	    if (lastSize == 12)
+//	    {
+//			modelListener->onLINStatusReceived(tempRxData);
+//			linTimeoutCounter = 0;
+//	    }
+//	    else if (linTimeoutCounter > LIN_TIMEOUT_THRESHOLD)	// Timeout erkannt = keine Daten
+//	    {
+//			linStatus[22] = {0};
+//			__disable_irq();
+//			memset(RxData, 0, sizeof(RxData));
+//			memset(tempRxData, 0, sizeof(tempRxData));
+//			__enable_irq();
+//			modelListener->onLINStatusReceived(tempRxData);		// 0 Senden wenn keine Daten mehr empfangen werden
+//			linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
+//	    }
+//
+//		#ifdef B_SAMPLE
+//			fLinIonVoltage = (-1.0) * (((tempRxData[20]&0x3) << 8) + (tempRxData[19])); 				// HV Ist-Spannung = Rohwert *40
+//			fLinIonCurrent = (-1.0) * tempRxData[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+//		#else
+//	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
+//			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+//		#endif
+//
+//
+//		sendSystemImageOverCAN();
 
 
 	   	state_SDCS = getSDCS();
@@ -613,43 +951,50 @@ void Model::rearrangeRxData(uint8_t* data, uint8_t size)
 
 void Model::sendLINControlFrame(uint8_t hv_on, uint8_t regulator, uint8_t current, uint8_t voltage, uint8_t blower)
 {
-    uint8_t TxData[11];
-    uint8_t LastCurrentValue;
+//    uint8_t TxData[11];
+//    uint8_t LastCurrentValue;
 
-	#ifdef B_SAMPLE
-		if (current > 60)current= 60; // limit current settings
 
-    	uint8_t uiSetCurrent = 255 - (19/2.5) * (current/2.0) - (2 * current/60); // (2 * current/60) is to compensate a nonlinearity which effects the result at higher currents
+	fLinIonCurrent = (-1.0) * (current);
 
-		TxData[0] = 0x55;			// LIN Sync byte
-		TxData[1] = pid_Calc(0x20); // PID for B-Sample Labor-Frame
-		TxData[2] = 0x02;			// Select Labor-Frame Level 2
-		TxData[3] = uiSetCurrent;
-		TxData[4] = 0xff;
-		TxData[5] = 0xff;
-		TxData[6] = 0xff;
-		TxData[7] = 0xff;
-		TxData[8] = 0xff;
-		TxData[9] = 0xff;
-		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
-	#else
-		TxData[0] = 0x55;			// LIN Sync byte
-		TxData[1] = pid_Calc(0x0A); // PID
-		TxData[2] = (hv_on & 0x01) | ((regulator & 0x03) << 1);
-		TxData[3] = 0;
-		TxData[4] = current;
-		TxData[5] = voltage;
-		TxData[6] = (blower & 0x0F) << 4;
-		TxData[7] = 0;
-		TxData[8] = checksum_Calc(TxData[1], &TxData[2], 6);		// Checksum erzeugen
-	#endif
+	fLinIonVoltage = (-1.0) * (voltage);
 
-	if (LastCurrentValue != current)
-	{
-		HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
-		HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
-		LastCurrentValue = current;
-	}
+//
+//
+//	#ifdef B_SAMPLE
+//		if (current > 60)current= 60; // limit current settings
+//
+//    	uint8_t uiSetCurrent = 255 - (19/2.5) * (current/2.0) - (2 * current/60); // (2 * current/60) is to compensate a nonlinearity which effects the result at higher currents
+//
+//		TxData[0] = 0x55;			// LIN Sync byte
+//		TxData[1] = pid_Calc(0x20); // PID for B-Sample Labor-Frame
+//		TxData[2] = 0x02;			// Select Labor-Frame Level 2
+//		TxData[3] = uiSetCurrent;
+//		TxData[4] = 0xff;
+//		TxData[5] = 0xff;
+//		TxData[6] = 0xff;
+//		TxData[7] = 0xff;
+//		TxData[8] = 0xff;
+//		TxData[9] = 0xff;
+//		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
+//	#else
+//		TxData[0] = 0x55;			// LIN Sync byte
+//		TxData[1] = pid_Calc(0x0A); // PID
+//		TxData[2] = (hv_on & 0x01) | ((regulator & 0x03) << 1);
+//		TxData[3] = 0;
+//		TxData[4] = current;
+//		TxData[5] = voltage;
+//		TxData[6] = (blower & 0x0F) << 4;
+//		TxData[7] = 0;
+//		TxData[8] = checksum_Calc(TxData[1], &TxData[2], 6);		// Checksum erzeugen
+//	#endif
+//
+//	if (LastCurrentValue != current)
+//	{
+//		HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+//		HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+//		LastCurrentValue = current;
+//	}
 
 }
 
@@ -667,6 +1012,30 @@ void Model::activateHV()
 		TxData[6] = 0x00;			// rel. humidity mot available
 		TxData[7] = 0xfd;			// rel. humidity mot available
 		TxData[8] = 0xda;			// int vent flap "10" and PCU-Mode
+		TxData[9] = 0xff;			// reserve
+		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
+	#else
+		// t.b.d.
+	#endif
+
+	HAL_LIN_SendBreak(&huart6);									// Sendet LIN Break
+    HAL_UART_Transmit(&huart6, TxData, sizeof(TxData), 1000);	// Daten an LIN-Transceiver senden
+}
+
+void Model::readLinDiagnose()
+{
+    uint8_t TxData[11];
+
+	#ifdef B_SAMPLE
+		TxData[0] = 0x55;			// LIN Sync byte
+		TxData[1] = pid_Calc(0x3c); // Diagnose frame request
+		TxData[2] = 0x7f;			//
+		TxData[3] = 0x03;			//
+		TxData[4] = 0x22;			//
+		TxData[5] = 0xfd;			//
+		TxData[6] = 0x00;			//
+		TxData[7] = 0xff;			//
+		TxData[8] = 0xff;			// int vent flap "10" and PCU-Mode
 		TxData[9] = 0xff;			// reserve
 		TxData[10] = checksum_Calc(TxData[1], &TxData[2], 8);
 	#else
@@ -704,21 +1073,21 @@ void Model::disableHV()
 
 void Model::receiveLINStatusFrame()
 {
-	#ifdef B_SAMPLE
-    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // Sync Byte and PID for receiving status from B-Samples (0x09)
-	#else
-    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // Sync Byte and PID for receiving status from A-Samples (0x10)
-	#endif
-
-    HAL_LIN_SendBreak(&huart6); 				// Sendet LIN Break
-    HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sendet Sync und PID
+//	#ifdef B_SAMPLE
+//    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // Sync Byte and PID for receiving status from B-Samples (0x09)
+//	#else
+//    	uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // Sync Byte and PID for receiving status from A-Samples (0x10)
+//	#endif
+//
+//    HAL_LIN_SendBreak(&huart6); 				// Sendet LIN Break
+//    HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sendet Sync und PID
 }
 
 
 uint8_t Model::receiveInitialHviValue()
 {
-    receiveLINStatusFrame(); // sendet  Anfrage und ruft  Status ab
-    return tempRxData[15];	// Status zurückgeben
+//    receiveLINStatusFrame(); // sendet  Anfrage und ruft  Status ab
+//    return tempRxData[15];	// Status zurückgeben
 }
 
 
@@ -761,6 +1130,26 @@ uint8_t Model::checksum_Calc(uint8_t PID, uint8_t *data, uint8_t size)	// LIN ch
    return ~sum & 0xFF;
  }
 
+// data: Pointer auf die Datenbytes
+// length: Anzahl der Datenbytes (1..8)
+uint8_t Model::LIN_ClassicChecksum(uint8_t *data, uint8_t length)
+{
+    uint16_t sum = 0;
+
+    // Alle Datenbytes aufsummieren
+    for (uint8_t i = 0; i < length; i++)
+    {
+        sum += data[i];
+        // Carry-Over berücksichtigen
+        if (sum > 0xFF)
+        {
+            sum -= 0xFF;
+        }
+    }
+
+    // 1-Komplement bilden
+    return (uint8_t)(~sum);
+}
 
     bool Model::validateLINData(uint8_t *data)
     {

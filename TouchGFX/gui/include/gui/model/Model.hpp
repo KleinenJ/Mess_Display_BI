@@ -48,6 +48,7 @@ public:
     bool getSDCS();
     void updatefLinIonSetCurrent(int value);
     void sendSystemImageOverCAN();
+    void readLinDiagnose();
 
     void activateHV();
     void disableHV();
@@ -57,6 +58,7 @@ protected:
 
 private:
     uint8_t checksum_Calc(uint8_t PID, uint8_t *data, uint8_t size);
+    uint8_t LIN_ClassicChecksum(uint8_t *data, uint8_t length);
     uint8_t pid_Calc(uint8_t ID);
     uint32_t tickCounter;
     //uint8_t hviValue;

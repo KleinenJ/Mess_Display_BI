@@ -315,17 +315,17 @@ MessViewBase::MessViewBase() :
     Text_PI.setTypedText(touchgfx::TypedText(T___SINGLEUSE_SBFF));
     add(Text_PI);
 
-    Version.setXY(960, 585);
-    Version.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    Version.setLinespacing(0);
-    Version.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ATVF));
-    add(Version);
-
     Adresse.setXY(16, 531);
     Adresse.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     Adresse.setLinespacing(0);
     Adresse.setTypedText(touchgfx::TypedText(T___SINGLEUSE_KARE));
     add(Adresse);
+
+    Version.setXY(960, 585);
+    Version.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    Version.setLinespacing(0);
+    Version.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ATVF));
+    add(Version);
 
     Text_P.setPosition(31, 3, 262, 49);
     Text_P.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));

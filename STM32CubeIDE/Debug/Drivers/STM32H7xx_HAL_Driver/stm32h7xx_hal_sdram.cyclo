@@ -22,5 +22,5 @@ C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_
 C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c:1186:10:HAL_SDRAM_GetModeStatus	1
 C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c:1217:24:HAL_SDRAM_GetState	1
 C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c:1238:13:SDRAM_DMACplt	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c:1260:13:SDRAM_DMACpltProt	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c:1282:13:SDRAM_DMAError	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c:1261:13:SDRAM_DMACpltProt	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c:1284:13:SDRAM_DMAError	1
