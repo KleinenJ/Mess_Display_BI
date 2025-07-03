@@ -111,8 +111,13 @@ uint16_t auiLinDiagWord[16];
 
 HAL_StatusTypeDef LinStatus;
 
+volatile uint8_t bLinRxDone = 0;
+
 uint8_t auiLinTx[11];
 uint8_t auiLinRx[22];
+uint8_t auiLinRxBuffer[22];
+
+uint8_t uiBufferSize;
 
 #define PCU_OFF 0
 #define PCU_ON 1
@@ -141,6 +146,13 @@ uint8_t lin_diag_response[NUM_RESP_FRAMES][8];
 
 Model* modelInstance = nullptr; // Globale Instanz von Model
 
+//void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+//{
+//    if (huart->Instance == USART6)
+//    {
+//        bLinRxDone = 1;
+//    }
+//}
 
 Model::Model() : modelListener(0)//, hviValue(0)
 {
@@ -228,31 +240,68 @@ void Model::tick()
 
 	case  MSM_REQ_PCUE:				/// start lin diagnose service
 
+									// RX-Register sicher leeren
+
+
+									// Alle Bytes abholen
+									while (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_RXNE)) {
+									    volatile uint8_t dummy = (uint8_t)(huart6.Instance->RDR);
+									}
+
+									// Overrun Error löschen
+									if (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_ORE)) {
+									    __HAL_UART_CLEAR_OREFLAG(&huart6);
+									}
+									//
+									// LIN Break senden
+									HAL_LIN_SendBreak(&huart6);
+
+									// Daten vorbereiten
 									auiLinTx[0] = 0x55;
-									auiLinTx[1] = pid_Calc(0x09); // Request PCUs-Frame
+									auiLinTx[1] = pid_Calc(0x09);
 
-									__HAL_UART_FLUSH_DRREGISTER(&huart6);
-									HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
-									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100); // Sync Byte und PID für Statusabfrage senden
+									// Sync + PID senden
+									HAL_UART_Transmit(&huart6, auiLinTx, 2, 100);
 
-									HAL_UARTEx_ReceiveToIdle_IT(&huart6, auiLinRx, 8);
+									// DIREKT Empfang starten
+									HAL_UART_Receive_IT(&huart6, auiLinRxBuffer, 8);
 
-									uiMainStateMachine= MSM_READ_PCUE;
+									// State wechseln
+									uiMainStateMachine = MSM_READ_PCUE;
 									break;
 
+
 	case  MSM_READ_PCUE:			/// start lin diagnose service
-//									while (HAL_UART_Receive(&huart6, auiLinRx, 8, 2000)!= HAL_OK);
-//									LinStatus = HAL_UART_Receive(&huart6, auiLinRx, 8, 2000);
+									/// UART FIFO auslesen
+//									uiBufferSize = 0;
+//									while (__HAL_UART_GET_FLAG(&huart6, UART_FLAG_RXNE)) {
+//										auiLinRx[uiBufferSize] = (uint8_t)(huart6.Instance->RDR);
+//
+//										if (uiBufferSize > 21)
+//										{
+//											break;
+//										}
+//										else
+//										{
+//											uiBufferSize++;
+//										}
+//									}
+//
+									if (bLinRxDone == 1); 	// warten bis Daten empfangen
+									{
+										bLinRxDone = 0;  // Rücksetzen
 
-									bPcuState =  auiLinRx[1] & 0x03;
-									xPcuStatusLed =  auiLinRx[1] & 0x04;
-									bPcuErrorInt =  auiLinRx[1] & 0x38;
-									xPcuLin2Error =  auiLinRx[1] & 0x40;
-									xPcuDefect =  auiLinRx[1] & 0x80;
+										// Empfangene Daten auswerten
+										bPcuState =       auiLinRx[1] & 0x03;
+										xPcuStatusLed =   auiLinRx[1] & 0x04;
+										bPcuErrorInt =    auiLinRx[1] & 0x38;
+										xPcuLin2Error =   auiLinRx[1] & 0x40;
+										xPcuDefect =      auiLinRx[1] & 0x80;
+										bPcuOperatingHours = ((uint16_t)auiLinRx[5]<<8) | auiLinRx[4];
 
-									bPcuOperatingHours =  ((uint16_t)auiLinRx[5]<<8) | auiLinRx[4];
-
-									uiMainStateMachine= MSM_START_DIAG;
+										// Weiter zum nächsten Schritt
+										uiMainStateMachine = MSM_START_DIAG;
+									}
 									break;
 
 	case  MSM_START_DIAG:			/// start lin diagnose service
@@ -907,10 +956,27 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 
 	lastSize = Size;
-    HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
-
+	bLinRxDone = 1;
 }
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART6)
+    {
+        // Hier ist der Empfang abgeschlossen
+        bLinRxDone = 1;
 
+	       __disable_irq();					// Interrupts deaktivieren
+	       memcpy(auiLinRxBuffer, auiLinRx, 8);	// Kopiere RxData in den temporären Puffer
+	       //rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
+	       __enable_irq();					// Interrupts wieder aktivieren
+        // Falls du willst, kannst du gleich prüfen:
+        // - Prüfsumme
+        // - Protokollfelder
+
+        // Wenn du weitere Nachrichten empfangen willst:
+        // HAL_UART_Receive_IT(&huart6, auiLinRx, 8);
+    }
+}
 
 void Model::processLINData(uint8_t* data, uint16_t size)
 {
