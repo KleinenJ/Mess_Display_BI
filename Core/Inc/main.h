@@ -91,8 +91,6 @@ void hw_init ( void );
 #define ETH_MCO_GPIO_Port GPIOC
 #define LIN_CS_WAKE_Pin GPIO_PIN_11
 #define LIN_CS_WAKE_GPIO_Port GPIOI
-#define I2C_GPIO2_Pin GPIO_PIN_7
-#define I2C_GPIO2_GPIO_Port GPIOG
 #define LIN_FAULT_Pin GPIO_PIN_3
 #define LIN_FAULT_GPIO_Port GPIOG
 #define EXT_INT_Pin GPIO_PIN_2

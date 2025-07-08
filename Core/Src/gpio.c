@@ -179,12 +179,6 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
   HAL_GPIO_Init(ETH_MCO_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : I2C_GPIO2_Pin */
-  GPIO_InitStruct.Pin = I2C_GPIO2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(I2C_GPIO2_GPIO_Port, &GPIO_InitStruct);
-
   /*Configure GPIO pin : LIN_FAULT_Pin */
   GPIO_InitStruct.Pin = LIN_FAULT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;

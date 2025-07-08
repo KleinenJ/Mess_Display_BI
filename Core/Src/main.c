@@ -114,6 +114,10 @@ int main(void)
 
 
   // NVIC-Konfiguration für USART6
+  // Interrupt für USART6 aktivieren
+  HAL_NVIC_SetPriority(USART6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(USART6_IRQn);
+  // Empfang starten   HAL_UART_Receive_IT(&huart6, &rxBuffer[rxIndex], 1);
 
 
 
