@@ -1,5 +1,5 @@
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/freertos.c:97:6:vApplicationIdleHook	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/freertos.c:116:6:MX_FREERTOS_Init	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/freertos.c:167:6:StartDefaultTask	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/freertos.c:191:13:StartLCDSleepTask	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/freertos.c:209:13:StartPwmTask	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/freertos.c:97:6:vApplicationIdleHook	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/freertos.c:116:6:MX_FREERTOS_Init	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/freertos.c:167:6:StartDefaultTask	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/freertos.c:191:13:StartLCDSleepTask	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/freertos.c:209:13:StartPwmTask	1

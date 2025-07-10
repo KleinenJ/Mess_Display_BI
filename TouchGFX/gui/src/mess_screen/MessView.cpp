@@ -215,13 +215,13 @@ void MessView::CANFloatReceived(uint32_t ID, const float *data)
 void MessView::updateLINStatus(uint8_t *status)
 {
     static uint8_t oldHVI = 0;
-    static uint8_t oldHVU = 0;
+    static uint16_t oldHVU = 0;
 
-    uint8_t newHVI = status[14];
-    uint8_t newHVU = status[16];
+    uint8_t newHVI = status[3];
+    uint16_t newHVU = (((status[8]&0x3) << 8) + (status[7]));
 
-    float fLinIonVoltage = (-1.0) * (((status[20]&0x3) << 8) + (status[19])); 				// HV Ist-Spannung = Rohwert *40
-	float fLinIonCurrent = (-1.0) * status[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+    float fLinIonVoltage = (-1.0) * (((status[8]&0x3) << 8) + (status[7])); 				// HV Ist-Spannung = Rohwert *40
+	float fLinIonCurrent = (-1.0) * status[3] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
 
 	receivedVoltageValue = newHVU;
 
@@ -251,7 +251,7 @@ void MessView::updateLINStatus(uint8_t *status)
     }
 
 
-    uint8_t regulationState = status[13] & 0x03;	// Prüfen, welchen Status die HV-Quelle zurückgibt
+    uint8_t regulationState = status[2] & 0x03;	// Prüfen, welchen Status die HV-Quelle zurückgibt
 
         const char* statusText;
         switch (regulationState)

@@ -1,5 +1,5 @@
 Application/User/gui/StartPresenter.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/gui/src/start_screen/StartPresenter.cpp \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/gui/src/start_screen/StartPresenter.cpp \
  ../../TouchGFX/gui/include/gui/start_screen/StartView.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/start_screen/StartViewBase.hpp \
  ../../TouchGFX/gui/include/gui/common/FrontendApplication.hpp \

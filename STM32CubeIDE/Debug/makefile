@@ -105,8 +105,8 @@ all: main-build
 main-build: EVK070016.elf secondary-outputs
 
 # Tool invocations
-EVK070016.elf EVK070016.map: $(OBJS) $(USER_OBJS) C:\TouchGFXProjects\Mess_Display_BI_branch_bSampleControl\STM32CubeIDE\STM32H750_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "EVK070016.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\TouchGFXProjects\Mess_Display_BI_branch_bSampleControl\STM32CubeIDE\STM32H750_FLASH.ld" --specs=nosys.specs -Wl,-Map="EVK070016.map" -Wl,--gc-sections -static -L../../Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc --specs=standard_c_nano_cpp.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+EVK070016.elf EVK070016.map: $(OBJS) $(USER_OBJS) C:\TouchGFXProjects\Mess_Display_BI_branch_SimpleBsample\STM32CubeIDE\STM32H750_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "EVK070016.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\TouchGFXProjects\Mess_Display_BI_branch_SimpleBsample\STM32CubeIDE\STM32H750_FLASH.ld" --specs=nosys.specs -Wl,-Map="EVK070016.map" -Wl,--gc-sections -static -L../../Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc --specs=standard_c_nano_cpp.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

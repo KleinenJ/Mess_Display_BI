@@ -1,3 +1,3 @@
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/ltdc.c:30:6:MX_LTDC_Init	64	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/ltdc.c:87:6:HAL_LTDC_MspInit	56	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/ltdc.c:166:6:HAL_LTDC_MspDeInit	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/ltdc.c:30:6:MX_LTDC_Init	64	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/ltdc.c:87:6:HAL_LTDC_MspInit	56	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/ltdc.c:166:6:HAL_LTDC_MspDeInit	16	static

@@ -1,6 +1,6 @@
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/diskio.c:36:9:disk_status	24	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/diskio.c:51:9:disk_initialize	24	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/diskio.c:76:9:disk_read	40	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/diskio.c:98:9:disk_write	40	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/diskio.c:120:9:disk_ioctl	24	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/diskio.c:138:14:get_fattime	4	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/diskio.c:36:9:disk_status	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/diskio.c:51:9:disk_initialize	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/diskio.c:76:9:disk_read	40	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/diskio.c:98:9:disk_write	40	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/diskio.c:120:9:disk_ioctl	24	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/diskio.c:138:14:get_fattime	4	static

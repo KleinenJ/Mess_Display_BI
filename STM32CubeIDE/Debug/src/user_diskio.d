@@ -1,5 +1,5 @@
 src/user_diskio.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/user_diskio.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/user_diskio.c \
  ../../FATFS/include/ff_gen_drv.h ../../FATFS/include/diskio.h \
  ../../FATFS/include/integer.h ../../FATFS/include/ff.h \
  ../../FATFS/include/ffconf.h ../../Core/Inc/main.h \

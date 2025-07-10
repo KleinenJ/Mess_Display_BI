@@ -1,5 +1,5 @@
 src/syscall.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/syscall.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/syscall.c \
  ../../FATFS/include/ff.h ../../FATFS/include/integer.h \
  ../../FATFS/include/ffconf.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \

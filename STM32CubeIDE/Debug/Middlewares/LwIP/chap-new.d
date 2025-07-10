@@ -1,5 +1,5 @@
 Middlewares/LwIP/chap-new.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Middlewares/Third_Party/LwIP/src/netif/ppp/chap-new.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Middlewares/Third_Party/LwIP/src/netif/ppp/chap-new.c \
  ../../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h ../../Core/Inc/main.h \

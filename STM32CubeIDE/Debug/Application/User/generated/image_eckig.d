@@ -1,4 +1,4 @@
 Application/User/generated/image_eckig.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/generated/images/src/image_eckig.cpp \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/generated/images/src/image_eckig.cpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Config.hpp:

@@ -1,5 +1,5 @@
 Application/User/Core/crc.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/crc.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/crc.c \
  ../../Core/Inc/crc.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \

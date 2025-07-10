@@ -1,5 +1,5 @@
 Middlewares/LwIP/sys_arch.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Middlewares/Third_Party/LwIP/system/OS/sys_arch.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Middlewares/Third_Party/LwIP/system/OS/sys_arch.c \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/debug.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h \
  ../../Middlewares/Third_Party/LwIP/system/arch/cc.h \

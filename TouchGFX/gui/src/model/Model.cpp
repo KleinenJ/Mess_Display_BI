@@ -67,8 +67,11 @@ uint16_t lastSize = 0;  		// Globale Variable, um den Wert von Size zu speichern
 uint8_t linStatus[22];
 //uint8_t linRxBuffer[256];
 
+bool xMessageRecieved = false;
+
 //uint8_t rxBuffer[9]; // Buffer für den Empfang
 //uint8_t status[9];   // Buffer für den Status
+uint8_t TxData[22];
 uint8_t RxData[22];
 uint8_t tempRxData[22];
 uint8_t uiaCanRxBuffer[8];	// global buffer for
@@ -126,53 +129,63 @@ void Model::tick()
 
 	    if (tickCounter >= tickThreshold)	        	// Anfrage an den HV-Slave nach 75 Ticks senden
 	    {
-			#ifdef B_SAMPLE
-	    		uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 --> B-Muster
-	        #else
-	    		uint8_t TxData[2] = {0x55, pid_Calc(0x10)}; // LIN-PID 0x10 --> A-Muster
-			#endif
-	    	HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
+	    	/// Read PCUs
+	    	uint8_t TxData[2] = {0x55, pid_Calc(0x09)}; // LIN-PID 0x09 --> B-Muster
+
+	    	/// clear input buffer
+	    	for (int iResetCounter = 0; iResetCounter < sizeof(RxData); iResetCounter++) {
+	    	    RxData[iResetCounter] = 0;
+	    	}
+
+	    	xMessageRecieved = false; /// JKL - Clear recieved Flag
+
+    		HAL_LIN_SendBreak(&huart6); 				// LIN Break senden
 	        HAL_UART_Transmit(&huart6, TxData, 2, 100); // Sync Byte und PID für Statusabfrage senden
-//
+
+	        HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 12);	/// JKL 2025/0710 - reduced request size to 12
+
+	        //
 //	        uint8_t tmp_rx[12];
 //	        HAL_UART_Receive(&huart6, tmp_rx, 12, 10); // 10ms Timeout
 
 	        tickCounter = 0;
 	    }
 
-	   HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
-
-	    if (RxData[10] != 0)  // Prüfen auf Datenempfang
+//
+//	    if (RxData[10] != 0)  // Prüfen auf Datenempfang
+//	    {
+//	       __disable_irq();					// Interrupts deaktivieren
+//	       memcpy(tempRxData, RxData, 22);	// Kopiere RxData in den temporären Puffer
+//	       __enable_irq();					// Interrupts wieder aktivieren
+//	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
+//	    }
+//
+	    if (xMessageRecieved)
 	    {
-	       __disable_irq();					// Interrupts deaktivieren
-	       memcpy(tempRxData, RxData, 22);	// Kopiere RxData in den temporären Puffer
-	       __enable_irq();					// Interrupts wieder aktivieren
-	       rearrangeRxData(tempRxData, 22);	// Werte für übergabe umsortieren (LIN-Ausfall prüfen)
-	    }
+			modelListener->onLINStatusReceived(RxData);
 
-	    if (lastSize == 12)
-	    {
-			modelListener->onLINStatusReceived(tempRxData);
+			fLinIonVoltage = (-1.0) * (((RxData[8]&0x3) << 8) + (RxData[7])); 				// HV Ist-Spannung = Rohwert *40
+			fLinIonCurrent = (-1.0) * RxData[3] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
 			linTimeoutCounter = 0;
 	    }
-	    else if (linTimeoutCounter > LIN_TIMEOUT_THRESHOLD)	// Timeout erkannt = keine Daten
-	    {
-			linStatus[22] = {0};
-			__disable_irq();
-			memset(RxData, 0, sizeof(RxData));
-			memset(tempRxData, 0, sizeof(tempRxData));
-			__enable_irq();
-			modelListener->onLINStatusReceived(tempRxData);		// 0 Senden wenn keine Daten mehr empfangen werden
-			linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
-	    }
-
-		#ifdef B_SAMPLE
-			fLinIonVoltage = (-1.0) * (((tempRxData[20]&0x3) << 8) + (tempRxData[19])); 				// HV Ist-Spannung = Rohwert *40
-			fLinIonCurrent = (-1.0) * tempRxData[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
-		#else
-	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
-			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
-		#endif
+//	    else if (linTimeoutCounter > LIN_TIMEOUT_THRESHOLD)	// Timeout erkannt = keine Daten
+//	    {
+//			linStatus[22] = {0};
+//			__disable_irq();
+//			memset(RxData, 0, sizeof(RxData));
+//			memset(tempRxData, 0, sizeof(tempRxData));
+//			__enable_irq();
+//			modelListener->onLINStatusReceived(tempRxData);		// 0 Senden wenn keine Daten mehr empfangen werden
+//			linTimeoutCounter = 0;  							// Timeout-Zähler zurücksetzen
+//	    }
+//
+//		#ifdef B_SAMPLE
+//			fLinIonVoltage = (-1.0) * (((tempRxData[20]&0x3) << 8) + (tempRxData[19])); 				// HV Ist-Spannung = Rohwert *40
+//			fLinIonCurrent = (-1.0) * tempRxData[14] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+//		#else
+//	    	fLinIonVoltage = (-1.0) * tempRxData[16] * 40; 				// HV Ist-Spannung = Rohwert *40
+//			fLinIonCurrent = (-1.0) * tempRxData[15] / 2.0f; 			// HV Ist-Strom = Rohwert / 2
+//		#endif
 
 
 		sendSystemImageOverCAN();
@@ -225,7 +238,7 @@ void Model::setBacklightValue(int value)	// Displayhelligkeit
 		BYTE readBuf[30];
 
 
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
 
 		fresult = f_mount(&SDFatFS, "", 1); //1=mount now
 		  if (fresult != FR_OK)
@@ -569,8 +582,15 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 
 	lastSize = Size;
-    HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 22);
 
+    if (Size == 10)
+    {
+    	xMessageRecieved = true;
+    }
+    else
+    {
+        HAL_UARTEx_ReceiveToIdle_IT(&huart6, RxData, 12);		/// JKL 2025/07/10: reduced request size to 12
+    }
 }
 
 

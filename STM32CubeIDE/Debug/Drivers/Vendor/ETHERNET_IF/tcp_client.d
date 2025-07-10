@@ -1,5 +1,5 @@
 Drivers/Vendor/ETHERNET_IF/tcp_client.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/ETHERNET_IF/App/tcpecho/tcp_client.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/ETHERNET_IF/App/tcpecho/tcp_client.c \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../Core/Inc/FreeRTOSConfig.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
@@ -78,7 +78,7 @@ Drivers/Vendor/ETHERNET_IF/tcp_client.o: \
  ../../Drivers/Vendor/Driver/edt_bsp_i2c.h \
  ../../Drivers/Vendor/Driver/edt_bsp_io.h \
  ../../Drivers/Vendor/Driver/edt_h7xx_eeprom_i2c.h \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/ETHERNET_IF/App/tcpecho/tcp_client.h \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/ETHERNET_IF/App/tcpecho/tcp_client.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/netif.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h \
@@ -182,7 +182,7 @@ Drivers/Vendor/ETHERNET_IF/tcp_client.o: \
 ../../Drivers/Vendor/Driver/edt_bsp_i2c.h:
 ../../Drivers/Vendor/Driver/edt_bsp_io.h:
 ../../Drivers/Vendor/Driver/edt_h7xx_eeprom_i2c.h:
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/ETHERNET_IF/App/tcpecho/tcp_client.h:
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/ETHERNET_IF/App/tcpecho/tcp_client.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/netif.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h:
 ../../LWIP/Target/lwipopts.h:

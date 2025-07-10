@@ -1,5 +1,5 @@
 Application/User/generated/Table_calibrib_40_4bpp.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/generated/fonts/src/Table_calibrib_40_4bpp.cpp \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/generated/fonts/src/Table_calibrib_40_4bpp.cpp \
  ../../TouchGFX/generated/fonts/include/fonts/GeneratedFont.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/ConstFont.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Font.hpp \

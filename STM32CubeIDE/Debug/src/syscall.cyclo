@@ -1,4 +1,4 @@
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/syscall.c:37:5:ff_cre_syncobj	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/syscall.c:78:5:ff_del_syncobj	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/syscall.c:99:5:ff_req_grant	2
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/FATFS/src/syscall.c:136:6:ff_rel_grant	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/syscall.c:37:5:ff_cre_syncobj	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/syscall.c:78:5:ff_del_syncobj	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/syscall.c:99:5:ff_req_grant	2
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/FATFS/src/syscall.c:136:6:ff_rel_grant	1

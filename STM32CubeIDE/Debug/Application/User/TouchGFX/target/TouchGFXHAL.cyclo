@@ -17,16 +17,16 @@
 ../../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp:30:7:TouchGFXGeneratedHAL::~TouchGFXGeneratedHAL()	1
 ../../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp:30:7:virtual TouchGFXGeneratedHAL::~TouchGFXGeneratedHAL()	1
 ../../TouchGFX/target/TouchGFXHAL.hpp:106:18:virtual void TouchGFXHAL::flushFrameBuffer()	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:27:6:virtual void TouchGFXHAL::initialize()	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:44:11:virtual uint16_t* TouchGFXHAL::getTFTFrameBuffer() const	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:59:6:virtual void TouchGFXHAL::setTFTFrameBuffer(uint16_t*)	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:76:6:virtual void TouchGFXHAL::flushFrameBuffer(const touchgfx::Rect&)	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:91:6:virtual bool TouchGFXHAL::blockCopy(void*, const void*, uint32_t)	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:100:6:virtual void TouchGFXHAL::configureInterrupts()	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:113:6:virtual void TouchGFXHAL::enableInterrupts()	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:126:6:virtual void TouchGFXHAL::disableInterrupts()	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:140:6:virtual void TouchGFXHAL::enableLCDControllerInterrupt()	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:150:6:virtual bool TouchGFXHAL::beginFrame()	1
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/TouchGFX/target/TouchGFXHAL.cpp:155:6:virtual void TouchGFXHAL::endFrame()	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:27:6:virtual void TouchGFXHAL::initialize()	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:44:11:virtual uint16_t* TouchGFXHAL::getTFTFrameBuffer() const	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:59:6:virtual void TouchGFXHAL::setTFTFrameBuffer(uint16_t*)	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:76:6:virtual void TouchGFXHAL::flushFrameBuffer(const touchgfx::Rect&)	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:91:6:virtual bool TouchGFXHAL::blockCopy(void*, const void*, uint32_t)	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:100:6:virtual void TouchGFXHAL::configureInterrupts()	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:113:6:virtual void TouchGFXHAL::enableInterrupts()	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:126:6:virtual void TouchGFXHAL::disableInterrupts()	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:140:6:virtual void TouchGFXHAL::enableLCDControllerInterrupt()	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:150:6:virtual bool TouchGFXHAL::beginFrame()	1
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/TouchGFX/target/TouchGFXHAL.cpp:155:6:virtual void TouchGFXHAL::endFrame()	1
 ../../TouchGFX/target/TouchGFXHAL.hpp:34:7:TouchGFXHAL::~TouchGFXHAL()	1
 ../../TouchGFX/target/TouchGFXHAL.hpp:34:7:virtual TouchGFXHAL::~TouchGFXHAL()	1

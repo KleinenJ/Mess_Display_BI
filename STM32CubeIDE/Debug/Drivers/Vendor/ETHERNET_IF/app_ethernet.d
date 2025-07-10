@@ -1,5 +1,5 @@
 Drivers/Vendor/ETHERNET_IF/app_ethernet.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/ETHERNET_IF/Target/app_ethernet.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/ETHERNET_IF/Target/app_ethernet.c \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
@@ -83,7 +83,7 @@ Drivers/Vendor/ETHERNET_IF/app_ethernet.o: \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h \
  ../../Middlewares/Third_Party/LwIP/system/arch/cc.h \
  ../../Middlewares/Third_Party/LwIP/system/arch/cpu.h \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/ETHERNET_IF/Target/app_ethernet.h \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/ETHERNET_IF/Target/app_ethernet.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/netif.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/err.h \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/ip_addr.h \
@@ -191,7 +191,7 @@ Drivers/Vendor/ETHERNET_IF/app_ethernet.o: \
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h:
 ../../Middlewares/Third_Party/LwIP/system/arch/cc.h:
 ../../Middlewares/Third_Party/LwIP/system/arch/cpu.h:
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/ETHERNET_IF/Target/app_ethernet.h:
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/ETHERNET_IF/Target/app_ethernet.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/netif.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/err.h:
 ../../Middlewares/Third_Party/LwIP/src/include/lwip/ip_addr.h:

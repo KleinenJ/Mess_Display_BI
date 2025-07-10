@@ -1,5 +1,5 @@
 Middlewares/USB_Device_Library/usbd_ioreq.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
  ../../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
  ../../USB_DEVICE/Target/usbd_conf.h ../../Core/Inc/main.h \

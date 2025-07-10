@@ -1,6 +1,6 @@
 Drivers/Vendor/edt_bsp_spi.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/Vendor/Driver/edt_bsp_spi.c \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/Vendor/Driver/edt_bsp_spi.h \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Drivers/Vendor/Driver/edt_bsp_spi.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Drivers/Vendor/Driver/edt_bsp_spi.h \
  ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../../Core/Inc/stm32h7xx_hal_conf.h \
@@ -79,7 +79,7 @@ Drivers/Vendor/edt_bsp_spi.o: \
  ../../Drivers/Vendor/Driver/edt_bsp_i2c.h \
  ../../Drivers/Vendor/Driver/edt_bsp_io.h \
  ../../Drivers/Vendor/Driver/edt_h7xx_eeprom_i2c.h
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Drivers/Vendor/Driver/edt_bsp_spi.h:
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Drivers/Vendor/Driver/edt_bsp_spi.h:
 ../../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../../Core/Inc/stm32h7xx_hal_conf.h:

@@ -1,5 +1,5 @@
 Application/User/Core/freertos.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/freertos.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/freertos.c \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../../Core/Inc/FreeRTOSConfig.h \
  ../../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \

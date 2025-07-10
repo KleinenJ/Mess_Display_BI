@@ -1,5 +1,5 @@
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/usart.c:33:6:MX_UART7_Init	8	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/usart.c:77:6:MX_USART2_UART_Init	8	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/usart.c:121:6:MX_USART6_UART_Init	8	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/usart.c:168:6:HAL_UART_MspInit	264	static
-C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Core/Src/usart.c:299:6:HAL_UART_MspDeInit	16	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/usart.c:33:6:MX_UART7_Init	8	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/usart.c:77:6:MX_USART2_UART_Init	8	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/usart.c:121:6:MX_USART6_UART_Init	8	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/usart.c:168:6:HAL_UART_MspInit	264	static
+C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Core/Src/usart.c:299:6:HAL_UART_MspDeInit	16	static

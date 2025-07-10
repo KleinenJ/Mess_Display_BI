@@ -1,5 +1,5 @@
 Middlewares/LwIP/ip.o: \
- C:/TouchGFXProjects/Mess_Display_BI_branch_bSampleControl/Middlewares/Third_Party/LwIP/src/core/ip.c \
+ C:/TouchGFXProjects/Mess_Display_BI_branch_SimpleBsample/Middlewares/Third_Party/LwIP/src/core/ip.c \
  ../../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h \
  ../../LWIP/Target/lwipopts.h ../../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
